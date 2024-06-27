@@ -1,0 +1,118 @@
+.extend-card {
+    background-color: #313131;
+    box-shadow: var(--shadow);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+
+    --close-h: 100%;
+    --extend-h: 100%;
+    --transition: 200ms;
+
+    transition: var(--transition) all ease-in-out;
+}
+
+.extend-card:not(.close) {
+    background-color: #313131bf;
+}
+
+.extend-card:not(.close) {
+    height: var(--extend-h);
+    min-height: var(--extend-h);
+    max-height: var(--extend-h);
+}
+
+.extend-card.close {
+    height: var(--close-h);
+    min-height: var(--close-h);
+    max-height: var(--close-h);
+}
+
+.extend-card .card-info,
+.extend-card .card-detail {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.extend-card:not(.close) .card-info,
+.extend-card.close .card-detail {
+    visibility: hidden;
+}
+
+.extend-card.close .card-info,
+.extend-card:not(.close) .card-detail .card-title {
+    cursor: pointer;
+}
+/* .extend-card.close .card-info,
+.extend-card:not(.close) .card-detail {
+
+} */
+
+.extend-card .card-detail .card-title {
+    background-color: #313131;
+    color: #999999;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+}
+.extend-card .card-detail .card-title:active {
+    background-color: #262626;
+    color: #777777;
+}
+.extend-card .card-detail .card-title>*:first-child {
+    font-family: Novecento, NotoSansHans;
+    transform: translateY(0.08em);
+}
+.extend-card .card-detail .card-title::before {
+    content: '▴ ';
+    color: #ffffff;
+    margin: 0 0.3em;
+}
+.extend-card .card-detail .card-title:active::before {
+    color: #c8c8c8;
+}
+.extend-card .card-detail .card-content {
+    padding: 0.75em 1em;
+    text-align: left;
+}
+
+.extend-card .card-info .card-title {
+    font-family: Novecento, NotoSansHans;
+    text-align: left;
+    padding: 0.5em 1em 0.25em 1em;
+}
+.extend-card .card-info>hr {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    /* padding-top: 1px; */
+    /* background: linear-gradient(to bottom, #000, #fff, #000); */
+    border-style: solid;
+    border-width: 1px;
+    position: relative;
+    width: 90%;
+    left: 5%;
+}
+.extend-card .card-info .hr-1 {
+    border-color: #202020;
+}
+.extend-card .card-info .hr-2 {
+    border-color: #404040;
+}
+.extend-card .card-info .card-content {
+    padding: 0.5em 1em 1em 1em;
+    text-align: left;
+}
+.extend-card .card-info .card-content::after {
+    content: '▾';
+    position: absolute;
+    bottom: 0;
+    right: 0.5em;
+    line-height: 1em;
+    color: #7c7c7c;
+    transform: scaleX(1.5);
+}

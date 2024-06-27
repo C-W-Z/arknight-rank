@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'FZTYSJW';
+  src: local('FZTYSJW'), url('./assets/fonts/FZTYSJW.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Novecento';
+  src: local('Novecento'), url('./assets/fonts/Novecento-WideNormal.woff2') format('woff2');
+  /* other formats include: 'woff2', 'truetype, 'opentype', 'embedded-opentype', and 'svg' */
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Novecento';
+  src: local('Novecento'), url('./assets/fonts/Novecento-WideMedium.woff2') format('woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'NotoSansHans';
+  src: local('NotoSansHans'), url('./assets/fonts/NotoSansHans-Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'NotoSansHans';
+  src: local('NotoSansHans'), url('./assets/fonts/NotoSansHans-Medium.woff2') format('woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'NotoSansHans';
+  src: local('NotoSansHans'), url('./assets/fonts/NotoSansHans-Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'NotoSansHans';
+  src: local('NotoSansHans'), url('./assets/fonts/NotoSansHans-Black.woff2') format('woff2');
+  font-weight: 800;
+}
+
+:root {
+  --text-color-dark: #ffffff;
+  --background-color: #2f2f2f;
+  /* --background-color: #ffffff; */
+  --btn-color-dark: #313131;
+  --text-color-light: #ffffff;
+  --tags-box-color: #0000007f;
+  --tags-box-border: #f6f6f67f solid 1px;
+  --text-stroke: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  --shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+      --text-color-dark: #f6f6f6;
+      --background-color: #2f2f2f;
+  }
+} */
+
+:root {
+  font-family: NotoSansHans, sans-serif;
+  font-size: 18px;
+  line-height: 1.5em;
+  font-weight: 400;
+
+  color: var(--text-color-dark);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  overflow: hidden;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+body {
+  margin: 0;
+}
+
+code {
+  font-family: monospace;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+button {
+  all: unset;
+}
+button:focus {
+  outline: 0;
+}
+a {
+  all: unset;
+}
+
+p {
+  margin: 0;
+}

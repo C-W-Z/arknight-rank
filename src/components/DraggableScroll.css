@@ -1,0 +1,19 @@
+.vertical-scroll {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    /* touch-action: none; */
+}
+.vertical-scroll::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+.vertical-scroll .vertical-scroll-child {
+    margin: 0;
+    padding: 0;
+}
+.vertical-scroll .placeholder {
+    margin: 0;
+    padding: 0;
+    height: 15em;
+    width: 100%;
+}

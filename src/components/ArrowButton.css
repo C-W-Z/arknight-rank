@@ -1,0 +1,35 @@
+.arrow-btn {
+    position: relative;
+    height: 2em;
+}
+.arrow-btn svg {
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.2));
+    cursor: pointer;
+}
+.arrow-btn:not(:active) svg polygon {
+    fill: hsl(0, 0%, 9%);
+}
+.arrow-btn:active svg polygon {
+    fill: hsl(0, 0%, 15%);
+}
+.arrow-btn::before {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(100%, -50%);
+    font-size: 2em;
+    z-index: 1;
+}
+.arrow-btn .child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% + 0.5em), -50%);
+    font-family: Novecento, NotoSansHans;
+    color: #ffffff;
+    text-align: center;
+}
+.arrow-btn:active .child {
+    color: #c8c8c8;
+}

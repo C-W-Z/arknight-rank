@@ -1,0 +1,360 @@
+.stat {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url("../assets/stat_bg.png");
+    background-size: cover;
+}
+
+.skin-bg {
+    background-size: auto 120vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-area {
+    height: 95%;
+    width: 97%;
+    position: relative;
+}
+.bottom-left-area {
+    position: absolute;
+    left: 0;
+    bottom: 1%;
+    /* height: 80%; */
+    display: grid;
+    grid-template-rows: auto auto;
+}
+.right-area {
+    position: absolute;
+    right: 3%;
+    /* bottom: 5%; */
+    /* height: 100%; */
+    max-height: 100%;
+}
+.right-area .right-grid {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.right-area .right-grid>* {
+    margin-bottom: 2em;
+}
+.right-area .right-grid>*:first-child {
+    margin-top: 4em;
+}
+.bottom-left-area>div {
+    align-self: last baseline;
+}
+
+.name-overlay {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    justify-content:end;
+    height: fit-content;
+}
+.name-overlay .star {
+    height: 2em;
+    margin: 0;
+    padding: 0;
+    transform: translate(-0.1em, 0.5em);
+}
+.name-overlay .name {
+    font-family: 'FZTYSJW';
+    font-weight: bold;
+    font-size: 4em;
+    line-height: 1em;
+    padding-top: 0.05em;
+    margin: 0;
+    text-shadow: var(--text-stroke);
+}
+.name-overlay .name2 {
+    font-weight: 500;
+    font-size: 1.5em;
+    line-height: 1em;
+    padding-left: 0.1em;
+    margin: 0;
+    text-shadow: var(--text-stroke);
+    z-index: 1;
+}
+.name-overlay .class-tags {
+    margin: 0.5em;
+    margin-left: 0;
+    display: grid;
+    grid-template-areas: 
+        "class-img class-name position-type"
+        "class-img tags tags";
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    gap: 0.3em;
+    text-align: center;
+}
+.name-overlay .class-img {
+    grid-area: class-img;
+    height: 4em;
+    opacity: 0.5;
+    border: var(--tags-box-border);
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.5);
+}
+.name-overlay .class-tags .class-name {
+    grid-area: class-name;
+}
+.name-overlay .class-tags .position-type {
+    grid-area: position-type;
+}
+.name-overlay .class-tags .class-name,
+.name-overlay .class-tags .position-type {
+    width: 7em;
+    background-color: var(--tags-box-color);
+    /* border: var(--tags-box-border); */
+    border-radius: 5px;
+    line-height: 1em;
+}
+.name-overlay .class-tags .tags {
+    grid-area: tags;
+    background-color: var(--tags-box-color);
+    /* border: var(--tags-box-border); */
+    border-radius: 5px;
+    line-height: 2em;
+}
+.name-overlay .class-tags>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statistic {
+    margin-left: 0.1em;
+    transform: translateY(1em);
+    display: grid;
+    grid-template-areas: 
+        "rank-title ."
+        "rati wins"
+        "devi draw"
+        "vola loss"
+        "winrate winrate";
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3em;
+    text-align: left;
+    font-weight: bold;
+    cursor: pointer;
+}
+.statistic .detail-item,
+.statistic .winrate,
+.statistic .rank-title {
+    background-color: #ffffffbf;
+    color: #000000;
+}
+.statistic .rank-title {
+    grid-area: rank-title;
+    background: linear-gradient(90deg, transparent 0%, #ffffff 15%, #ffffff 40%, transparent 100%);
+    border-radius: 3px;
+    padding: 0 0.3em;
+    font-family: NotoSansHans;
+}
+.statistic .detail-item {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffffbf;
+    color: #000000;
+    border-radius: 3px;
+    font-weight: 500;
+    line-height: 1.25em;
+}
+.statistic .detail-icon {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 0.8em;
+    text-align: center;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 3px 0px 0px 3px;
+    font-family: NotoSansHans;
+}
+.statistic .extend-word {
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    padding-right: 0.5em;
+    min-width: 4.5em;
+    text-align: left;
+    text-wrap: nowrap;
+    transition: all ease-in-out 0.5s;
+    overflow: hidden;
+}
+.statistic.close .extend-word {
+    max-width: 0;
+    min-width: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+}
+.statistic:not(.close) .extend-word {
+    width: 4.5em;
+}
+.statistic .rati {
+    grid-area: rati;
+}
+.statistic .devi {
+    grid-area: devi;
+}
+.statistic .vola {
+    grid-area: vola;
+}
+.statistic .wins {
+    grid-area: wins;
+}
+.statistic .draw {
+    grid-area: draw;
+}
+.statistic .loss {
+    grid-area: loss;
+}
+.statistic .detail-item .detail-number.progress {
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    background-color: transparent;
+}
+.statistic .detail-item .detail-number.progress .progress-value {
+    border-radius: 0;
+    text-indent: 0.2em;
+    background-color: #a0a0a0;
+    padding-right: 0.2em;
+}
+.statistic .winrate {
+    grid-area: winrate;
+    margin: 0.3em 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 0.1em 0.2em;
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 25%, #ffffff7f 50%, #ffffff7f 100%);
+}
+.statistic .winrate .winrate-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Novecento;
+    padding: 0;
+    margin: 0;
+    line-height: 1em;
+}
+.statistic .winrate .progress {
+    height: 0.6em;
+    width: 100%;
+    background-color: #7d7d7d;
+    box-shadow: inset 0px 0px 0px 2px #ffffff;
+    border-radius: 5px;
+}
+.statistic .winrate .progress .progress-value {
+    background-color: #ffa260;
+    box-shadow: inset 0px 0px 0px 2px #ffffff;
+    border-radius: 5px;
+}
+
+.ranking {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.ranking .progress-circle {
+    --stroke-width: 0.2em;
+    z-index: 1;
+}
+.ranking .progress-circle svg {
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.7));
+}
+.ranking .rank-num {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.ranking .rank-title {
+    font-size: 0.4em;
+    font-weight: 400;
+    position: absolute;
+    top: 0.4em;
+}
+.ranking .rank-num,
+.ranking .rank-title {
+    width: 100%;
+    text-align: center;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    font-family: Novecento;
+    font-weight: bold;
+}
+.ranking .rank-bar {
+    /* padding-left: 0.3em; */
+    width: 11.2em;
+    height: 2.7em;
+    background-color: #313131;
+    box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+    /* transform: translateX(-0.4em); */
+    position: relative;
+    /* right: -0.4em; */
+    --total: 331;
+}
+.ranking .rank-bar::before {
+    content: '';
+    position: absolute;
+    left: -0.5em;
+    width: 0.6em;
+    height: 100%;
+    background: radial-gradient(circle at -2.6em center, transparent, transparent 3em, #313131 0, #313131);
+    /* box-shadow: -4px 4px 6px 0 rgba(0, 0, 0, 0.2); */
+}
+.ranking .rank-bar::after {
+    counter-reset: t var(--total);
+    content: '/' counter(t);
+    position: absolute;
+    top: 100%;
+    left: -0.5em;
+    width: 100%;
+    text-align: left;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    font-family: Novecento;
+    font-weight: normal;
+}
+.ranking:active .rank-bar {
+    background-color: #262626;
+}
+.ranking:active .rank-bar::before {
+    background: radial-gradient(circle at -2.6em center, transparent, transparent 3em, #262626 0, #262626);
+}
+.ranking .rank-bar .rank-bar-title {
+    font-size: 0.5em;
+    line-height: 0.8em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0.5rem, calc(-50% - 1.2em));
+}
+.ranking .rank-bar .rank-bar-detail {
+    font-size: 0.7em;
+    line-height: 1em;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0.5rem, calc(-50% + 0.5em));
+}
+.ranking .rank-bar .rank-bar-more {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+}

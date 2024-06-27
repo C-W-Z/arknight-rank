@@ -1,0 +1,28 @@
+.back-btn {
+    height: 2.4em;
+    aspect-ratio: 3 / 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--btn-color-dark);
+    color: var(--text-color-light);
+    box-shadow: var(--shadow);
+    border-radius: 2px;
+    transition: all ease-in-out 100ms;
+}
+.back-btn::before {
+    content: '＜';
+    font-family: cursive;
+    font-size: 2em;
+    padding-left: 0.9em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    transform-origin:left;
+    transform: scaleX(0.5);
+}
+.back-btn:active {
+    background-color: #1f1f1f;
+    color: #999999;
+}

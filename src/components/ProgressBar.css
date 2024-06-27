@@ -1,0 +1,13 @@
+.progress {
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+    background-color: gray;
+}
+
+.progress-value {
+    background-color: orange;
+    border-radius: 0.25em;
+    height: 100%;
+}
