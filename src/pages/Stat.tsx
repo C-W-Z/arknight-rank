@@ -8,7 +8,12 @@ import BackButton from '../components/BackButton';
 import { loadImage } from '../utils/LoadResources';
 import ArrowButton from '../components/ArrowButton';
 
-function NameOverlay(name: string, name2: string) {
+interface NameOverlayProps {
+    name: string;
+    name2: string;
+}
+
+function NameOverlay({ name, name2 }: NameOverlayProps) {
 
     // const starImg = require('../assets/star/star_6.png');
     // const classImg = require('../assets/class/class_medic.png');
@@ -65,7 +70,16 @@ function WinrateBar(percent: number) {
     )
 }
 
-function Statistic() {
+interface StatisticProps {
+    rati: number;
+    devi: number;
+    vola: number;
+    wins: number;
+    draw: number;
+    loss: number;
+}
+
+function Statistic(s: StatisticProps) {
     const [close, setClose] = useState(true);
 
     function toggleClose() {
@@ -77,18 +91,23 @@ function Statistic() {
     return (
         <div className={className} onClick={toggleClose}>
             <div className='rank-title'>Statistic »</div>
-            {StatisticDetail('rati', 'μ', 'Rating', 1500.00, 5000, 2)}
-            {StatisticDetail('devi', 'φ', 'Deviation', 350, 1000, 2)}
-            {StatisticDetail('vola', 'σ', 'Volatility', 0.06, 0.1, 4)}
-            {StatisticDetail('wins', '▲', 'Wins', 7.0000, 100)}
-            {StatisticDetail('draw', '▶', 'Draws', 1, 100)}
-            {StatisticDetail('loss', '▼', 'Losses', 2, 100)}
-            {WinrateBar(70)}
+            {StatisticDetail('rati', 'μ', 'Rating', s.rati, 5000, 2)}
+            {StatisticDetail('devi', 'φ', 'Deviation', s.devi, 1000, 2)}
+            {StatisticDetail('vola', 'σ', 'Volatility', s.vola, 0.1, 4)}
+            {StatisticDetail('wins', '▲', 'Wins', s.wins, 100)}
+            {StatisticDetail('draw', '▶', 'Draws', s.loss, 100)}
+            {StatisticDetail('loss', '▼', 'Losses', s.draw, 100)}
+            {WinrateBar(100 * s.wins / (s.wins + s.draw + s.loss))}
         </div>
     )
 }
 
-function Ranking(rank: number, total: number) {
+interface RankingProps {
+    rank: number;
+    total: number;
+}
+
+function Ranking({ rank, total }: RankingProps) {
     let fontSize = "1.5em";
     if (rank <= 0)
         rank = 0;
@@ -130,7 +149,6 @@ function Stat() {
     const VScrollRef = useRef<HTMLDivElement>(null);
     const VScrollRef2 = useRef<VScrollRef>(null);
 
-
     return (
         <div className='stat'>
             <div className='skin-bg' style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -139,49 +157,49 @@ function Stat() {
                     <BackButton></BackButton>
 
                     <div className='bottom-left-area'>
-                        {Statistic()}
-                        {NameOverlay(name, name2)}
+                        <Statistic rati={1500} devi={350} vola={0.06} wins={7} draw={1} loss={2}></Statistic>
+                        <NameOverlay name={name} name2={name2}></NameOverlay>
                     </div>
 
                 </div>
 
                 <VerticalScroll _ref={VScrollRef} ref={VScrollRef2} className='right-area'>
                     <div className='right-grid'>
-                        {Ranking(108, 331)}
+                        <Ranking rank={108} total={331}></Ranking>
                         <ExtendCard
                             sliderRef={VScrollRef} sliderFuncRef={VScrollRef2}
                             className='overall-ranking'
                             title={"Title Here 這是標題"}
                             infoContent={
-                                <div>
+                                <>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
-                                </div>
+                                </>
                             }
                             detailContent={
-                                <div>
+                                <>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
                                     <ArrowButton>More</ArrowButton>
-                                </div>
+                                </>
                             }
                         ></ExtendCard>
                         <ExtendCard sliderRef={VScrollRef} sliderFuncRef={VScrollRef2}
                             className='recent-battle'
                             title={<p>Title Here 這是標題</p>}
                             infoContent={
-                                <div>
+                                <>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
-                                </div>
+                                </>
                             }
                             detailContent={
-                                <div>
+                                <>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
@@ -192,7 +210,7 @@ function Stat() {
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
                                     <p>Content Here 這是內容</p>
-                                </div>
+                                </>
                             }
                         ></ExtendCard>
                     </div>

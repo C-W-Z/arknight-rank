@@ -1,10 +1,10 @@
-import { Ref, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { Ref, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import './DraggableScroll.css'
 import mergeRefs from "../utils/MergeRefs";
 
 export type VScrollRef = {
     Align: (childH_add?: number) => void,
-    setMouseDown: (value: React.SetStateAction<boolean>) => void,
+    setMouseDown: (value: boolean) => void,
     child: () => HTMLDivElement | null;
     placeHeight: () => number;
 }
@@ -20,9 +20,16 @@ const VerticalScroll = forwardRef<VScrollRef, Props>(({ className = "", children
     const slider = useRef<HTMLDivElement>(null);
     const child = useRef<HTMLDivElement>(null);
     const placeholder = useRef<HTMLDivElement>(null);
-    const [mouseDown, setMouseDown] = useState(false);
-    const [startY, setStartY] = useState(0);
-    const [scrollTop, setScrollTop] = useState(0);
+    // const [mouseDown, setMouseDown] = useState(false);
+    // const [startY, setStartY] = useState(0);
+    // const [scrollTop, setScrollTop] = useState(0);
+    let mouseDown = false;
+    let startY = 0;
+    let scrollTop = 0;
+
+    const setMouseDown = (value: boolean) => { mouseDown = value; };
+    const setStartY = (value: number) => { startY = value; };
+    const setScrollTop = (value: number) => { scrollTop = value };
 
     const startDragging = (e: React.MouseEvent<HTMLElement>) => {
         if (slider.current == null)

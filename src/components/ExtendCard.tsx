@@ -102,7 +102,7 @@ function ExtendCard({
         const childHeight = slderChild ? slderChild.clientHeight : 0;
 
         if (childHeight + closeH - extendH <= sliderRef.current.clientHeight) {
-            console.log("A");
+            // console.log("A");
             const topAlign = sliderFuncRef.current.placeHeight() - (sliderRef.current.clientHeight - (childHeight + closeH - extendH)) / 2;
             // sliderRef.current.scrollBy({
             //     behavior: "smooth",
@@ -115,7 +115,7 @@ function ExtendCard({
         } else if (slderChild) {
             const rect = slderChild.getBoundingClientRect();
             if (rect.bottom + closeH - extendH < sliderRef.current.clientHeight) {
-                console.log("B");
+                // console.log("B");
 
                 sliderRef.current.scrollBy({
                     behavior: "smooth",
