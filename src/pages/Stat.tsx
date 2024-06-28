@@ -7,6 +7,7 @@ import ExtendCard from '../components/ExtendCard';
 import TopButtons from '../components/BackButton';
 import { loadImage } from '../utils/LoadResources';
 import ArrowButton from '../components/ArrowButton';
+import DraggableBackground from '../components/DraggableBackground';
 
 interface NameOverlayProps {
     name: string;
@@ -151,9 +152,8 @@ function Stat() {
 
     return (
         <div className='stat'>
-            <div className='skin-bg' style={{ backgroundImage: `url(${backgroundImage})` }}>
-
-                <div className='main-area'>
+            <DraggableBackground className='skin-bg' backgroundImage={backgroundImage}>
+            <div className='main-area'>
                     <TopButtons></TopButtons>
 
                     <div className='bottom-left-area'>
@@ -217,8 +217,7 @@ function Stat() {
                         ></ExtendCard>
                     </div>
                 </VerticalScroll>
-
-            </div>
+            </DraggableBackground>
         </div>
     );
 }
