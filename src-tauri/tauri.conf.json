@@ -38,7 +38,7 @@
         "title": "arknights-rank",
         "width": 1280,
         "height": 720,
-        "resizable": true
+        "resizable": false
       }
     ],
     "security": {

@@ -4,7 +4,7 @@ import ProgressBar from '../components/ProgressBar';
 import ProgressCircle from '../components/ProgressCircle';
 import VerticalScroll, { VScrollRef } from '../components/DraggableScroll';
 import ExtendCard from '../components/ExtendCard';
-import BackButton from '../components/BackButton';
+import TopButtons from '../components/BackButton';
 import { loadImage } from '../utils/LoadResources';
 import ArrowButton from '../components/ArrowButton';
 
@@ -154,7 +154,7 @@ function Stat() {
             <div className='skin-bg' style={{ backgroundImage: `url(${backgroundImage})` }}>
 
                 <div className='main-area'>
-                    <BackButton></BackButton>
+                    <TopButtons></TopButtons>
 
                     <div className='bottom-left-area'>
                         <Statistic rati={1500} devi={350} vola={0.06} wins={7} draw={1} loss={2}></Statistic>

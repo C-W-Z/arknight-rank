@@ -1,28 +1,84 @@
-.back-btn {
+.top-btns {
     height: 2.4em;
-    aspect-ratio: 3 / 1;
     position: absolute;
     left: 0;
     top: 0;
-    background-color: var(--btn-color-dark);
-    color: var(--text-color-light);
-    box-shadow: var(--shadow);
-    border-radius: 2px;
+    z-index: 1;
     transition: all ease-in-out 100ms;
-}
-.back-btn::before {
-    content: '＜';
-    font-family: cursive;
-    font-size: 2em;
-    padding-left: 0.9em;
     display: flex;
     flex-direction: row;
+}
+
+.top-btns button {
+    height: 100%;
+    background-color: var(--btn-color-dark);
+    box-shadow: var(--shadow);
+    border-radius: 1px;
+}
+
+.top-btns button:active {
+    background-color: #1f1f1f;
+}
+
+.top-btns .vr {
+    padding: 0;
+    margin: 0;
+    border: none;
+    position: relative;
+    width: 2px;
+    height: 90%;
+    top: 5%;
+    background-color: #202020;
+}
+
+.top-btns .back-btn {
+    aspect-ratio: 3 / 1;
+    display: flex;
     align-items: center;
     justify-content: left;
-    transform-origin:left;
-    transform: scaleX(0.5);
 }
-.back-btn:active {
-    background-color: #1f1f1f;
-    color: #999999;
+
+.top-btns .back-btn .less-than {
+    fill: #ffffff;
+    height: 80%;
+    transform: scaleX(0.5);
+    margin-left: 10%;
+}
+.top-btns .back-btn:active .less-than {
+    fill: #999999;
+}
+
+.top-btns .home-btn {
+    aspect-ratio: 4 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.top-btns .home-btn .home-icon {
+    height: 50%;
+    z-index: 1;
+    fill: hsl(0, 0%, 100%);
+    opacity: 0.85;
+}
+.top-btns .home-btn:active .home-icon {
+    fill: hsl(0, 0%, 60%);
+}
+
+.top-btns .home-btn .mesh-sphere {
+    fill: hsl(0, 0%, 70%);
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateZ(65deg);
+    width: 85%;
+}
+.top-btns .home-btn:active .mesh-sphere {
+    fill: hsl(0, 0%, 50%);
+}
+
+.top-btns .skin-pos-btn {
+    margin-left: 1em;
 }

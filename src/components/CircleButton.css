@@ -1,0 +1,46 @@
+.circle-btn {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circle-btn:not(.square-bg),
+.circle-btn:not(.square-bg):active {
+    background-color: transparent;
+    box-shadow: none;
+}
+.circle-btn.square-bg,
+.circle-btn.square-bg:active {
+    background-color: rgba(49, 49, 49, 0.65);
+    box-shadow: var(--shadow);
+}
+.circle-btn .icon {
+    height: 65%;
+    width: 65%;
+    border-radius: 50%;
+    background-color: var(--btn-color-dark);
+    border: solid 1px hsl(0, 0%, 80%);
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circle-btn:active .icon {
+    background-color: #262626;
+    border: solid 1px #c8c8c8;
+}
+.circle-btn svg {
+    fill: #ffffff;
+}
+.circle-btn:active svg {
+    fill: #c8c8c8;
+}
+.circle-btn .cross-arrow {
+    height: 80%;
+    width: 80%;
+}
+.circle-btn .convert-icon {
+    height: 60%;
+    width: 60%;
+    transform: scaleX(-1) rotate(50deg);
+}

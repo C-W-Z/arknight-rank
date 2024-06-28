@@ -1,17 +1,31 @@
 import './BackButton.css'
+import { LessThan, HomeIcon, MeshSphere, CrossArrow } from './SVGIcons';
+import CircleButton from './CircleButton';
 
 export interface Props {
     className?: string;
-    children?: any;
-
+    homeBtn?: boolean;
+    squareBg?: boolean;
 }
 
-function BackButton({ className = "", children = undefined }: Props) {
+function TopButtons({ className = "", homeBtn = true, squareBg = true }: Props) {
     return (
-        <button className={'back-btn ' + className}>
-            {children}
-        </button>
+        <div className={'top-btns ' + className}>
+            <button className='back-btn'>
+                <LessThan></LessThan>
+            </button>
+            {homeBtn && <div className="vr"></div>}
+            {homeBtn &&
+                <button className='home-btn'>
+                    <MeshSphere></MeshSphere>
+                    <HomeIcon></HomeIcon>
+                </button>
+            }
+            <CircleButton className='skin-pos-btn' squareBg={squareBg}>
+                <CrossArrow></CrossArrow>
+            </CircleButton>
+        </div>
     )
 }
 
-export default BackButton;
+export default TopButtons;
