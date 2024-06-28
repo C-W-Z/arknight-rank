@@ -13,9 +13,15 @@ export interface Props {
     className?: string;
     children?: any;
     _ref?: Ref<HTMLDivElement>;
+    alignDelay?: number;
 }
 
-const VerticalScroll = forwardRef<VScrollRef, Props>(({ className = "", children = undefined, _ref }: Props, ref) => {
+const VerticalScroll = forwardRef<VScrollRef, Props>(({
+    className = "",
+    children = undefined,
+    alignDelay = 250,
+    _ref
+}: Props, ref) => {
 
     const slider = useRef<HTMLDivElement>(null);
     const child = useRef<HTMLDivElement>(null);
@@ -109,27 +115,23 @@ const VerticalScroll = forwardRef<VScrollRef, Props>(({ className = "", children
 
     /* On mounted (run only once) */
     useEffect(() => {
-        // Align();
         /* Disable Mouse Wheel */
-        slider.current?.addEventListener("wheel", (e) => {
-            e.preventDefault()
-        }, { passive: false })
-        setTimeout(Align, 250);
-    }, []);
+        const handleWheel = (e: WheelEvent) => {
+            e.preventDefault();
+        };
+        slider.current?.addEventListener("wheel", handleWheel, { passive: false });
 
-    /* On window resize */
-    useEffect(() => {
+        setTimeout(Align, alignDelay);
+
+        /* On window resize */
         const handleResize = () => {
-            // console.log("Resize");
-            /* Disable Mouse Wheel */
-            slider.current?.addEventListener("wheel", (e) => {
-                e.preventDefault()
-            }, { passive: false })
             Align();
         };
         window.addEventListener('resize', handleResize);
+
         return () => {
             window.removeEventListener('resize', handleResize);
+            slider.current?.removeEventListener('wheel', handleWheel);
         };
     }, []);
 

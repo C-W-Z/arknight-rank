@@ -9,6 +9,7 @@ export interface Props {
     title?: any;
     infoContent?: any;
     detailContent?: any;
+    trainsition?: number;
 }
 
 function ExtendCard({
@@ -17,27 +18,43 @@ function ExtendCard({
     sliderFuncRef,
     title = undefined,
     infoContent = undefined,
-    detailContent = undefined
+    detailContent = undefined,
+    trainsition = 200
 }: Props) {
-
-    function useCustom() {
-        const [h, setH] = useState<number>(0);
-        // const ref = useRef<HTMLDivElement | null>(null);
-        const reff = useCallback((node: HTMLDivElement | null) => {
-            if (node !== null) {
-                setH(node.clientHeight);
-                // ref.current = node;
-            }
-        }, []);
-        return [reff, h] as const;
-    };
 
     const [close, setClose] = useState(true);
     const card = useRef<HTMLDivElement>(null);
-    const [infoR, closeH] = useCustom();
-    const [detailR, extendH] = useCustom();
+    // const [infoRef, closeH] = useCustom();
+    // const [detailRef, extendH] = useCustom();
 
-    const trainsition = 200;
+    const [closeH, setCloseH] = useState(0);
+    const [extendH, setExtendH] = useState(0);
+
+    const handleResize = (entries: ResizeObserverEntry[]) => {
+        for (let entry of entries) {
+            if (entry.target.classList.contains('card-info') && closeH != entry.contentRect.height)
+                setCloseH(entry.contentRect.height);
+            else if (entry.target.classList.contains('card-detail') && extendH != entry.contentRect.height)
+                setExtendH(entry.contentRect.height);
+        }
+    };
+
+    const observer = new ResizeObserver(handleResize);
+
+    const infoRef = useCallback((node: HTMLDivElement | null) => {
+        // console.log("infoRef", node);
+        if (node !== null) {
+            observer.observe(node);
+            setCloseH(node.clientHeight);
+        }
+    }, []);
+    const detailRef = useCallback((node: HTMLDivElement | null) => {
+        // console.log("detailRef", node);
+        if (node !== null) {
+            observer.observe(node);
+            setExtendH(node.clientHeight);
+        }
+    }, []);
 
     function openCard() {
         if (!close) return;
@@ -165,7 +182,7 @@ function ExtendCard({
                 "--trainsition": trainsition + 'ms'
             } as React.CSSProperties}
         >
-            <div className='card-info' ref={infoR}
+            <div className='card-info' ref={infoRef}
                 onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={infoOnMouseUp}
             >
                 <div className="card-title">
@@ -178,7 +195,7 @@ function ExtendCard({
                 </div>
             </div>
 
-            <div className='card-detail' ref={detailR}
+            <div className='card-detail' ref={detailRef}
                 onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={infoOnMouseUp}
             >
                 <button className="card-title" onMouseUp={detailOnMouseUp}>

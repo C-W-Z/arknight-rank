@@ -163,10 +163,11 @@ function Stat() {
 
                 </div>
 
-                <VerticalScroll _ref={VScrollRef} ref={VScrollRef2} className='right-area'>
+                <VerticalScroll alignDelay={250} _ref={VScrollRef} ref={VScrollRef2} className='right-area'>
                     <div className='right-grid'>
                         <Ranking rank={108} total={331}></Ranking>
                         <ExtendCard
+                            trainsition={200}
                             sliderRef={VScrollRef} sliderFuncRef={VScrollRef2}
                             className='overall-ranking'
                             title={"Title Here 這是標題"}
@@ -189,6 +190,7 @@ function Stat() {
                             }
                         ></ExtendCard>
                         <ExtendCard sliderRef={VScrollRef} sliderFuncRef={VScrollRef2}
+                            trainsition={200}
                             className='recent-battle'
                             title={<p>Title Here 這是標題</p>}
                             infoContent={
