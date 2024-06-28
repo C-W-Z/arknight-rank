@@ -4,10 +4,12 @@ import ProgressBar from '../components/ProgressBar';
 import ProgressCircle from '../components/ProgressCircle';
 import VerticalScroll, { VScrollRef } from '../components/DraggableScroll';
 import ExtendCard from '../components/ExtendCard';
-import TopButtons from '../components/BackButton';
+import TopButtons from '../components/TopButtons';
 import { loadImage } from '../utils/LoadResources';
 import ArrowButton from '../components/ArrowButton';
-import DraggableBackground from '../components/DraggableBackground';
+import DraggableBackground, { DragBGRef } from '../components/DraggableBackground';
+import CircleButton from '../components/CircleButton';
+import { CrossArrow } from '../components/SVGIcons';
 
 interface NameOverlayProps {
     name: string;
@@ -148,13 +150,25 @@ function Stat() {
     }, []);
 
     const VScrollRef = useRef<HTMLDivElement>(null);
-    const VScrollRef2 = useRef<VScrollRef>(null);
+    const VScrollFuncRef = useRef<VScrollRef>(null);
+    const DragBGFuncRef = useRef<DragBGRef>(null);
+
+    function openBGSetting() {
+        console.log("open setting");
+        DragBGFuncRef.current?.openSetting();
+    }
 
     return (
         <div className='stat'>
-            <DraggableBackground className='skin-bg' backgroundImage={backgroundImage}>
-            <div className='main-area'>
-                    <TopButtons></TopButtons>
+            <DraggableBackground className='skin-bg' backgroundImage={backgroundImage} ref={DragBGFuncRef}>
+                <div className='main-area'>
+                    <TopButtons homeBtn={true} thirdBtn={
+                        <CircleButton className='skin-pos-btn' squareBg={true}
+                            onClick={openBGSetting}
+                        >
+                            <CrossArrow></CrossArrow>
+                        </CircleButton>
+                    }></TopButtons>
 
                     <div className='bottom-left-area'>
                         <Statistic rati={1500} devi={350} vola={0.06} wins={7} draw={1} loss={2}></Statistic>
@@ -163,12 +177,12 @@ function Stat() {
 
                 </div>
 
-                <VerticalScroll alignDelay={250} _ref={VScrollRef} ref={VScrollRef2} className='right-area'>
+                <VerticalScroll alignDelay={250} _ref={VScrollRef} ref={VScrollFuncRef} className='right-area'>
                     <div className='right-grid'>
                         <Ranking rank={108} total={331}></Ranking>
                         <ExtendCard
                             trainsition={200}
-                            sliderRef={VScrollRef} sliderFuncRef={VScrollRef2}
+                            sliderRef={VScrollRef} sliderFuncRef={VScrollFuncRef}
                             className='overall-ranking'
                             title={"Title Here 這是標題"}
                             infoContent={
@@ -189,7 +203,7 @@ function Stat() {
                                 </>
                             }
                         ></ExtendCard>
-                        <ExtendCard sliderRef={VScrollRef} sliderFuncRef={VScrollRef2}
+                        <ExtendCard sliderRef={VScrollRef} sliderFuncRef={VScrollFuncRef}
                             trainsition={200}
                             className='recent-battle'
                             title={<p>Title Here 這是標題</p>}

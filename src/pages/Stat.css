@@ -359,3 +359,7 @@
     transform: translate(-50%, -50%);
     font-size: 2em;
 }
+
+.top-btns .skin-pos-btn {
+    margin-left: 1em;
+}

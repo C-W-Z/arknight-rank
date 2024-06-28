@@ -33,16 +33,17 @@
 
 .top-btns .back-btn {
     aspect-ratio: 3 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: left;
+    position: relative;
 }
 
 .top-btns .back-btn .less-than {
     fill: #ffffff;
+    position: absolute;
+    left: 10%;
+    top: 50%;
     height: 80%;
-    transform: scaleX(0.5);
-    margin-left: 10%;
+    transform: translateY(-50%) scaleX(0.5);
+    /* margin-left: 10%; */
 }
 .top-btns .back-btn:active .less-than {
     fill: #999999;
@@ -77,8 +78,4 @@
 }
 .top-btns .home-btn:active .mesh-sphere {
     fill: hsl(0, 0%, 50%);
-}
-
-.top-btns .skin-pos-btn {
-    margin-left: 1em;
 }
