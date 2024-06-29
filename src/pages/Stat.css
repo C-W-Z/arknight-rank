@@ -64,10 +64,11 @@
     height: fit-content;
 }
 .name-overlay .star {
-    height: 2em;
+    height: 1.5em;
     margin: 0;
     padding: 0;
-    transform: translate(-0.1em, 0.5em);
+    transform: translate(0.15em, 0.2em);
+    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
 }
 .name-overlay .name {
     font-family: 'FZTYSJW';
@@ -135,7 +136,7 @@
 
 .statistic {
     margin-left: 0.1em;
-    transform: translateY(1em);
+    transform: translateY(0.5em);
     display: grid;
     grid-template-areas: 
         "rank-title ."

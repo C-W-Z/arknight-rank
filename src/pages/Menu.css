@@ -1,0 +1,20 @@
+.menu {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    /* background-image: url("../assets/stat_bg.png"); */
+    background-size: cover;
+}
+
+.skin-bg {
+    background-size: auto 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center 0vh;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

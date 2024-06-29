@@ -9,7 +9,8 @@ import { loadImage } from '../utils/LoadResources';
 import ArrowButton from '../components/ArrowButton';
 import DraggableBackground, { DragBGRef } from '../components/DraggableBackground';
 import CircleButton from '../components/CircleButton';
-import { CrossArrow } from '../components/SVGIcons';
+import { CrossArrow, Star } from '../components/SVGIcons';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface NameOverlayProps {
     name: string;
@@ -18,17 +19,12 @@ interface NameOverlayProps {
 
 function NameOverlay({ name, name2 }: NameOverlayProps) {
 
-    // const starImg = require('../assets/star/star_6.png');
     // const classImg = require('../assets/class/class_medic.png');
-
-    const [starImg, setStarImg] = useState<string | undefined>(undefined);
     const [classImg, setClassImg] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const loadImg = async () => {
-            const src1 = await loadImage('assets/star/star_6.png');
             const src2 = await loadImage('assets/class/class_medic.png');
-            setStarImg(src1);
             setClassImg(src2);
         };
         loadImg();
@@ -36,7 +32,7 @@ function NameOverlay({ name, name2 }: NameOverlayProps) {
 
     return (
         <div className="name-overlay">
-            <img src={starImg} alt='star_6' className='star' />
+            <Star num={6} color={'#ffffff'}></Star>
             <div className='name2'>{name2}</div>
             <div className='name'>{name}</div>
             <div className='class-tags'>
@@ -135,8 +131,13 @@ function Ranking({ rank, total }: RankingProps) {
 }
 
 function Stat() {
-    const name = "凯尔希";
-    const name2 = "Kal'tsit";
+
+    const navigate = useNavigate();
+    const {state} = useLocation();
+
+    const { name, name2 } = state;
+    // const name = "凯尔希";
+    // const name2 = "Kal'tsit";
 
     // const backgroundImage = require('../assets/skin/char_003_kalts_boc_6b.png');
     const [backgroundImage, setBackgroundImage] = useState<string | undefined>(undefined);
@@ -154,7 +155,6 @@ function Stat() {
     const DragBGFuncRef = useRef<DragBGRef>(null);
 
     function openBGSetting() {
-        console.log("open setting");
         DragBGFuncRef.current?.openSetting();
     }
 
@@ -162,7 +162,8 @@ function Stat() {
         <div className='stat'>
             <DraggableBackground className='skin-bg' backgroundImage={backgroundImage} ref={DragBGFuncRef}>
                 <div className='main-area'>
-                    <TopButtons homeBtn={true} thirdBtn={
+
+                    <TopButtons homeBtn={true} homeOnClick={() => navigate('/')} thirdBtn={
                         <CircleButton className='skin-pos-btn' squareBg={true}
                             onClick={openBGSetting}
                         >

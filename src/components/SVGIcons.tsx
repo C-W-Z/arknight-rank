@@ -1,3 +1,26 @@
+export interface StarProps {
+    num: number;
+    color: string;
+}
+
+export function Star({ num, color }: StarProps) {
+    const paths = [];
+    for (let i = 0; i < num; i++) {
+        paths.push(
+            <path key={i} d="m 44.481566,141.92229 -2.013876,-2.59033 -2.970944,1.39247 1.841227,-2.71576 -2.242396,-2.39524 3.151817,0.9119 1.585067,-2.87282 0.106703,3.27935 3.222022,0.61974 -3.085871,1.11485 z" transform={`matrix(0.88659483,0,0,0.90493954,${5.1123309 + i * 5.5842171},7.0009893)`} />
+        );
+    }
+
+    return (
+        <svg className="star" fill={color} xmlns="http://www.w3.org/2000/svg"
+            viewBox={`0 0 ${7.1509285 + (num - 1) * 5.5842171} 7.4836426`}>
+            <g transform="translate(-39.774266,-127.94844)">
+                {paths}
+            </g>
+        </svg>
+    )
+}
+
 export function LessThan() {
     return (
         <svg className="less-than" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -8,8 +31,7 @@ export function LessThan() {
 
 export function HomeIcon() {
     return (
-        <svg className='home-icon' xmlns="http://www.w3.org/2000/svg"
-            width="124.75164px" height="93.78463px" viewBox="0 0 124.75164 93.78463">
+        <svg className='home-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.75164 93.78463">
             <path
                 d="m 17.451521,74.734624 0.10352,-19.050004 22.36571,-18.17949 22.36572,-18.17949 22.365722,18.17949 22.365717,18.17949 0.10352,19.050004 0.10351,19.049998 H 89.640323 72.055701 v -12.699998 -12.7 h -9.76923 -9.76923 v 12.7 12.699998 H 34.932621 17.348011 Z M 1.6276808,52.58651 C 0.42819083,50.34524 -0.26216917,48.29423 0.09355083,48.0287 0.44927083,47.76318 13.606461,36.84809 29.331751,23.77296 47.086401,9.010476 59.576961,0 62.286471,0 c 2.70951,0 15.20007,9.010476 32.954722,23.77296 15.725297,13.07513 28.882487,23.99022 29.238207,24.25574 1.55837,1.16324 -3.9759,8.632844 -6.39612,8.632844 -1.4746,0 -14.27393,-9.671544 -28.442957,-21.492314 C 75.471301,23.34846 63.162071,13.676923 62.286471,13.676923 c -0.8756,0 -13.18483,9.671537 -27.35385,21.492307 C 20.763601,46.99 7.9642809,56.661544 6.4896708,56.661544 c -1.4746,0 -3.6625,-1.833764 -4.86199,-4.075034 z"
                 id="path248" />
@@ -19,8 +41,7 @@ export function HomeIcon() {
 
 export function MeshSphere() {
     return (
-        <svg className='mesh-sphere' xmlns="http://www.w3.org/2000/svg"
-            width="300px" height="300px" viewBox="0 0 300 300">
+        <svg className='mesh-sphere' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
             <g transform="translate(0,300) scale(0.05,-0.05)" stroke="none">
                 <path d="M2658 5273 c-18 -39 -76 -65 -315 -143 -161 -53 -284 -99 -272 -103
 11 -4 114 24 228 63 245 82 271 81 86 -5 -163 -76 -346 -103 -384 -56 -58 70
@@ -279,8 +300,7 @@ c-160 56 -304 118 -320 138 -16 19 -23 24 -16 10 16 -33 -7 -32 -112 7 -139
 
 export function ConvertIcon() {
     return (
-        <svg className='convert-icon' xmlns="http://www.w3.org/2000/svg"
-            width="64px" height="64px" viewBox="0 0 64 64">
+        <svg className='convert-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
             <g transform="translate(0,64) scale(0.05,-0.05)" stroke="none">
                 <path d="M470 1252 c-183 -58 -338 -194 -413 -364 -78 -175 133 -200 240 -27
 129 208 435 261 607 105 33 -30 32 -35 -26 -102 -82 -93 -55 -107 187 -100
@@ -296,8 +316,7 @@ l185 6 6 215 c6 237 -4 253 -97 164 l-54 -52 -108 68 c-172 110 -358 140 -527
 
 export function CrossArrow() {
     return (
-        <svg className='cross-arrow' xmlns="http://www.w3.org/2000/svg"
-            width="64px" height="64px" viewBox="0 0 64 64">
+        <svg className='cross-arrow' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
             <g transform="translate(0,64) scale(0.05,-0.05)" stroke="none">
                 <path d="M532 1112 c-111 -130 -111 -132 -21 -132 l71 0 -6 -135 -6 -135 -135
 -6 -135 -6 0 71 c0 90 -1 90 -141 -27 l-117 -98 117 -102 c140 -121 141 -122
