@@ -3,6 +3,10 @@
   src: local('FZTYSJW'), url('./assets/fonts/FZTYSJW.woff2') format('woff2');
 }
 @font-face {
+  font-family: 'FZDYSJW';
+  src: local('FZDYSJW'), url('./assets/fonts/FZDYSJW.woff2') format('woff2');
+}
+@font-face {
   font-family: 'Novecento';
   src: local('Novecento'), url('./assets/fonts/Novecento-WideNormal.woff2') format('woff2');
   /* other formats include: 'woff2', 'truetype, 'opentype', 'embedded-opentype', and 'svg' */

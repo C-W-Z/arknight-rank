@@ -11,6 +11,9 @@ export interface Props {
     backgroundImage?: string;
     className?: string;
     children?: any;
+    h?: number;
+    x?: number;
+    y?: number;
 }
 
 interface SliderProps {
@@ -37,12 +40,15 @@ function Slider({ title, min, max, value, onChange }: SliderProps) {
 const DraggableBackground = forwardRef<DragBGRef, Props>(({
     backgroundImage,
     className = "",
-    children = undefined
+    children = undefined,
+    h = 100,
+    x = 0,
+    y = 0
 }: Props, ref) => {
 
-    const [imageHeight, setImageHeight] = useState(100);
-    const [imagePosX, setImagePosX] = useState(0);
-    const [imagePosY, setImagePosY] = useState(0);
+    const [imageHeight, setImageHeight] = useState(h);
+    const [imagePosX, setImagePosX] = useState(x);
+    const [imagePosY, setImagePosY] = useState(y);
 
     const [dragging, setDragging] = useState(false);
 

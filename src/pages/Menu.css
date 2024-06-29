@@ -3,18 +3,270 @@
     width: 100vw;
     margin: 0;
     padding: 0;
-    /* background-image: url("../assets/stat_bg.png"); */
+    background-color: gray;
+    background-image: url("../assets/menu/scene_view.png");
     background-size: cover;
 }
 
-.skin-bg {
-    background-size: auto 100vh;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center 0vh;
-    height: 100vh;
-    width: 100vw;
+.menu .skin-bg {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.menu .right-area {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 28em;
+    overflow: hidden;
+    perspective: 50em;
+    font-size: 1.05em;
+}
+
+.menu .right-area .right-plate {
+    transform: rotateY(-25deg) skew(-1.5deg, 1.5deg);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.menu .right-area .right-plate .top-line {
+    width: 100%;
+    text-align: center; 
+    margin-bottom: 3.5em;
+}
+.menu .right-area .right-plate .top-line .clock {
+    font-size: 0.9em;
+    font-family: Novecento, NotoSansHans;
+    text-align: left;
+    display: inline-block;
+    min-width: 10.5em;
+    text-shadow: 2px 3px 0 #606060bf;
+}
+.menu .right-area .right-plate .top-line::before,
+.menu .right-area .right-plate .top-line::after {
+    background-color: #ffffff;
+    content: '';
+    display: inline-block;
+    height: 2px;
+    position: relative;
+    vertical-align: middle;
+}
+.menu .right-area .right-plate .top-line::before {
+    right: 0.5em;
+    margin-left: -50%;
+    width: 10%;
+}
+.menu .right-area .right-plate .top-line::after {
+    left: 0.5em;
+    margin-right: -50%;
+    width: 50%;
+}
+
+.menu .right-area .right-plate .btns {
+    /* display: grid; */
+    margin: 0.4em 0;
+}
+.menu .right-area .right-plate button {
+    background-color: hsla(0, 0%, 93%, 0.925);
+    color: #323232;
+    position: relative;
+    overflow: hidden;
+}
+.menu .right-area .right-plate button:active {
+    background-color: hsla(0, 0%, 77.5%, 0.925);
+    color: #323232;
+}
+.menu .right-area .right-plate button::after {
+    content: '';
+    background-image: url('../assets/menu/button_pattern.png');
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 3rem;
+    aspect-ratio: 3 / 1;
+    z-index: 1;
+}
+.menu .right-area .right-plate .btn-title {
+    font-family: FZDYSJW;
+    font-size: 2.4em;
+    line-height: 1em;
+    color: #323232;
+}
+
+.menu .right-area .right-plate .btn1s {
+    height: 7.5em;
+    width: 98%;
+    box-shadow: var(--shadow);
+}
+.menu .right-area .right-plate .btn1s .battle-btn {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    padding: 1em 1em;
+    box-sizing: border-box;
+    position: relative;
+}
+.menu .right-area .right-plate .btn1s .battle-btn .btn-title {
+    font-size: 3em;
+}
+.menu .right-area .right-plate .btn1s .battle-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 7%;
+    height: 0.3em;
+    width: 50%;
+    transform: translateY(50%);
+    background-color: #ff5119;
+    z-index: 1;
+}
+.menu .right-area .right-plate .btn1s .battle-btn .battle-icon,
+.menu .right-area .right-plate .btn1s .battle-btn .battle-icon2 {
+    position: absolute;
+    top: 10%;
+    right: 25%;
+    height: 85%;
+    aspect-ratio: 1 / 1;
+    background-image: url('../assets/menu/battle_icon.png');
+    background-size: contain;
+    filter: invert(20%);
+    z-index: 1;
+}
+.menu .right-area .right-plate .btn1s .battle-btn .battle-icon2 {
+    transform: translateX(20%);
+    filter: invert(17.5%);
+    z-index: 0;
+}
+.menu .right-area .right-plate .btn1s .battle-btn:active .battle-icon {
+    filter: invert(35%);
+}
+.menu .right-area .right-plate .btn1s .battle-btn:active .battle-icon2 {
+    filter: invert(32.5%);
+}
+
+.menu .right-area .right-plate .btn2s {
+    height: 4.75em;
+    width: 105%;
+    display: grid;
+    grid-template-columns: 4fr 4fr 1fr;
+    gap: 1em;
+}
+.menu .right-area .right-plate .btn2s .placeholder {
+    background-color: hsla(0, 0%, 0%, 0.85);
+    height: 100%;
+    width: 100%;
+}
+
+.menu .right-area .right-plate .btn2s button,
+.menu .right-area .right-plate .btn4s button {
+    padding: 0.6em 0.75em;
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.menu .right-area .right-plate .btn3s {
+    height: 4.75em;
+    width: 85%;
+    background-color: rgb(34, 187, 255, 0.9);
+    margin-right: 0.75em;
+    box-shadow: var(--shadow);
+}
+
+.menu .right-area .right-plate .btn4s {
+    height: 4.75em;
+    width: 92.5%;
+    display: grid;
+    grid-template-columns: 6fr 5fr 2fr;
+    margin-right: 2em;
+}
+.menu .right-area .right-plate .btn4s .task-btn {
+    position: relative;
+    margin-right: 1em;
+}
+.menu .right-area .right-plate .btn4s .task-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 0.3em;
+    width: 75%;
+    transform: translate(-50%, -50%);
+    background-color: #ff5119;
+}
+.menu .right-area .right-plate .btn4s .infra-btn {
+    z-index: 1;
+}
+.menu .right-area .right-plate .btn4s .store-btn {
+    font-size: 0.6em;
+    background-color: #424242;
+    padding: 1.2em 0.7em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+.menu .right-area .right-plate .btn4s .store-btn .btn-title {
+    color: #ffffff;
+    text-align: right;
+}
+.menu .right-area .right-plate .btn4s .store-btn:active {
+    background-color: #343434;
+}
+.menu .right-area .right-plate .btn4s .store-btn:active .btn-title {
+    color: #c8c8c8;
+}
+
+
+.menu .right-area .right-plate .btns button .icon {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    height: 90%;
+    aspect-ratio: 1 / 1;
+    background-size: contain;
+    filter: invert(20%);
+}
+.menu .right-area .right-plate .btn2s .char-btn .icon {
+    background-image: url('../assets/menu/char_icon.png');
+}
+.menu .right-area .right-plate .btn2s .team-btn .icon {
+    right: 7.5%;
+    background-image: url('../assets/menu/team_icon.png');
+}
+.menu .right-area .right-plate .btn4s .task-btn .icon {
+    top: 12.5%;
+    height: 75%;
+    background-image: url('../assets/menu/task_icon.png');
+}
+.menu .right-area .right-plate .btn4s .infra-btn .icon {
+    right: 7.5%;
+    top: 12.5%;
+    height: 75%;
+    background-image: url('../assets/menu/infra_icon.png');
+}
+.menu .right-area .right-plate .btn4s .store-btn .icon {
+    position: absolute;
+    left: 50%;
+    right: unset;
+    top: unset;
+    bottom: 10%;
+    height: 50%;
+    aspect-ratio: 1 / 1;
+    background-size: contain;
+    filter: invert(65%);
+    transform: translateX(-50%);
+    background-image: url('../assets/menu/store_icon.png');
+}
+
+.menu .right-area .right-plate .btns button:active .icon {
+    filter: invert(35%);
+}
+.menu .right-area .right-plate .btn4s .store-btn:active .icon {
+    filter: invert(70%);
 }

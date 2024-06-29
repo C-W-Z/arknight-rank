@@ -7,25 +7,18 @@
     background-size: cover;
 }
 
-.skin-bg {
-    /* background-size: auto 200%;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position-x: 50%;
-    background-position-y: 50%;
-    height: 100%;
-    width: 100%; */
+.stat .skin-bg {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.main-area {
+.stat .main-area {
     height: 95%;
     width: 97%;
     position: relative;
 }
-.bottom-left-area {
+.stat .bottom-left-area {
     position: absolute;
     left: 0;
     bottom: 1%;
@@ -33,29 +26,29 @@
     display: grid;
     grid-template-rows: auto auto;
 }
-.right-area {
+.stat .right-area {
     position: absolute;
     right: 3%;
     /* bottom: 5%; */
     /* height: 100%; */
     max-height: 100%;
 }
-.right-area .right-grid {
+.stat .right-area .right-grid {
     text-align: center;
     display: flex;
     flex-direction: column;
 }
-.right-area .right-grid>* {
+.stat .right-area .right-grid>* {
     margin-bottom: 2em;
 }
-.right-area .right-grid>*:first-child {
+.stat .right-area .right-grid>*:first-child {
     margin-top: 4em;
 }
-.bottom-left-area>div {
+.stat .bottom-left-area>div {
     align-self: last baseline;
 }
 
-.name-overlay {
+.stat .name-overlay {
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -63,14 +56,14 @@
     justify-content:end;
     height: fit-content;
 }
-.name-overlay .star {
+.stat .name-overlay .star {
     height: 1.5em;
     margin: 0;
     padding: 0;
     transform: translate(0.15em, 0.2em);
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
 }
-.name-overlay .name {
+.stat .name-overlay .name {
     font-family: 'FZTYSJW';
     font-weight: bold;
     font-size: 4em;
@@ -79,7 +72,7 @@
     margin: 0;
     text-shadow: var(--text-stroke);
 }
-.name-overlay .name2 {
+.stat .name-overlay .name2 {
     font-weight: 500;
     font-size: 1.5em;
     line-height: 1em;
@@ -88,7 +81,7 @@
     text-shadow: var(--text-stroke);
     z-index: 1;
 }
-.name-overlay .class-tags {
+.stat .name-overlay .class-tags {
     margin: 0.5em;
     margin-left: 0;
     display: grid;
@@ -100,41 +93,41 @@
     gap: 0.3em;
     text-align: center;
 }
-.name-overlay .class-img {
+.stat .name-overlay .class-img {
     grid-area: class-img;
     height: 4em;
     opacity: 0.5;
     border: var(--tags-box-border);
     box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.5);
 }
-.name-overlay .class-tags .class-name {
+.stat .name-overlay .class-tags .class-name {
     grid-area: class-name;
 }
-.name-overlay .class-tags .position-type {
+.stat .name-overlay .class-tags .position-type {
     grid-area: position-type;
 }
-.name-overlay .class-tags .class-name,
-.name-overlay .class-tags .position-type {
+.stat .name-overlay .class-tags .class-name,
+.stat .name-overlay .class-tags .position-type {
     width: 7em;
     background-color: var(--tags-box-color);
     /* border: var(--tags-box-border); */
     border-radius: 5px;
     line-height: 1em;
 }
-.name-overlay .class-tags .tags {
+.stat .name-overlay .class-tags .tags {
     grid-area: tags;
     background-color: var(--tags-box-color);
     /* border: var(--tags-box-border); */
     border-radius: 5px;
     line-height: 2em;
 }
-.name-overlay .class-tags>div {
+.stat .name-overlay .class-tags>div {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.statistic {
+.stat .statistic {
     margin-left: 0.1em;
     transform: translateY(0.5em);
     display: grid;
@@ -151,20 +144,20 @@
     font-weight: bold;
     cursor: pointer;
 }
-.statistic .detail-item,
-.statistic .winrate,
-.statistic .rank-title {
+.stat .statistic .detail-item,
+.stat .statistic .winrate,
+.stat .statistic .rank-title {
     background-color: #ffffffbf;
     color: #000000;
 }
-.statistic .rank-title {
+.stat .statistic .rank-title {
     grid-area: rank-title;
     background: linear-gradient(90deg, transparent 0%, #ffffff 15%, #ffffff 40%, transparent 100%);
     border-radius: 3px;
     padding: 0 0.3em;
     font-family: NotoSansHans;
 }
-.statistic .detail-item {
+.stat .statistic .detail-item {
     display: flex;
     flex-direction: row;
     background-color: #ffffffbf;
@@ -173,7 +166,7 @@
     font-weight: 500;
     line-height: 1.25em;
 }
-.statistic .detail-icon {
+.stat .statistic .detail-icon {
     background-color: #000000;
     color: #ffffff;
     font-size: 0.8em;
@@ -183,7 +176,7 @@
     border-radius: 3px 0px 0px 3px;
     font-family: NotoSansHans;
 }
-.statistic .extend-word {
+.stat .statistic .extend-word {
     background-color: #000000;
     color: #ffffff;
     margin: 0;
@@ -195,47 +188,47 @@
     transition: all ease-in-out 0.5s;
     overflow: hidden;
 }
-.statistic.close .extend-word {
+.stat .statistic.close .extend-word {
     max-width: 0;
     min-width: 0;
     width: 0;
     margin: 0;
     padding: 0;
 }
-.statistic:not(.close) .extend-word {
+.stat .statistic:not(.close) .extend-word {
     width: 4.5em;
 }
-.statistic .rati {
+.stat .statistic .rati {
     grid-area: rati;
 }
-.statistic .devi {
+.stat .statistic .devi {
     grid-area: devi;
 }
-.statistic .vola {
+.stat .statistic .vola {
     grid-area: vola;
 }
-.statistic .wins {
+.stat .statistic .wins {
     grid-area: wins;
 }
-.statistic .draw {
+.stat .statistic .draw {
     grid-area: draw;
 }
-.statistic .loss {
+.stat .statistic .loss {
     grid-area: loss;
 }
-.statistic .detail-item .detail-number.progress {
+.stat .statistic .detail-item .detail-number.progress {
     height: 100%;
     width: 100%;
     border-radius: 0;
     background-color: transparent;
 }
-.statistic .detail-item .detail-number.progress .progress-value {
+.stat .statistic .detail-item .detail-number.progress .progress-value {
     border-radius: 0;
     text-indent: 0.2em;
     background-color: #a0a0a0;
     padding-right: 0.2em;
 }
-.statistic .winrate {
+.stat .statistic .winrate {
     grid-area: winrate;
     margin: 0.3em 0;
     display: flex;
@@ -244,7 +237,7 @@
     padding: 0.1em 0.2em;
     background: linear-gradient(90deg, #ffffff 0%, #ffffff 25%, #ffffff7f 50%, #ffffff7f 100%);
 }
-.statistic .winrate .winrate-title {
+.stat .statistic .winrate .winrate-title {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -254,52 +247,52 @@
     margin: 0;
     line-height: 1em;
 }
-.statistic .winrate .progress {
+.stat .statistic .winrate .progress {
     height: 0.6em;
     width: 100%;
     background-color: #7d7d7d;
     box-shadow: inset 0px 0px 0px 2px #ffffff;
     border-radius: 5px;
 }
-.statistic .winrate .progress .progress-value {
+.stat .statistic .winrate .progress .progress-value {
     background-color: #ffa260;
     box-shadow: inset 0px 0px 0px 2px #ffffff;
     border-radius: 5px;
 }
 
-.ranking {
+.stat .ranking {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 }
-.ranking .progress-circle {
+.stat .ranking .progress-circle {
     --stroke-width: 0.2em;
     z-index: 1;
 }
-.ranking .progress-circle svg {
+.stat .ranking .progress-circle svg {
     filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.7));
 }
-.ranking .rank-num {
+.stat .ranking .rank-num {
     font-size: 1.5em;
     font-weight: bold;
 }
-.ranking .rank-title {
+.stat .ranking .rank-title {
     font-size: 0.4em;
     font-weight: 400;
     position: absolute;
     top: 0.4em;
 }
-.ranking .rank-num,
-.ranking .rank-title {
+.stat .ranking .rank-num,
+.stat .ranking .rank-title {
     width: 100%;
     text-align: center;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
     font-family: Novecento;
     font-weight: bold;
 }
-.ranking .rank-bar {
+.stat .ranking .rank-bar {
     /* padding-left: 0.3em; */
     width: 11.2em;
     height: 2.7em;
@@ -310,7 +303,7 @@
     /* right: -0.4em; */
     --total: 331;
 }
-.ranking .rank-bar::before {
+.stat .ranking .rank-bar::before {
     content: '';
     position: absolute;
     left: -0.5em;
@@ -319,7 +312,7 @@
     background: radial-gradient(circle at -2.6em center, transparent, transparent 3em, #313131 0, #313131);
     /* box-shadow: -4px 4px 6px 0 rgba(0, 0, 0, 0.2); */
 }
-.ranking .rank-bar::after {
+.stat .ranking .rank-bar::after {
     counter-reset: t var(--total);
     content: '/' counter(t);
     position: absolute;
@@ -331,13 +324,13 @@
     font-family: Novecento;
     font-weight: normal;
 }
-.ranking:active .rank-bar {
+.stat .ranking:active .rank-bar {
     background-color: #262626;
 }
-.ranking:active .rank-bar::before {
+.stat .ranking:active .rank-bar::before {
     background: radial-gradient(circle at -2.6em center, transparent, transparent 3em, #262626 0, #262626);
 }
-.ranking .rank-bar .rank-bar-title {
+.stat .ranking .rank-bar .rank-bar-title {
     font-size: 0.5em;
     line-height: 0.8em;
     position: absolute;
@@ -345,7 +338,7 @@
     top: 50%;
     transform: translate(0.5rem, calc(-50% - 1.2em));
 }
-.ranking .rank-bar .rank-bar-detail {
+.stat .ranking .rank-bar .rank-bar-detail {
     font-size: 0.7em;
     line-height: 1em;
     position: absolute;
@@ -353,7 +346,7 @@
     top: 50%;
     transform: translate(0.5rem, calc(-50% + 0.5em));
 }
-.ranking .rank-bar .rank-bar-more {
+.stat .ranking .rank-bar .rank-bar-more {
     position: absolute;
     top: 50%;
     right: 0;
@@ -361,6 +354,6 @@
     font-size: 2em;
 }
 
-.top-btns .skin-pos-btn {
+.stat .top-btns .skin-pos-btn {
     margin-left: 1em;
 }

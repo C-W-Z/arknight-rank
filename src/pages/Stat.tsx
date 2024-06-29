@@ -30,11 +30,29 @@ function NameOverlay({ name, name2 }: NameOverlayProps) {
         loadImg();
     }, []);
 
+    let nameSize = '4em';
+    if (name.length == 5)
+        nameSize = '3.8em';
+    else if (name.length == 6)
+        nameSize = '3.15em';
+    else if (name.length == 7)
+        nameSize = '2.7em';
+    else if (name.length == 8)
+        nameSize = '2.35em';
+    else if (name.length > 8)
+        nameSize = '2em';
+
+    let nameSize2 = '1.5em';
+    if (name.length >= 32)
+        nameSize2 = '1em';
+    if (name.length >= 28)
+        nameSize2 = '1.2em';
+
     return (
         <div className="name-overlay">
             <Star num={6} color={'#ffffff'}></Star>
-            <div className='name2'>{name2}</div>
-            <div className='name'>{name}</div>
+            <div className='name2' style={{ fontSize: nameSize2 }}>{name2}</div>
+            <div className='name' style={{ fontSize: nameSize }}>{name}</div>
             <div className='class-tags'>
                 <img src={classImg} alt="class_medic" className='class-img' />
                 <div className='class-name'>医师</div>
@@ -133,7 +151,7 @@ function Ranking({ rank, total }: RankingProps) {
 function Stat() {
 
     const navigate = useNavigate();
-    const {state} = useLocation();
+    const { state } = useLocation();
 
     const { name, name2 } = state;
     // const name = "凯尔希";

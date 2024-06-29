@@ -35,12 +35,8 @@
 .circle-btn:active svg {
     fill: #c8c8c8;
 }
-.circle-btn .cross-arrow {
+.circle-btn .cross-arrow,
+.circle-btn .convert-icon {
     height: 80%;
     width: 80%;
-}
-.circle-btn .convert-icon {
-    height: 60%;
-    width: 60%;
-    transform: scaleX(-1) rotate(50deg);
 }
