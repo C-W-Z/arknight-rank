@@ -23,12 +23,14 @@
         "all": false,
         "readFile": true,
         "scope": [
+          "$RESOURCE/assets/*",
           "$RESOURCE/assets/**"
         ]
       },
       "protocol": {
         "asset": true,
         "assetScope": [
+          "$RESOURCE/assets/*",
           "$RESOURCE/assets/**"
         ]
       }
@@ -56,6 +58,7 @@
         "icons/icon.ico"
       ],
       "resources": [
+        "assets/*",
         "assets/**"
       ]
     }

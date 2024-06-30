@@ -3,6 +3,7 @@ import { loadImage } from "../utils/LoadResources";
 import './Menu.css'
 import DraggableBackground, { DragBGRef } from "../components/DraggableBackground";
 import { useNavigate } from "react-router-dom";
+import { invoke } from '@tauri-apps/api/tauri'
 
 function ClockText() {
     const [time, setTime] = useState(() => new Date().toLocaleString())
@@ -43,6 +44,11 @@ function Menu() {
             setBackgroundImage(src);
         };
         loadImg();
+
+        invoke('get_char')
+        .then((v) => console.log(v))
+        .catch((e) => console.error(e));
+
     }, []);
 
     const DragBGFuncRef = useRef<DragBGRef>(null);
