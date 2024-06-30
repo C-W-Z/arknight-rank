@@ -2,10 +2,13 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 
+mod glicko2;
 mod prefer;
 mod resource;
+mod data;
 
 use crate::{
+    glicko2::Player,
     prefer::{MenuPref, PlayerPrefs},
     resource::{CharData, CharSkinData, SkinData},
 };
@@ -18,6 +21,7 @@ pub struct AppState {
     pub skins: Vec<SkinData>,
     pub char_skin_map: HashMap<String, CharSkinData>,
     pub prefs: Mutex<PlayerPrefs>,
+    pub char_glicko: Mutex<Vec<Player>>,
 }
 
 impl AppState {
@@ -47,13 +51,18 @@ fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     println!("{}", char_skin_map.len());
 
     let player_prefs = PlayerPrefs::initialize(&app_handle, &char_skin_map);
-    player_prefs.store(&app_handle);
+    player_prefs.save(&app_handle);
+
+    let char_ids: Vec<&str> = chars.iter().map(|s: &CharData| s.char_id.as_str()).collect();
+    let char_glicko = Player::initialize(&app_handle, &char_ids, "data.json");
+    Player::save(&app_handle, &char_glicko, "data.json");
 
     let app_state = AppState {
         chars,
         skins,
         char_skin_map,
-        prefs: Mutex::new(player_prefs)
+        prefs: Mutex::new(player_prefs),
+        char_glicko: Mutex::new(char_glicko),
     };
     app.manage(app_state);
 

@@ -1,7 +1,10 @@
-use crate::resource::CharSkinData;
+use crate::{
+    data::{load_from_appdata, save_to_appdata},
+    resource::CharSkinData,
+};
 use serde::{Deserialize, Serialize};
-use std::{collections::HashMap, fs};
-use tauri::{api::path::app_local_data_dir, AppHandle};
+use std::collections::HashMap;
+use tauri::AppHandle;
 
 const PREF_FILE: &str = "preference.json";
 
@@ -67,66 +70,17 @@ impl PlayerPrefs {
         }
     }
 
-    fn read_data(app_handle: &AppHandle) -> Option<Self> {
-        let json_path;
-        match app_local_data_dir(&app_handle.config()) {
-            Some(dir) => {
-                json_path = dir.join(PREF_FILE);
-            }
-            None => {
-                eprintln!("path resolve error");
-                return None;
-            }
-        }
-
-        println!("Reading {}", json_path.display().to_string());
-
-        let result;
-        match fs::read_to_string(json_path) {
-            Ok(content) => {
-                // Deserialize from json string
-                result = serde_json::from_str(&content);
-            }
-            Err(e) => {
-                eprintln!("{}", e);
-                return None;
-            }
-        }
-
-        match result {
-            Ok(objs) => return Some(objs),
-            Err(e) => {
-                eprintln!("{}", e);
-                return None;
-            }
-        }
-    }
-
     pub fn initialize(
         app_handle: &AppHandle,
         char_skin_map: &HashMap<String, CharSkinData>,
     ) -> Self {
-        match Self::read_data(app_handle) {
+        match load_from_appdata(app_handle, PREF_FILE) {
             Some(pref) => return pref,
             None => return Self::default(char_skin_map),
         };
     }
 
-    pub fn store(&self, app_handle: &AppHandle) {
-        let json_path;
-        match app_local_data_dir(&app_handle.config()) {
-            Some(dir) => {
-                json_path = dir.join(PREF_FILE);
-            }
-            None => {
-                eprintln!("path resolve error");
-                return;
-            }
-        }
-
-        println!("Storing to {}", json_path.display().to_string());
-
-        let serialized = serde_json::to_string(&self).unwrap();
-        fs::write(json_path, serialized).unwrap();
+    pub fn save(&self, app_handle: &AppHandle) {
+        save_to_appdata(app_handle, self, PREF_FILE)
     }
 }

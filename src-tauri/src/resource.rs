@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
-use std::{collections::HashMap, fs};
+use std::collections::HashMap;
 use tauri::AppHandle;
+
+use crate::data::load_from_resource;
 
 const CHARDATA_FILE: &str = "assets/excel/char.json";
 const SKINDATA_FILE: &str = "assets/excel/skin.json";
@@ -45,108 +47,27 @@ pub struct CharSkinData {
 
 impl CharData {
     pub fn initialize(app_handle: &AppHandle) -> Vec<CharData> {
-        let json_path;
-        match app_handle.path_resolver().resolve_resource(CHARDATA_FILE) {
-            Some(p) => json_path = p,
-            None => {
-                eprintln!("path resolve error");
-                return Vec::new();
-            }
-        }
-
-        println!("Reading {}", json_path.display().to_string());
-
-        let result;
-        match fs::read_to_string(json_path) {
-            Ok(content) => {
-                // Deserialize from json string
-                result = serde_json::from_str(&content);
-            }
-            Err(e) => {
-                eprintln!("{}", e);
-                return Vec::new();
-            }
-        }
-
-        match result {
-            Ok(objs) => return objs,
-            Err(e) => {
-                eprintln!("{}", e);
-                return Vec::new();
-            }
+        match load_from_resource(app_handle, CHARDATA_FILE) {
+            Some(chars) => return chars,
+            None => return Vec::new(),
         }
     }
 }
 
 impl SkinData {
     pub fn initialize(app_handle: &AppHandle) -> Vec<SkinData> {
-        let json_path;
-        match app_handle.path_resolver().resolve_resource(SKINDATA_FILE) {
-            Some(p) => json_path = p,
-            None => {
-                eprintln!("path resolve error");
-                return Vec::new();
-            }
-        }
-
-        println!("Reading {}", json_path.display().to_string());
-
-        let result;
-        match fs::read_to_string(json_path) {
-            Ok(content) => {
-                // Deserialize from json string
-                result = serde_json::from_str(&content);
-            }
-            Err(e) => {
-                eprintln!("{}", e);
-                return Vec::new();
-            }
-        }
-
-        match result {
-            Ok(objs) => return objs,
-            Err(e) => {
-                eprintln!("{}", e);
-                return Vec::new();
-            }
+        match load_from_resource(app_handle, SKINDATA_FILE) {
+            Some(chars) => return chars,
+            None => return Vec::new(),
         }
     }
 }
 
 impl CharSkinData {
     pub fn initialize(app_handle: &AppHandle) -> HashMap<String, CharSkinData> {
-        let json_path;
-        match app_handle
-            .path_resolver()
-            .resolve_resource(CHARSKINDATA_FILE)
-        {
-            Some(p) => json_path = p,
-            None => {
-                eprintln!("path resolve error");
-                return HashMap::new();
-            }
-        }
-
-        println!("Reading {}", json_path.display().to_string());
-
-        let result;
-        match fs::read_to_string(json_path) {
-            Ok(content) => {
-                // Deserialize from json string
-                result = serde_json::from_str(&content);
-            }
-            Err(e) => {
-                eprintln!("{}", e);
-                return HashMap::new();
-            }
-        }
-
-        match result {
-            Ok(objs) => return objs,
-            Err(e) => {
-                eprintln!("{}", e);
-                return HashMap::new();
-            }
+        match load_from_resource(app_handle, CHARSKINDATA_FILE) {
+            Some(chars) => return chars,
+            None => return HashMap::new(),
         }
     }
 }
