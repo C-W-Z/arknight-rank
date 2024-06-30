@@ -1,6 +1,6 @@
 use crate::data::{load_from_appdata, save_to_appdata};
 use serde::{Deserialize, Serialize};
-use std::collections::VecDeque;
+use std::collections::{HashMap, VecDeque};
 use tauri::AppHandle;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -112,4 +112,29 @@ impl Player {
     pub fn save(app_handle: &AppHandle, players: &[Player], path: &str) {
         save_to_appdata(app_handle, &players, path);
     }
+}
+
+pub fn calculate_ranking(players: &mut [Player]) -> HashMap<String, usize> {
+    players.sort_by(|a, b| {
+        if a.rank.rati != b.rank.rati {
+            b.rank.rati.total_cmp(&a.rank.rati)
+        } else if a.rank.devi != b.rank.devi {
+            b.rank.devi.total_cmp(&a.rank.devi)
+        } else {
+            b.id.cmp(&a.id)
+        }
+    });
+
+    let mut ranks: HashMap<String, usize> = HashMap::with_capacity(players.len());
+    let mut rank = 1;
+    let mut max_rating = players[0].rank.rati;
+    for c in players.iter() {
+        if c.rank.rati < max_rating {
+            rank += 1;
+            max_rating = c.rank.rati;
+        }
+        ranks.insert(c.id.clone(), rank);
+    }
+
+    ranks
 }
