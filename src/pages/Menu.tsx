@@ -35,20 +35,29 @@ function ClockText() {
 function Menu() {
 
     const navigate = useNavigate()
+    const [assistantImg, setAssistantImg] = useState<string | undefined>(undefined);
+    const [assistantH, setAssistantH] = useState<number>(100);
+    const [assistantX, setAssistantX] = useState<number>(0);
+    const [assistantY, setAssistantY] = useState<number>(0);
 
-    const [backgroundImage, setBackgroundImage] = useState<string | undefined>(undefined);
+    let menu_pref: any;
 
     useEffect(() => {
-        const loadImg = async () => {
-            const src = await loadImage('assets/skin/char_003_kalts_1b.png');
-            setBackgroundImage(src);
-        };
-        loadImg();
+        invoke('get_menu_pref')
+            .then(async (v) => {
+                menu_pref = v; 
+                console.log(menu_pref);
 
-        invoke('get_char')
-        .then((v) => console.log(v))
-        .catch((e) => console.error(e));
+                setAssistantH(menu_pref.h);
+                setAssistantX(menu_pref.x);
+                setAssistantY(menu_pref.y);
 
+                const src = await loadImage(`assets/skin/${menu_pref.skin_id}b.png`);
+                setAssistantImg(src);
+            })
+            .catch((e) => {
+                console.error(e);
+            });
     }, []);
 
     const DragBGFuncRef = useRef<DragBGRef>(null);
@@ -69,9 +78,10 @@ function Menu() {
     return (
         <div className="menu">
             <DraggableBackground className='skin-bg'
-                backgroundImage={backgroundImage}
+                backgroundImage={assistantImg}
                 ref={DragBGFuncRef}
-                h={75} x={-20} y={-14}
+                h={assistantH} x={assistantX} y={assistantY}
+                setH={setAssistantH} setX={setAssistantX} setY={setAssistantY}
             >
                 <div className="right-area">
                     <div className="right-plate">

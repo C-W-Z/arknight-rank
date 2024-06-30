@@ -2,6 +2,10 @@ use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, fs};
 use tauri::AppHandle;
 
+const CHARDATA_FILE: &str = "assets/excel/char.json";
+const SKINDATA_FILE: &str = "assets/excel/skin.json";
+const CHARSKINDATA_FILE: &str = "assets/excel/char_skin.json";
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CharData {
     pub char_id: String,
@@ -38,10 +42,6 @@ pub struct CharSkinData {
     pub patch: Vec<String>,
     pub other: Vec<String>,
 }
-
-const CHARDATA_FILE: &str = "assets/excel/char.json";
-const SKINDATA_FILE: &str = "assets/excel/skin.json";
-const CHARSKINDATA_FILE: &str = "assets/excel/char_skin.json";
 
 impl CharData {
     pub fn initialize(app_handle: &AppHandle) -> Vec<CharData> {

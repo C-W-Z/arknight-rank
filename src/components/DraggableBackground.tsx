@@ -12,8 +12,11 @@ export interface Props {
     className?: string;
     children?: any;
     h?: number;
+    setH?: React.Dispatch<React.SetStateAction<number>>;
     x?: number;
+    setX?: React.Dispatch<React.SetStateAction<number>>;
     y?: number;
+    setY?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface SliderProps {
@@ -42,13 +45,50 @@ const DraggableBackground = forwardRef<DragBGRef, Props>(({
     className = "",
     children = undefined,
     h = 100,
+    setH = undefined,
     x = 0,
-    y = 0
+    setX = undefined,
+    y = 0,
+    setY = undefined
 }: Props, ref) => {
 
-    const [imageHeight, setImageHeight] = useState(h);
-    const [imagePosX, setImagePosX] = useState(x);
-    const [imagePosY, setImagePosY] = useState(y);
+    function init() {
+        let states = [];
+        let setStates = [];
+        if (setH === undefined) {
+            const [imageHeight, setImageHeight] = useState(h);
+            states.push(imageHeight);
+            setStates.push(setImageHeight);
+        } else {
+            states.push(h);
+            setStates.push(setH)
+        }
+        if (setX === undefined) {
+            const [imagePosX, setImagePosX] = useState(x);
+            states.push(imagePosX);
+            setStates.push(setImagePosX);
+        } else {
+            states.push(x);
+            setStates.push(setX);
+        }
+        if (setY === undefined) {
+            const [imagePosY, setImagePosY] = useState(y);
+            states.push(imagePosY);
+            setStates.push(setImagePosY);
+        } else {
+            states.push(y);
+            setStates.push(setY);
+        }
+        return { states, setStates };
+    }
+
+    const { states, setStates } = init();
+    const [imageHeight, imagePosX, imagePosY] = states;
+    const [setImageHeight, setImagePosX, setImagePosY] = setStates;
+
+    // const [imageHeight, setImageHeight] = useState(h);
+    // const [imagePosX, setImagePosX] = useState(x);
+    // const [imagePosY, setImagePosY] = useState(y);
 
     const [dragging, setDragging] = useState(false);
 
