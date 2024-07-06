@@ -52,7 +52,7 @@ function Menu() {
                 setAssistantX(menu_pref.x);
                 setAssistantY(menu_pref.y);
 
-                const src = await loadImage(`assets/skin/${menu_pref.skin_id}b.png`);
+                const src = await loadImage(`assets/skin2/${menu_pref.skin_id}.webp`);
                 setAssistantImg(src);
             })
             .catch((e) => {

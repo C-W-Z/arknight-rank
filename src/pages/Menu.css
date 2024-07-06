@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     background-color: gray;
-    background-image: url("../assets/menu/scene_view.png");
+    background-image: url("../assets/menu/scene_view.webp");
     background-size: cover;
 }
 
@@ -81,7 +81,7 @@
 }
 .menu .right-area .right-plate button::after {
     content: '';
-    background-image: url('../assets/menu/button_pattern.png');
+    background-image: url('../assets/menu/button_pattern.webp');
     background-size: cover;
     position: absolute;
     bottom: 0;
@@ -131,7 +131,7 @@
     right: 25%;
     height: 85%;
     aspect-ratio: 1 / 1;
-    background-image: url('../assets/menu/battle_icon.png');
+    background-image: url('../assets/menu/battle_icon.webp');
     background-size: contain;
     filter: invert(20%);
     z-index: 1;
@@ -233,22 +233,22 @@
     filter: invert(20%);
 }
 .menu .right-area .right-plate .btn2s .char-btn .icon {
-    background-image: url('../assets/menu/char_icon.png');
+    background-image: url('../assets/menu/char_icon.webp');
 }
 .menu .right-area .right-plate .btn2s .team-btn .icon {
     right: 7.5%;
-    background-image: url('../assets/menu/team_icon.png');
+    background-image: url('../assets/menu/team_icon.webp');
 }
 .menu .right-area .right-plate .btn4s .task-btn .icon {
     top: 12.5%;
     height: 75%;
-    background-image: url('../assets/menu/task_icon.png');
+    background-image: url('../assets/menu/task_icon.webp');
 }
 .menu .right-area .right-plate .btn4s .infra-btn .icon {
     right: 7.5%;
     top: 12.5%;
     height: 75%;
-    background-image: url('../assets/menu/infra_icon.png');
+    background-image: url('../assets/menu/infra_icon.webp');
 }
 .menu .right-area .right-plate .btn4s .store-btn .icon {
     position: absolute;
@@ -261,7 +261,7 @@
     background-size: contain;
     filter: invert(65%);
     transform: translateX(-50%);
-    background-image: url('../assets/menu/store_icon.png');
+    background-image: url('../assets/menu/store_icon.webp');
 }
 
 .menu .right-area .right-plate .btns button:active .icon {

@@ -4,12 +4,13 @@ with open('character_table.json', 'r', encoding="utf-8") as file:
     data = file.read().replace('null', '""')
     data:dict[str, dict[str, dict]] = json.loads(data)
 
-    objs = []
+    # objs = []
+    map = {}
 
     for key, value in data.items():
         if key.startswith('char_'):
             obj = {}
-            obj['char_id'] = key
+            # obj['char_id'] = key
             obj['name'] = value['name']
             obj['name2'] = value['appellation']
             obj['rarity'] = value['rarity']
@@ -21,9 +22,11 @@ with open('character_table.json', 'r', encoding="utf-8") as file:
             obj['nation'] = value['nationId']
             obj['group'] = value['groupId']
             obj['team'] = value['teamId']
-            objs.append(obj)
+            # objs.append(obj)
+            map[key] = obj
 
-    print(len(objs))
+    # print(len(objs))
+    print(len(map))
 
     with open('char.json', 'w', encoding="utf-8") as out:
-        out.write(json.dumps(objs, ensure_ascii = False))
+        out.write(json.dumps(map, ensure_ascii = False))

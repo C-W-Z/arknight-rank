@@ -20,8 +20,8 @@ use tauri::{Manager, State};
 
 #[derive(Debug)]
 pub struct AppState {
-    pub chars: Vec<CharData>,
-    pub skins: Vec<SkinData>,
+    pub chars: HashMap<String, CharData>,
+    pub skins: HashMap<String, SkinData>,
     pub char_skin_map: HashMap<String, CharSkinData>,
     pub prefs: Mutex<PlayerPrefs>,
     pub ranked_chars: Mutex<Vec<Player>>,
@@ -46,8 +46,8 @@ impl AppState {
 
 #[derive(Serialize)]
 struct GlobalIPCData {
-    chars: Vec<CharData>,
-    skins: Vec<SkinData>,
+    chars: HashMap<String, CharData>,
+    skins: HashMap<String, SkinData>,
     char_skin_map: HashMap<String, CharSkinData>,
 }
 #[tauri::command]
@@ -83,11 +83,11 @@ fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let app_handle = app.handle();
     let chars = CharData::initialize(&app_handle);
     let skins = SkinData::initialize(&app_handle);
-    let char_skin_map = CharSkinData::initialize(&app_handle);
-    let player_prefs = PlayerPrefs::initialize(&app_handle, &char_skin_map);
-    let char_ids: Vec<&str> = char_skin_map.keys().map(|s| s.as_str()).collect();
+    let char2skin = CharSkinData::initialize(&app_handle);
+    let player_prefs = PlayerPrefs::initialize(&app_handle, &char2skin);
+    let char_ids: Vec<&str> = chars.keys().map(|s| s.as_str()).collect();
     let mut ranked_chars = Player::initialize(&app_handle, &char_ids, "data.json");
-    let char_rank_map = calculate_ranking(&mut ranked_chars);
+    let char2rank = calculate_ranking(&mut ranked_chars);
 
     player_prefs.save(&app_handle);
     save_to_appdata(&app_handle, &ranked_chars, "data.json");
@@ -95,10 +95,10 @@ fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let app_state = AppState {
         chars,
         skins,
-        char_skin_map,
+        char_skin_map: char2skin,
         prefs: Mutex::new(player_prefs),
         ranked_chars: Mutex::new(ranked_chars),
-        char_rank_map: Mutex::new(char_rank_map),
+        char_rank_map: Mutex::new(char2rank),
     };
     app.manage(app_state);
 

@@ -10,7 +10,7 @@ const CHARSKINDATA_FILE: &str = "assets/excel/char_skin.json";
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CharData {
-    pub char_id: String,
+    // pub char_id: String,
     pub name: String,
     pub name2: String,
     pub rarity: u8,
@@ -25,7 +25,7 @@ pub struct CharData {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct SkinData {
-    pub skin_id: String,
+    // pub skin_id: String,
     pub char_id: String,
     pub avatar_id: String,
     pub portrait_id: String,
@@ -46,19 +46,19 @@ pub struct CharSkinData {
 }
 
 impl CharData {
-    pub fn initialize(app_handle: &AppHandle) -> Vec<CharData> {
+    pub fn initialize(app_handle: &AppHandle) -> HashMap<String, CharData> {
         match load_from_resource(app_handle, CHARDATA_FILE) {
             Some(chars) => return chars,
-            None => return Vec::new(),
+            None => return HashMap::new(),
         }
     }
 }
 
 impl SkinData {
-    pub fn initialize(app_handle: &AppHandle) -> Vec<SkinData> {
+    pub fn initialize(app_handle: &AppHandle) -> HashMap<String, SkinData> {
         match load_from_resource(app_handle, SKINDATA_FILE) {
             Some(chars) => return chars,
-            None => return Vec::new(),
+            None => return HashMap::new(),
         }
     }
 }
@@ -68,6 +68,6 @@ impl CharSkinData {
         match load_from_resource(app_handle, CHARSKINDATA_FILE) {
             Some(chars) => return chars,
             None => return HashMap::new(),
-        }
+        };
     }
 }

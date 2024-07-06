@@ -25,3 +25,7 @@ dist-ssr
 
 
 python/*.json
+src/assets/charcard
+src/assets/elite
+src/assets/potential
+src/assets/*.png

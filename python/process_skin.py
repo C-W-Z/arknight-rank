@@ -36,12 +36,14 @@ with open('skin_table.json', 'r', encoding="utf-8") as file:
                 charToSkin[key]['patch'].append(skinID(v))
 
     groupToSkin = {}
-    objs = []
+    # objs = []
+    map = {}
 
     for key, value in data['charSkins'].items():
         if key.startswith('char_'):
             obj = {}
-            obj['skin_id'] = skinID(value['skinId'])
+            skin_id = skinID(value['skinId'])
+            # obj['skin_id'] = skin_id
             obj['char_id'] = value['charId']
             obj['avatar_id'] = value['avatarId'].replace('#', '_')
             obj['portrait_id'] = value['portraitId'].replace('#', '_')
@@ -56,24 +58,26 @@ with open('skin_table.json', 'r', encoding="utf-8") as file:
                 obj['designers'] = []
             obj['group_id'] = displaySkin['skinGroupId']
             obj['group_name'] = displaySkin['skinGroupName']
-            objs.append(obj)
+            # objs.append(obj)
+            map[skin_id] = obj
 
             if displaySkin['skinGroupId'] in groupToSkin:
-                groupToSkin[displaySkin['skinGroupId']].append(obj['skin_id'])
+                groupToSkin[displaySkin['skinGroupId']].append(skin_id)
             else:
                 groupToSkin[displaySkin['skinGroupId']] = []
-                groupToSkin[displaySkin['skinGroupId']].append(obj['skin_id'])
+                groupToSkin[displaySkin['skinGroupId']].append(skin_id)
 
-            if (obj['skin_id'] != charToSkin[obj['char_id']]['e0'] and
-                obj['skin_id'] != charToSkin[obj['char_id']]['e1'] and
-                obj['skin_id'] != charToSkin[obj['char_id']]['e2'] and
-                obj['skin_id'] not in charToSkin[obj['char_id']]['patch']):
-                charToSkin[obj['char_id']]['other'].append(obj['skin_id'])
+            if (skin_id != charToSkin[obj['char_id']]['e0'] and
+                skin_id != charToSkin[obj['char_id']]['e1'] and
+                skin_id != charToSkin[obj['char_id']]['e2'] and
+                skin_id not in charToSkin[obj['char_id']]['patch']):
+                charToSkin[obj['char_id']]['other'].append(skin_id)
 
-    print(len(objs))
+    # print(len(objs))
+    print(len(map))
 
     with open('skin.json', 'w', encoding="utf-8") as out:
-        js = json.dumps(objs, ensure_ascii = False).replace('null', '""')
+        js = json.dumps(map, ensure_ascii = False).replace('null', '""')
         out.write(js)
 
     with open('char_skin.json', 'w', encoding="utf-8") as out:

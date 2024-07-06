@@ -15,7 +15,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         invoke('get_global_data')
-            .then((result) => {
+            .then((result:any) => {
                 setData(result);
                 console.log(result);
             })

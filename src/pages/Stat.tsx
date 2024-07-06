@@ -19,12 +19,12 @@ interface NameOverlayProps {
 
 function NameOverlay({ name, name2 }: NameOverlayProps) {
 
-    // const classImg = require('../assets/class/class_medic.png');
+    // const classImg = require('../assets/class/class_medic.webp');
     const [classImg, setClassImg] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const loadImg = async () => {
-            const src2 = await loadImage('assets/class/class_medic.png');
+            const src2 = await loadImage('assets/class/class_medic.webp');
             setClassImg(src2);
         };
         loadImg();
@@ -157,12 +157,12 @@ function Stat() {
     // const name = "凯尔希";
     // const name2 = "Kal'tsit";
 
-    // const backgroundImage = require('../assets/skin/char_003_kalts_boc_6b.png');
+    // const backgroundImage = require('../assets/skin/char_003_kalts_boc_6b.webp');
     const [backgroundImage, setBackgroundImage] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const loadImg = async () => {
-            const src = await loadImage('assets/skin/char_003_kalts_boc_6b.png');
+            const src = await loadImage('assets/skin/char_003_kalts_boc_6.webp');
             setBackgroundImage(src);
         };
         loadImg();
