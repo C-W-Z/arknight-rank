@@ -38,6 +38,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    padding: 0 0.5em;
 }
 .stat .right-area .right-grid>* {
     margin-bottom: 2em;
@@ -97,9 +98,36 @@
 .stat .name-overlay .class-img {
     grid-area: class-img;
     height: 4em;
+    aspect-ratio: 1 / 1;
     opacity: 0.5;
     border: var(--tags-box-border);
     box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.5);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.stat .name-overlay .class-img.PIONEER {
+    background-image: url('../assets/class/class_poineer.webp');
+}
+.stat .name-overlay .class-img.WARRIOR {
+    background-image: url('../assets/class/class_warrior.webp');
+}
+.stat .name-overlay .class-img.TANK {
+    background-image: url('../assets/class/class_tank.webp');
+}
+.stat .name-overlay .class-img.SNIPER {
+    background-image: url('../assets/class/class_sniper.webp');
+}
+.stat .name-overlay .class-img.CASTER {
+    background-image: url('../assets/class/class_caster.webp');
+}
+.stat .name-overlay .class-img.MEDIC {
+    background-image: url('../assets/class/class_medic.webp');
+}
+.stat .name-overlay .class-img.SUPPORT {
+    background-image: url('../assets/class/class_support.webp');
+}
+.stat .name-overlay .class-img.SPECIAL {
+    background-image: url('../assets/class/class_special.webp');
 }
 .stat .name-overlay .class-tags .class-name {
     grid-area: class-name;

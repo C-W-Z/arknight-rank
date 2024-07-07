@@ -1,15 +1,16 @@
-import React, { RefObject, useEffect, useRef, useState, useContext } from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 import './CharList.css'
 import { Star } from '../components/SVGIcons';
 import TopButtons from '../components/TopButtons';
 import { loadImage } from '../utils/LoadResources';
 import ProgressCircle from '../components/ProgressCircle';
 import { HorizontalScroll, HScrollRef } from '../components/DraggableScroll';
-import { invoke } from '@tauri-apps/api/tauri';
 import { JSX } from 'react/jsx-runtime';
-import GlobalContext from '../components/GlobalContext';
+import useGlobalContext from '../components/GlobalContext';
+import { useNavigate } from 'react-router-dom';
 
 interface CharCardProps {
+    char_id: string;
     name: string;
     rarity: number;
     rank: number;
@@ -20,6 +21,7 @@ interface CharCardProps {
 }
 
 function CharCard({
+    char_id,
     name,
     rarity,
     rank,
@@ -28,6 +30,8 @@ function CharCard({
     portraitId,
     prof
 }: CharCardProps) {
+    const navigate = useNavigate();
+
     const [portrait, setPortrait] = useState<string | undefined>(undefined);
 
     useEffect(() => {
@@ -62,7 +66,11 @@ function CharCard({
             return;
         e.stopPropagation();
         sliderFuncRef.current?.setMouseDown(false);
-        console.log("click")
+        navigate('/stat', {
+            state: {
+                char_id: char_id
+            }
+        });
     }
 
     return (
@@ -95,74 +103,71 @@ function CharCard({
 }
 
 function CharList() {
-    const globalContext = useContext(GlobalContext);
+    const globalContext = useGlobalContext();
 
-    if (globalContext == undefined || globalContext.loading) {
+    const navigate = useNavigate();
+    function back() {
+        navigate('/');
+    }
+
+    const HScrollFuncRef = useRef<HScrollRef>(null);
+
+    const [list, setList] = useState<JSX.Element[]>([]);
+
+    useEffect(() => {
+        if (globalContext === undefined || globalContext.loading)
+            return;
+
+        let cards = [];
+        for (let i = 0; i < globalContext.vars.ranked_chars.length; i++) {
+            const char_id = globalContext.vars.ranked_chars[i].id;
+            const rank = globalContext.vars.char2rank[char_id];
+            const charInfo = globalContext.data.chars[char_id];
+            const skin_id = globalContext.data.char2skin[char_id].e0;
+            const portrait_id = globalContext.data.skins[skin_id].portrait_id;
+
+            cards.push(
+                <CharCard key={char_id}
+                    sliderFuncRef={HScrollFuncRef}
+                    char_id={char_id}
+                    name={charInfo.name}
+                    rarity={charInfo.rarity + 1}
+                    prof={charInfo.prof}
+                    portraitId={portrait_id}
+                    rank={rank}
+                    total_rank={globalContext.vars.ranked_chars.length}
+                ></CharCard>
+            );
+        }
+
+        let columns = [];
+        for (let i = 0; i < cards.length; i += 2) {
+            columns.push(
+                <div key={i} className="column">
+                    {cards[i]}
+                    {i + 1 < cards.length && cards[i + 1]}
+                </div>
+            );
+        }
+        setList(columns);
+    }, [globalContext?.loading]);
+
+    if (globalContext === undefined || globalContext.loading) {
         return (
             <div className='charlist'>
                 <div className='out-area'>
-                    <TopButtons homeBtn={true}></TopButtons>
+                    <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
                 </div>
             </div>
         )
     }
 
-    const HScrollFuncRef = useRef<HScrollRef>(null);
-
-    let char_ranks: any;
-    const [list, setList] = useState<JSX.Element[]>([]);
-
-    useEffect(() => {
-        invoke('get_char_ranks')
-            .then((v) => {
-                char_ranks = v;
-
-                let cards = [];
-                for (let i = 0; i < char_ranks.ranked_chars.length; i++) {
-                    const char_id = char_ranks.ranked_chars[i].id
-                    const rank = char_ranks.char2rank[char_id];
-                    const charInfo = globalContext.data.chars[char_id];
-                    const skin_id = globalContext.data.char2skin[char_id].e0;
-                    const portrait_id = globalContext.data.skins[skin_id].portrait_id;
-
-                    cards.push(
-                        <CharCard key={char_id}
-                            sliderFuncRef={HScrollFuncRef}
-                            name={charInfo.name}
-                            rarity={charInfo.rarity + 1}
-                            prof={charInfo.prof}
-                            portraitId={portrait_id}
-                            rank={rank}
-                            total_rank={char_ranks.ranked_chars.length}
-                        ></CharCard>
-                    );
-                }
-
-                let columns = [];
-                for (let i = 0; i < cards.length; i += 2) {
-                    columns.push(
-                        <div key={i} className="column">
-                            {cards[i]}
-                            {i + 1 < cards.length && cards[i + 1]}
-                        </div>
-                    );
-                }
-                setList(columns);
-            })
-            .catch((e) => {
-                console.error(e);
-            })
-            .finally(() => {
-                HScrollFuncRef.current?.Align();
-            });
-    }, []);
-
     return (
         <div className='charlist'>
             <div className='out-area'>
-                <TopButtons homeBtn={true}></TopButtons>
+                <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
             </div>
-            <HorizontalScroll className="list-area" ref={HScrollFuncRef}>
+            <HorizontalScroll alignDelay={100} className="list-area" ref={HScrollFuncRef}>
                 <div className="list-grid">
                     {list}
                 </div>

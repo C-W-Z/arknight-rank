@@ -10,7 +10,7 @@ mod resource;
 use crate::{
     glicko2::Player,
     prefer::{MenuPref, PlayerPrefs},
-    resource::{CharData, CharSkinData, SkinData},
+    resource::{CharData, CharSkinData, SkinData, initialize_sub_prof},
 };
 use data::save_to_appdata;
 use glicko2::calculate_ranking;
@@ -23,12 +23,16 @@ pub struct AppState {
     pub chars: HashMap<String, CharData>,
     pub skins: HashMap<String, SkinData>,
     pub char2skin: HashMap<String, CharSkinData>,
+    pub sub_prof: HashMap<String, String>,
     pub prefs: Mutex<PlayerPrefs>,
     pub ranked_chars: Mutex<Vec<Player>>,
     pub char2rank: Mutex<HashMap<String, usize>>,
 }
 
 impl AppState {
+    pub fn clone_prefs(&self) -> PlayerPrefs {
+        self.prefs.lock().unwrap().clone()
+    }
     pub fn clone_menu_pref(&self) -> MenuPref {
         self.prefs.lock().unwrap().menu_pref.clone()
     }
@@ -49,15 +53,34 @@ struct GlobalIPCData {
     chars: HashMap<String, CharData>,
     skins: HashMap<String, SkinData>,
     char2skin: HashMap<String, CharSkinData>,
+    sub_prof: HashMap<String, String>,
+}
+#[derive(Serialize)]
+struct GlobalIPCVars {
+    pub prefs: PlayerPrefs,
+    pub ranked_chars: Vec<Player>,
+    pub char2rank: HashMap<String, usize>,
+}
+#[derive(Serialize)]
+struct GlobalIPC {
+    data: GlobalIPCData,
+    vars: GlobalIPCVars,
 }
 #[tauri::command]
-fn get_global_data(state: State<'_, AppState>) -> GlobalIPCData {
+fn get_global_data(state: State<'_, AppState>) -> GlobalIPC {
     let data = GlobalIPCData {
         chars: state.chars.clone(),
         skins: state.skins.clone(),
         char2skin: state.char2skin.clone(),
+        sub_prof: state.sub_prof.clone(),
     };
-    data.into()
+    let vars = GlobalIPCVars {
+        prefs: state.clone_prefs(),
+        ranked_chars: state.clone_ranked_chars(),
+        char2rank: state.clone_char2rank(),
+    };
+    let ret = GlobalIPC { data, vars };
+    ret.into()
 }
 
 #[tauri::command]
@@ -81,9 +104,12 @@ fn get_char_ranks(state: State<'_, AppState>) -> CharRankIPCData {
 
 fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let app_handle = app.handle();
+
     let chars = CharData::initialize(&app_handle);
     let skins = SkinData::initialize(&app_handle);
     let char2skin = CharSkinData::initialize(&app_handle);
+    let sub_prof = initialize_sub_prof(&app_handle);
+
     let player_prefs = PlayerPrefs::initialize(&app_handle, &char2skin);
     let char_ids: Vec<&str> = chars.keys().map(|s| s.as_str()).collect();
     let mut ranked_chars = Player::initialize(&app_handle, &char_ids, "data.json");
@@ -96,6 +122,7 @@ fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
         chars,
         skins,
         char2skin,
+        sub_prof,
         prefs: Mutex::new(player_prefs),
         ranked_chars: Mutex::new(ranked_chars),
         char2rank: Mutex::new(char2rank),
@@ -111,7 +138,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             get_menu_pref,
             get_global_data,
-            get_char_ranks
+            get_char_ranks,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

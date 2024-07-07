@@ -7,6 +7,7 @@ use crate::data::load_from_resource;
 const CHARDATA_FILE: &str = "assets/excel/char.json";
 const SKINDATA_FILE: &str = "assets/excel/skin.json";
 const CHARSKINDATA_FILE: &str = "assets/excel/char_skin.json";
+const SUBPROF_FILE: &str = "assets/excel/sub_prof.json";
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CharData {
@@ -70,4 +71,11 @@ impl CharSkinData {
             None => return HashMap::new(),
         };
     }
+}
+
+pub fn initialize_sub_prof(app_handle: &AppHandle) -> HashMap<String, String> {
+    match load_from_resource(app_handle, SUBPROF_FILE) {
+        Some(chars) => return chars,
+        None => return HashMap::new(),
+    };
 }

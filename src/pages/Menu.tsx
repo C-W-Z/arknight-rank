@@ -52,7 +52,7 @@ function Menu() {
                 setAssistantX(menu_pref.x);
                 setAssistantY(menu_pref.y);
 
-                const src = await loadImage(`assets/skin2/${menu_pref.skin_id}.webp`);
+                const src = await loadImage(`assets/skin/${menu_pref.skin_id}.webp`);
                 setAssistantImg(src);
             })
             .catch((e) => {
@@ -65,15 +65,6 @@ function Menu() {
     // function openBGSetting() {
     //     DragBGFuncRef.current?.openSetting();
     // }
-
-    function nagivateStat() {
-        navigate('/stat', {
-            state: {
-                name: "纯烬艾雅法拉",
-                name2: "Eyjafjalla the Hvít Aska"
-            }
-        });
-    }
 
     function nagivateCharList() {
         navigate('/charlist');
@@ -95,7 +86,7 @@ function Menu() {
                         </div>
 
                         <div className="btns btn1s">
-                            <button className="battle-btn" onClick={nagivateStat}>
+                            <button className="battle-btn">
                                 <div className="battle-icon"></div>
                                 <div className="battle-icon2"></div>
                                 <div className="btn-title">终端</div>

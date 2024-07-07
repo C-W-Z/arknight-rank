@@ -10,26 +10,26 @@ import ArrowButton from '../components/ArrowButton';
 import DraggableBackground, { DragBGRef } from '../components/DraggableBackground';
 import CircleButton from '../components/CircleButton';
 import { CrossArrow, Star } from '../components/SVGIcons';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useGlobalContext from '../components/GlobalContext';
 
 interface NameOverlayProps {
     name: string;
     name2: string;
+    prof: string;
+    subProf: string;
+    position: string;
+    tags: string[];
 }
 
-function NameOverlay({ name, name2 }: NameOverlayProps) {
-
-    // const classImg = require('../assets/class/class_medic.webp');
-    const [classImg, setClassImg] = useState<string | undefined>(undefined);
-
-    useEffect(() => {
-        const loadImg = async () => {
-            const src2 = await loadImage('assets/class/class_medic.webp');
-            setClassImg(src2);
-        };
-        loadImg();
-    }, []);
-
+function NameOverlay({
+    name,
+    name2,
+    prof,
+    subProf,
+    position,
+    tags
+}: NameOverlayProps) {
     let nameSize = '4em';
     if (name.length == 5)
         nameSize = '3.8em';
@@ -48,16 +48,27 @@ function NameOverlay({ name, name2 }: NameOverlayProps) {
     if (name.length >= 28)
         nameSize2 = '1.2em';
 
+    let tagStr = '';
+    for (const t of tags) {
+        tagStr += ' ' + t;
+    }
+    tagStr = tagStr.trim();
+
+    if (position == 'MELEE')
+        position = '近战位';
+    else
+        position = '远程位';
+
     return (
         <div className="name-overlay">
             <Star num={6} color={'#ffffff'}></Star>
             <div className='name2' style={{ fontSize: nameSize2 }}>{name2}</div>
             <div className='name' style={{ fontSize: nameSize }}>{name}</div>
             <div className='class-tags'>
-                <img src={classImg} alt="class_medic" className='class-img' />
-                <div className='class-name'>医师</div>
-                <div className='position-type'>远程位</div>
-                <div className='tags'>召唤 治疗</div>
+                <div className={'class-img ' + prof}></div>
+                <div className='class-name'>{subProf}</div>
+                <div className='position-type'>{position}</div>
+                <div className='tags'>{tagStr}</div>
             </div>
         </div>
     )
@@ -105,6 +116,10 @@ function Statistic(s: StatisticProps) {
 
     const className = close ? 'statistic close' : 'statistic';
 
+    let winrate = 0;
+    if (s.wins + s.draw + s.loss > 0)
+        winrate = 100 * s.wins / (s.wins + s.draw + s.loss);
+
     return (
         <div className={className} onClick={toggleClose}>
             <div className='rank-title'>Statistic »</div>
@@ -114,7 +129,7 @@ function Statistic(s: StatisticProps) {
             {StatisticDetail('wins', '▲', 'Wins', s.wins, 100)}
             {StatisticDetail('draw', '▶', 'Draws', s.loss, 100)}
             {StatisticDetail('loss', '▼', 'Losses', s.draw, 100)}
-            {WinrateBar(100 * s.wins / (s.wins + s.draw + s.loss))}
+            {WinrateBar(winrate)}
         </div>
     )
 }
@@ -149,23 +164,30 @@ function Ranking({ rank, total }: RankingProps) {
 }
 
 function Stat() {
+    const globalContext = useGlobalContext();
+
+    const navigate = useNavigate();
+    function back() {
+        navigate('/charlist');
+    }
 
     const { state } = useLocation();
+    const { char_id } = state;
 
-    const { name, name2 } = state;
-    // const name = "凯尔希";
-    // const name2 = "Kal'tsit";
-
-    // const backgroundImage = require('../assets/skin/char_003_kalts_boc_6b.webp');
     const [backgroundImage, setBackgroundImage] = useState<string | undefined>(undefined);
 
     useEffect(() => {
-        const loadImg = async () => {
-            const src = await loadImage('assets/skin/char_003_kalts_boc_6.webp');
+        if (globalContext === undefined || globalContext.loading)
+            return;
+
+        const skin_id = globalContext.data.char2skin[char_id].e0;
+
+        const loadBg = async () => {
+            const src = await loadImage(`assets/skin/${skin_id}.webp`);
             setBackgroundImage(src);
-        };
-        loadImg();
-    }, []);
+        }
+        loadBg();
+    }, [globalContext?.loading]);
 
     const VScrollRef = useRef<HTMLDivElement>(null);
     const VScrollFuncRef = useRef<VScrollRef>(null);
@@ -175,12 +197,35 @@ function Stat() {
         DragBGFuncRef.current?.openSetting();
     }
 
+    if (globalContext == undefined || globalContext.loading) {
+        return (
+            <div className='stat'>
+                <div className='main-area'>
+                    <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
+                </div>
+            </div>
+        )
+    }
+
+    const charInfo = globalContext.data.chars[char_id];
+    const rank = globalContext.vars.char2rank[char_id];
+    const totalRank = globalContext.vars.ranked_chars.length;
+    const charRankInfo = globalContext.vars.ranked_chars.find((obj: any) => obj.id == char_id);
+    const rati = charRankInfo ? charRankInfo.rank.rati : 1500;
+    const devi = charRankInfo ? charRankInfo.rank.devi : 350;
+    const vola = charRankInfo ? charRankInfo.rank.vola : 0.06;
+    const wins = charRankInfo ? charRankInfo.hist.wins : 0;
+    const draw = charRankInfo ? charRankInfo.hist.draw : 0;
+    const loss = charRankInfo ? charRankInfo.hist.loss : 0;
+
+    const subProf = globalContext.data.sub_prof[charInfo.sub_prof];
+
     return (
         <div className='stat'>
             <DraggableBackground className='skin-bg' backgroundImage={backgroundImage} ref={DragBGFuncRef}>
                 <div className='main-area'>
 
-                    <TopButtons homeBtn={true} thirdBtn={
+                    <TopButtons backOnClick={back} homeBtn={true} thirdBtn={
                         <CircleButton className='skin-pos-btn' squareBg={true}
                             onClick={openBGSetting}
                         >
@@ -189,15 +234,22 @@ function Stat() {
                     }></TopButtons>
 
                     <div className='bottom-left-area'>
-                        <Statistic rati={1500} devi={350} vola={0.06} wins={7} draw={1} loss={2}></Statistic>
-                        <NameOverlay name={name} name2={name2}></NameOverlay>
+                        <Statistic rati={rati} devi={devi} vola={vola} wins={wins} draw={draw} loss={loss}></Statistic>
+                        <NameOverlay
+                            name={charInfo.name}
+                            name2={charInfo.name2}
+                            prof={charInfo.prof}
+                            subProf={subProf}
+                            position={charInfo.position}
+                            tags={charInfo.tags}
+                        ></NameOverlay>
                     </div>
 
                 </div>
 
                 <VerticalScroll alignDelay={250} _ref={VScrollRef} ref={VScrollFuncRef} className='right-area'>
                     <div className='right-grid'>
-                        <Ranking rank={108} total={331}></Ranking>
+                        <Ranking rank={rank} total={totalRank}></Ranking>
                         <ExtendCard
                             trainsition={200}
                             sliderRef={VScrollRef} sliderFuncRef={VScrollFuncRef}

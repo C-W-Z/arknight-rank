@@ -10,7 +10,7 @@
 .v-scroll .v-scroll-child {
     margin: 0;
     padding: 0;
-    width: 100%;
+    /* width: 100%; */
 }
 .v-scroll .placeholder {
     margin: 0;
