@@ -10,10 +10,10 @@ mod resource;
 use crate::{
     glicko2::Player,
     prefer::{MenuPref, PlayerPrefs},
-    resource::{initialize_sub_prof, CharData, CharSkinData, SkinData},
+    resource::{CharData, CharSkinData, SkinData},
 };
 use data::save_to_appdata;
-use glicko2::calculate_ranking;
+use glicko2::{calculate_ranking, pick_2_player_ids};
 use prefer::StatPref;
 use serde::Serialize;
 use std::{collections::HashMap, sync::Mutex};
@@ -107,13 +107,19 @@ fn set_stat_pref(
     state.update_stat_pref(&app_handle, char_id, new_stat_pref);
 }
 
+#[tauri::command]
+fn pick_2_char(state: State<'_, AppState>) -> (String, String) {
+    let players = state.ranked_chars.lock().unwrap();
+    pick_2_player_ids(&players).into()
+}
+
 fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let app_handle = app.handle();
 
     let chars = CharData::initialize(&app_handle);
     let skins = SkinData::initialize(&app_handle);
     let char2skin = CharSkinData::initialize(&app_handle);
-    let sub_prof = initialize_sub_prof(&app_handle);
+    let sub_prof = CharData::initialize_sub_prof(&app_handle);
 
     let player_prefs = PlayerPrefs::initialize(&app_handle, &char2skin);
     let char_ids: Vec<&str> = chars.keys().map(|s| s.as_str()).collect();
@@ -144,6 +150,7 @@ fn main() {
             get_global_data,
             set_menu_pref,
             set_stat_pref,
+            pick_2_char,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

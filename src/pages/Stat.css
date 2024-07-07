@@ -5,10 +5,19 @@
     padding: 0;
     background-image: url("../assets/stat_bg.webp");
     background-size: cover;
-    box-shadow: inset 0 0 3em 0.5em rgba(0, 0, 0, 1);
+}
+
+.stat .in-shadow {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: inset 0 0 4.5em 1.5em rgba(0, 0, 0, 1);
+    position: relative;
 }
 
 .stat .skin-bg {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -386,4 +395,145 @@
 
 .stat .top-btns .skin-pos-btn {
     margin-left: 1em;
+}
+
+.stat .logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50%;
+    transform: translate(-10%, -12%);
+    aspect-ratio: 1 / 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top left;
+    filter: invert(0.5);
+    opacity: 0.4;
+}
+.stat .logo.abyssal {
+    background-image: url('../assets/logo/logo_abyssal.webp');
+}
+.stat .logo.action4 {
+    background-image: url('../assets/logo/logo_action4.webp');
+}
+.stat .logo.babel {
+    background-image: url('../assets/logo/logo_babel.webp');
+}
+.stat .logo.blacksteel {
+    background-image: url('../assets/logo/logo_blacksteel.webp');
+}
+.stat .logo.bolivar {
+    background-image: url('../assets/logo/logo_bolivar.webp');
+}
+.stat .logo.chiave {
+    background-image: url('../assets/logo/logo_chiave.webp');
+}
+.stat .logo.columbia {
+    background-image: url('../assets/logo/logo_columbia.webp');
+}
+.stat .logo.dublinn {
+    background-image: url('../assets/logo/logo_dublinn.webp');
+}
+.stat .logo.egir {
+    background-image: url('../assets/logo/logo_egir.webp');
+}
+.stat .logo.elite {
+    background-image: url('../assets/logo/logo_elite.webp');
+}
+.stat .logo.followers {
+    background-image: url('../assets/logo/logo_followers.webp');
+}
+.stat .logo.glasgow {
+    background-image: url('../assets/logo/logo_glasgow.webp');
+}
+.stat .logo.higashi {
+    background-image: url('../assets/logo/logo_higashi.webp');
+}
+.stat .logo.iberia {
+    background-image: url('../assets/logo/logo_iberia.webp');
+}
+.stat .logo.karlan {
+    background-image: url('../assets/logo/logo_karlan.webp');
+}
+.stat .logo.kazimierz {
+    background-image: url('../assets/logo/logo_kazimierz.webp');
+}
+.stat .logo.kjerag {
+    background-image: url('../assets/logo/logo_kjerag.webp');
+}
+.stat .logo.laterano {
+    background-image: url('../assets/logo/logo_laterano.webp');
+}
+.stat .logo.lee {
+    background-image: url('../assets/logo/logo_lee.webp');
+}
+.stat .logo.leithanien {
+    background-image: url('../assets/logo/logo_leithanien.webp');
+}
+.stat .logo.lgd {
+    background-image: url('../assets/logo/logo_lgd.webp');
+}
+.stat .logo.lungmen {
+    background-image: url('../assets/logo/logo_lungmen.webp');
+}
+.stat .logo.minos {
+    background-image: url('../assets/logo/logo_minos.webp');
+}
+.stat .logo.penguin {
+    background-image: url('../assets/logo/logo_penguin.webp');
+}
+.stat .logo.pinus {
+    background-image: url('../assets/logo/logo_pinus.webp');
+}
+.stat .logo.rainbow {
+    background-image: url('../assets/logo/logo_rainbow.webp');
+}
+.stat .logo.reserve1 {
+    background-image: url('../assets/logo/logo_reserve1.webp');
+}
+.stat .logo.reserve4 {
+    background-image: url('../assets/logo/logo_reserve4.webp');
+}
+.stat .logo.reserve6 {
+    background-image: url('../assets/logo/logo_reserve6.webp');
+}
+.stat .logo.rhine {
+    background-image: url('../assets/logo/logo_rhine.webp');
+}
+.stat .logo.rhodes {
+    filter: none;
+    background-image: url('../assets/logo/logo_rhodes_override.webp');
+}
+.stat .logo.rim {
+    background-image: url('../assets/logo/logo_rim.webp');
+}
+.stat .logo.sami {
+    background-image: url('../assets/logo/logo_sami.webp');
+}
+.stat .logo.sargon {
+    background-image: url('../assets/logo/logo_sargon.webp');
+}
+.stat .logo.siesta {
+    background-image: url('../assets/logo/logo_siesta.webp');
+}
+.stat .logo.siracusa {
+    background-image: url('../assets/logo/logo_siracusa.webp');
+}
+.stat .logo.student {
+    background-image: url('../assets/logo/logo_student.webp');
+}
+.stat .logo.sui {
+    background-image: url('../assets/logo/logo_sui.webp');
+}
+.stat .logo.sweep {
+    background-image: url('../assets/logo/logo_sweep.webp');
+}
+.stat .logo.ursus {
+    background-image: url('../assets/logo/logo_ursus.webp');
+}
+.stat .logo.victoria {
+    background-image: url('../assets/logo/logo_victoria.webp');
+}
+.stat .logo.yan {
+    background-image: url('../assets/logo/logo_yan.webp');
 }

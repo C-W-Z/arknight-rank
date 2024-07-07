@@ -242,94 +242,103 @@ function Stat() {
 
     const subProf = globalContext.data.sub_prof[charInfo.sub_prof];
 
+    let logo: string = charInfo.nation;
+    if (charInfo.team.length > 0)
+        logo = charInfo.team;
+    else if (charInfo.group.length > 0)
+        logo = charInfo.group;
+
     return (
         <div className='stat'>
-            <DraggableBackground className='skin-bg'
-                ref={DragBGFuncRef}
-                backgroundImage={skinImg}
-                h={skinH} x={skinX} y={skinY}
-                setH={setSkinH} setX={setSkinX} setY={setSkinY}
-                closeFunc={closeDragBgSetting}
-            >
-                <div className='main-area'>
+            {logo.length > 0 && <div className={"logo " + logo}></div>}
+            <div className="in-shadow">
+                <DraggableBackground className='skin-bg'
+                    ref={DragBGFuncRef}
+                    backgroundImage={skinImg}
+                    h={skinH} x={skinX} y={skinY}
+                    setH={setSkinH} setX={setSkinX} setY={setSkinY}
+                    closeFunc={closeDragBgSetting}
+                >
+                    <div className='main-area'>
 
-                    <TopButtons backOnClick={back} homeBtn={true} thirdBtn={
-                        <CircleButton className='skin-pos-btn' squareBg={true}
-                            onClick={openBGSetting}
-                        >
-                            <CrossArrow></CrossArrow>
-                        </CircleButton>
-                    }></TopButtons>
+                        <TopButtons backOnClick={back} homeBtn={true} thirdBtn={
+                            <CircleButton className='skin-pos-btn' squareBg={true}
+                                onClick={openBGSetting}
+                            >
+                                <CrossArrow></CrossArrow>
+                            </CircleButton>
+                        }></TopButtons>
 
-                    <div className='bottom-left-area'>
-                        <Statistic rati={rati} devi={devi} vola={vola} wins={wins} draw={draw} loss={loss}></Statistic>
-                        <NameOverlay
-                            name={charInfo.name}
-                            name2={charInfo.name2}
-                            prof={charInfo.prof}
-                            subProf={subProf}
-                            position={charInfo.position}
-                            tags={charInfo.tags}
-                        ></NameOverlay>
+                        <div className='bottom-left-area'>
+                            <Statistic rati={rati} devi={devi} vola={vola} wins={wins} draw={draw} loss={loss}></Statistic>
+                            <NameOverlay
+                                name={charInfo.name}
+                                name2={charInfo.name2}
+                                prof={charInfo.prof}
+                                subProf={subProf}
+                                position={charInfo.position}
+                                tags={charInfo.tags}
+                            ></NameOverlay>
+                        </div>
+
                     </div>
 
-                </div>
-
-                <VerticalScroll alignDelay={250} _ref={VScrollRef} ref={VScrollFuncRef} className='right-area'>
-                    <div className='right-grid'>
-                        <Ranking rank={rank} total={totalRank}></Ranking>
-                        <ExtendCard
-                            trainsition={200}
-                            sliderRef={VScrollRef} sliderFuncRef={VScrollFuncRef}
-                            className='overall-ranking'
-                            title={"Title Here 這是標題"}
-                            infoContent={
-                                <>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                </>
-                            }
-                            detailContent={
-                                <>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <ArrowButton>More</ArrowButton>
-                                </>
-                            }
-                        ></ExtendCard>
-                        <ExtendCard sliderRef={VScrollRef} sliderFuncRef={VScrollFuncRef}
-                            trainsition={200}
-                            className='recent-battle'
-                            title={<p>Title Here 這是標題</p>}
-                            infoContent={
-                                <>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                </>
-                            }
-                            detailContent={
-                                <>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                    <p>Content Here 這是內容</p>
-                                </>
-                            }
-                        ></ExtendCard>
-                    </div>
-                </VerticalScroll>
-            </DraggableBackground>
+                    <VerticalScroll alignDelay={250} _ref={VScrollRef} ref={VScrollFuncRef} className='right-area'>
+                        <div className='right-grid'>
+                            <Ranking rank={rank} total={totalRank}></Ranking>
+                            <ExtendCard
+                                trainsition={200}
+                                sliderRef={VScrollRef} sliderFuncRef={VScrollFuncRef}
+                                className='overall-ranking'
+                                title={"Title Here 這是標題"}
+                                infoContent={
+                                    <>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                    </>
+                                }
+                                detailContent={
+                                    <>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <ArrowButton>More</ArrowButton>
+                                    </>
+                                }
+                            ></ExtendCard>
+                            <ExtendCard sliderRef={VScrollRef} sliderFuncRef={VScrollFuncRef}
+                                trainsition={200}
+                                className='recent-battle'
+                                title={<p>Title Here 這是標題</p>}
+                                infoContent={
+                                    <>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                    </>
+                                }
+                                detailContent={
+                                    <>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                        <p>Content Here 這是內容</p>
+                                    </>
+                                }
+                            ></ExtendCard>
+                        </div>
+                    </VerticalScroll>
+                </DraggableBackground>
+            </div>
         </div>
     );
 }

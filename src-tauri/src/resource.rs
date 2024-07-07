@@ -53,6 +53,13 @@ impl CharData {
             None => return HashMap::new(),
         }
     }
+
+    pub fn initialize_sub_prof(app_handle: &AppHandle) -> HashMap<String, String> {
+        match load_from_resource(app_handle, SUBPROF_FILE) {
+            Some(chars) => return chars,
+            None => return HashMap::new(),
+        };
+    }
 }
 
 impl SkinData {
@@ -71,11 +78,4 @@ impl CharSkinData {
             None => return HashMap::new(),
         };
     }
-}
-
-pub fn initialize_sub_prof(app_handle: &AppHandle) -> HashMap<String, String> {
-    match load_from_resource(app_handle, SUBPROF_FILE) {
-        Some(chars) => return chars,
-        None => return HashMap::new(),
-    };
 }
