@@ -102,11 +102,12 @@
     opacity: 0.5;
     border: var(--tags-box-border);
     box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.5);
+    background-color: black;
     background-size: contain;
     background-repeat: no-repeat;
 }
 .stat .name-overlay .class-img.PIONEER {
-    background-image: url('../assets/class/class_poineer.webp');
+    background-image: url('../assets/class/class_pioneer.webp');
 }
 .stat .name-overlay .class-img.WARRIOR {
     background-image: url('../assets/class/class_warrior.webp');

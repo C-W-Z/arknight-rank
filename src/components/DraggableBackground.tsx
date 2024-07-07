@@ -17,6 +17,7 @@ export interface Props {
     setX?: React.Dispatch<React.SetStateAction<number>>;
     y?: number;
     setY?: React.Dispatch<React.SetStateAction<number>>;
+    closeFunc?: () => void;
 }
 
 interface SliderProps {
@@ -49,7 +50,8 @@ const DraggableBackground = forwardRef<DragBGRef, Props>(({
     x = 0,
     setX = undefined,
     y = 0,
-    setY = undefined
+    setY = undefined,
+    closeFunc = undefined
 }: Props, ref) => {
 
     function init() {
@@ -86,19 +88,21 @@ const DraggableBackground = forwardRef<DragBGRef, Props>(({
     const [imageHeight, imagePosX, imagePosY] = states;
     const [setImageHeight, setImagePosX, setImagePosY] = setStates;
 
-    // const [imageHeight, setImageHeight] = useState(h);
-    // const [imagePosX, setImagePosX] = useState(x);
-    // const [imagePosY, setImagePosY] = useState(y);
-
     const [dragging, setDragging] = useState(false);
 
+    function openSetting() {
+        setDragging(true);
+    }
+
+    function closeSetting() {
+        setDragging(false);
+        if (closeFunc !== undefined)
+            closeFunc();
+    }
+
     useImperativeHandle(ref, () => ({
-        openSetting() {
-            setDragging(true);
-        },
-        closeSetting() {
-            setDragging(false);
-        }
+        openSetting,
+        closeSetting,
     }));
 
     const class_name = (dragging ? 'drag-bg dragging ' : 'drag-bg ') + className;
@@ -111,7 +115,7 @@ const DraggableBackground = forwardRef<DragBGRef, Props>(({
             backgroundPositionY: `calc(50% - ${imagePosY}vh)`,
         }}>
             <div className="setting">
-                <TopButtons backOnClick={() => setDragging(false)}></TopButtons>
+                <TopButtons backOnClick={closeSetting}></TopButtons>
 
                 <div className="sliders">
                     <Slider title="H" min={50} max={300} value={imageHeight}

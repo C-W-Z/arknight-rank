@@ -10,13 +10,14 @@ mod resource;
 use crate::{
     glicko2::Player,
     prefer::{MenuPref, PlayerPrefs},
-    resource::{CharData, CharSkinData, SkinData, initialize_sub_prof},
+    resource::{initialize_sub_prof, CharData, CharSkinData, SkinData},
 };
 use data::save_to_appdata;
 use glicko2::calculate_ranking;
+use prefer::StatPref;
 use serde::Serialize;
 use std::{collections::HashMap, sync::Mutex};
-use tauri::{Manager, State};
+use tauri::{AppHandle, Manager, State};
 
 #[derive(Debug)]
 pub struct AppState {
@@ -33,18 +34,26 @@ impl AppState {
     pub fn clone_prefs(&self) -> PlayerPrefs {
         self.prefs.lock().unwrap().clone()
     }
-    pub fn clone_menu_pref(&self) -> MenuPref {
-        self.prefs.lock().unwrap().menu_pref.clone()
-    }
-    pub fn update_menu_pref(&self, new_menu_pref: MenuPref) {
-        let mut data = self.prefs.lock().unwrap();
-        (*data).menu_pref = new_menu_pref;
-    }
     pub fn clone_ranked_chars(&self) -> Vec<Player> {
         self.ranked_chars.lock().unwrap().clone()
     }
     pub fn clone_char2rank(&self) -> HashMap<String, usize> {
         self.char2rank.lock().unwrap().clone()
+    }
+    pub fn update_menu_pref(&self, app_handle: &AppHandle, new_menu_pref: MenuPref) {
+        let mut data = self.prefs.lock().unwrap();
+        (*data).menu_pref = new_menu_pref;
+        data.save(app_handle);
+    }
+    pub fn update_stat_pref(
+        &self,
+        app_handle: &AppHandle,
+        char_id: String,
+        new_stat_pref: StatPref,
+    ) {
+        let mut data = self.prefs.lock().unwrap();
+        (*data).stat_pref.insert(char_id, new_stat_pref);
+        data.save(app_handle);
     }
 }
 
@@ -84,22 +93,18 @@ fn get_global_data(state: State<'_, AppState>) -> GlobalIPC {
 }
 
 #[tauri::command]
-fn get_menu_pref(state: State<'_, AppState>) -> MenuPref {
-    state.clone_menu_pref().into()
+fn set_menu_pref(app_handle: AppHandle, state: State<'_, AppState>, new_menu_pref: MenuPref) {
+    state.update_menu_pref(&app_handle, new_menu_pref);
 }
 
-#[derive(Serialize)]
-struct CharRankIPCData {
-    ranked_chars: Vec<Player>,
-    char2rank: HashMap<String, usize>,
-}
 #[tauri::command]
-fn get_char_ranks(state: State<'_, AppState>) -> CharRankIPCData {
-    let data = CharRankIPCData {
-        ranked_chars: state.clone_ranked_chars(),
-        char2rank: state.clone_char2rank(),
-    };
-    data.into()
+fn set_stat_pref(
+    app_handle: AppHandle,
+    state: State<'_, AppState>,
+    char_id: String,
+    new_stat_pref: StatPref,
+) {
+    state.update_stat_pref(&app_handle, char_id, new_stat_pref);
 }
 
 fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
@@ -136,9 +141,9 @@ fn main() {
     tauri::Builder::default()
         .setup(setup_app)
         .invoke_handler(tauri::generate_handler![
-            get_menu_pref,
             get_global_data,
-            get_char_ranks,
+            set_menu_pref,
+            set_stat_pref,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

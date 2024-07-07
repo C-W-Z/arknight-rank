@@ -3,7 +3,7 @@ import { loadImage } from "../utils/LoadResources";
 import './Menu.css'
 import DraggableBackground, { DragBGRef } from "../components/DraggableBackground";
 import { useNavigate } from "react-router-dom";
-import { invoke } from '@tauri-apps/api/tauri'
+import useGlobalContext from "../components/GlobalContext";
 
 function ClockText() {
     const [time, setTime] = useState(() => new Date().toLocaleString())
@@ -14,7 +14,7 @@ function ClockText() {
 
             const dateObject = new Date()
             const year = dateObject.getFullYear();
-            const month = dateObject.getMonth().toString().padStart(2, '0');
+            const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
             const date = dateObject.getDate().toString().padStart(2, '0');;
             const hour = dateObject.getHours().toString().padStart(2, '0');;
             const minute = dateObject.getMinutes().toString().padStart(2, '0');;
@@ -34,6 +34,8 @@ function ClockText() {
 
 function Menu() {
 
+    const globalContext = useGlobalContext();
+
     const navigate = useNavigate()
     const [assistantImg, setAssistantImg] = useState<string | undefined>(undefined);
     const [assistantH, setAssistantH] = useState<number>(100);
@@ -43,22 +45,22 @@ function Menu() {
     let menu_pref: any;
 
     useEffect(() => {
-        invoke('get_menu_pref')
-            .then(async (v) => {
-                menu_pref = v; 
-                console.log(menu_pref);
+        if (globalContext === undefined || globalContext.loading)
+            return;
 
-                setAssistantH(menu_pref.h);
-                setAssistantX(menu_pref.x);
-                setAssistantY(menu_pref.y);
+        menu_pref = globalContext.vars.prefs.menu_pref;
 
-                const src = await loadImage(`assets/skin/${menu_pref.skin_id}.webp`);
-                setAssistantImg(src);
-            })
-            .catch((e) => {
-                console.error(e);
-            });
-    }, []);
+        setAssistantH(menu_pref.h);
+        setAssistantX(menu_pref.x);
+        setAssistantY(menu_pref.y);
+
+        async function loadImg() {
+            const src = await loadImage(`assets/skin/${menu_pref.skin_id}.webp`);
+            setAssistantImg(src);
+        }
+        loadImg();
+
+    }, [globalContext?.loading]);
 
     const DragBGFuncRef = useRef<DragBGRef>(null);
 

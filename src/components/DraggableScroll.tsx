@@ -3,17 +3,18 @@ import './DraggableScroll.css'
 import mergeRefs from "../utils/MergeRefs";
 
 export type VScrollRef = {
-    Align: () => void,
-    setMouseDown: (value: boolean) => void,
+    Align: () => void;
+    setMouseDown: (value: boolean) => void;
     child: () => HTMLDivElement | null;
     placeHeight: () => number;
 }
 
 export type HScrollRef = {
-    Align: () => void,
-    setMouseDown: (value: boolean) => void,
+    Align: () => void;
+    setMouseDown: (value: boolean) => void;
     child: () => HTMLDivElement | null;
     placeWidth: () => number;
+    JumpToLeft: () => void;
 }
 
 export interface Props {
@@ -215,6 +216,14 @@ export const HorizontalScroll = forwardRef<HScrollRef, Props>(({
         }
     }
 
+    function JumpToLeft() {
+        if (slider.current && placeholder.current)
+            slider.current.scrollTo({
+                left: placeholder.current.clientWidth,
+                behavior: 'instant'
+            });
+    }
+
     useImperativeHandle(ref, () => ({
         Align,
         setMouseDown,
@@ -225,7 +234,8 @@ export const HorizontalScroll = forwardRef<HScrollRef, Props>(({
             if (placeholder.current)
                 return placeholder.current.clientWidth;
             return 0;
-        }
+        },
+        JumpToLeft,
     }));
 
     const stopDragging = () => {

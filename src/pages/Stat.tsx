@@ -12,6 +12,7 @@ import CircleButton from '../components/CircleButton';
 import { CrossArrow, Star } from '../components/SVGIcons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useGlobalContext from '../components/GlobalContext';
+import { invoke } from '@tauri-apps/api/tauri';
 
 interface NameOverlayProps {
     name: string;
@@ -174,20 +175,41 @@ function Stat() {
     const { state } = useLocation();
     const { char_id } = state;
 
-    const [backgroundImage, setBackgroundImage] = useState<string | undefined>(undefined);
+    const [skinImg, setSkinImg] = useState<string | undefined>(undefined);
+    const [skinH, setSkinH] = useState<number>(100);
+    const [skinX, setSkinX] = useState<number>(0);
+    const [skinY, setSkinY] = useState<number>(0);
 
     useEffect(() => {
         if (globalContext === undefined || globalContext.loading)
             return;
 
-        const skin_id = globalContext.data.char2skin[char_id].e0;
+        // const skin_id = globalContext.data.char2skin[char_id].e0;
+        const statPref = globalContext.vars.prefs.stat_pref[char_id];
+        setSkinH(statPref.h);
+        setSkinX(statPref.x);
+        setSkinY(statPref.y);
 
         const loadBg = async () => {
-            const src = await loadImage(`assets/skin/${skin_id}.webp`);
-            setBackgroundImage(src);
+            const src = await loadImage(`assets/skin/${statPref.skin_id}.webp`);
+            setSkinImg(src);
         }
         loadBg();
     }, [globalContext?.loading]);
+
+    function closeDragBgSetting() {
+        if (globalContext === undefined || globalContext.loading)
+            return;
+        let tmp = globalContext.vars;
+        tmp.prefs.stat_pref[char_id].h = skinH;
+        tmp.prefs.stat_pref[char_id].x = skinX;
+        tmp.prefs.stat_pref[char_id].y = skinY;
+        globalContext.setVars(tmp);
+        invoke('set_stat_pref', {
+            charId: char_id,
+            newStatPref: tmp.prefs.stat_pref[char_id]
+        }).catch((e) => console.error(e));
+    }
 
     const VScrollRef = useRef<HTMLDivElement>(null);
     const VScrollFuncRef = useRef<VScrollRef>(null);
@@ -222,7 +244,13 @@ function Stat() {
 
     return (
         <div className='stat'>
-            <DraggableBackground className='skin-bg' backgroundImage={backgroundImage} ref={DragBGFuncRef}>
+            <DraggableBackground className='skin-bg'
+                ref={DragBGFuncRef}
+                backgroundImage={skinImg}
+                h={skinH} x={skinX} y={skinY}
+                setH={setSkinH} setX={setSkinX} setY={setSkinY}
+                closeFunc={closeDragBgSetting}
+            >
                 <div className='main-area'>
 
                     <TopButtons backOnClick={back} homeBtn={true} thirdBtn={

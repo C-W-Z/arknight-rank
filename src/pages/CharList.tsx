@@ -114,16 +114,36 @@ function CharList() {
 
     const [list, setList] = useState<JSX.Element[]>([]);
 
+    let newClasses = Array(9).fill("filter");
+    newClasses[0] += " choose";
+    const [chooseClasses, setChooseClasses] = useState<string[]>(newClasses);
+    const [filtProf, setFiltProf] = useState<string>("all");
+    function filtTo(prof: string, i: number) {
+        return () => {
+            setFiltProf(prof);
+            newClasses = Array(9).fill("filter");
+            newClasses[i] += " choose";
+            setChooseClasses(newClasses);
+            HScrollFuncRef.current?.JumpToLeft();
+        };
+    }
+
     useEffect(() => {
         if (globalContext === undefined || globalContext.loading)
             return;
 
+        let filtChars;
+        if (filtProf == "all")
+            filtChars = globalContext.vars.ranked_chars;
+        else
+            filtChars = globalContext.vars.ranked_chars.filter((c: any) => globalContext.data.chars[c.id].prof == filtProf);
+
         let cards = [];
-        for (let i = 0; i < globalContext.vars.ranked_chars.length; i++) {
-            const char_id = globalContext.vars.ranked_chars[i].id;
+        for (let i = 0; i < filtChars.length; i++) {
+            const char_id = filtChars[i].id;
             const rank = globalContext.vars.char2rank[char_id];
             const charInfo = globalContext.data.chars[char_id];
-            const skin_id = globalContext.data.char2skin[char_id].e0;
+            const skin_id = globalContext.vars.prefs.stat_pref[char_id].skin_id;
             const portrait_id = globalContext.data.skins[skin_id].portrait_id;
 
             cards.push(
@@ -135,7 +155,7 @@ function CharList() {
                     prof={charInfo.prof}
                     portraitId={portrait_id}
                     rank={rank}
-                    total_rank={globalContext.vars.ranked_chars.length}
+                    total_rank={filtChars.length}
                 ></CharCard>
             );
         }
@@ -150,7 +170,7 @@ function CharList() {
             );
         }
         setList(columns);
-    }, [globalContext?.loading]);
+    }, [globalContext?.loading, filtProf]);
 
     if (globalContext === undefined || globalContext.loading) {
         return (
@@ -167,11 +187,41 @@ function CharList() {
             <div className='out-area'>
                 <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
             </div>
+            <div className="logo-rhodes"></div>
             <HorizontalScroll alignDelay={100} className="list-area" ref={HScrollFuncRef}>
                 <div className="list-grid">
                     {list}
                 </div>
             </HorizontalScroll>
+            <div className="class-filter">
+                <button className={chooseClasses[0]} onClick={filtTo("all", 0)}>
+                    <div className="icon all">全部</div>
+                </button>
+                <button className={chooseClasses[1]} onClick={filtTo("PIONEER", 1)}>
+                    <div className="icon PIONEER"></div>
+                </button>
+                <button className={chooseClasses[2]} onClick={filtTo("WARRIOR", 2)}>
+                    <div className="icon WARRIOR"></div>
+                </button>
+                <button className={chooseClasses[3]} onClick={filtTo("TANK", 3)}>
+                    <div className="icon TANK"></div>
+                </button>
+                <button className={chooseClasses[4]} onClick={filtTo("SNIPER", 4)}>
+                    <div className="icon SNIPER"></div>
+                </button>
+                <button className={chooseClasses[5]} onClick={filtTo("CASTER", 5)}>
+                    <div className="icon CASTER"></div>
+                </button>
+                <button className={chooseClasses[6]} onClick={filtTo("MEDIC", 6)}>
+                    <div className="icon MEDIC"></div>
+                </button>
+                <button className={chooseClasses[7]} onClick={filtTo("SUPPORT", 7)}>
+                    <div className="icon SUPPORT"></div>
+                </button>
+                <button className={chooseClasses[8]} onClick={filtTo("SPECIAL", 8)}>
+                    <div className="icon SPECIAL"></div>
+                </button>
+            </div>
         </div>
     )
 }
