@@ -22,10 +22,10 @@ use tauri::{Manager, State};
 pub struct AppState {
     pub chars: HashMap<String, CharData>,
     pub skins: HashMap<String, SkinData>,
-    pub char_skin_map: HashMap<String, CharSkinData>,
+    pub char2skin: HashMap<String, CharSkinData>,
     pub prefs: Mutex<PlayerPrefs>,
     pub ranked_chars: Mutex<Vec<Player>>,
-    pub char_rank_map: Mutex<HashMap<String, usize>>,
+    pub char2rank: Mutex<HashMap<String, usize>>,
 }
 
 impl AppState {
@@ -39,8 +39,8 @@ impl AppState {
     pub fn clone_ranked_chars(&self) -> Vec<Player> {
         self.ranked_chars.lock().unwrap().clone()
     }
-    pub fn clone_char_rank_map(&self) -> HashMap<String, usize> {
-        self.char_rank_map.lock().unwrap().clone()
+    pub fn clone_char2rank(&self) -> HashMap<String, usize> {
+        self.char2rank.lock().unwrap().clone()
     }
 }
 
@@ -48,14 +48,14 @@ impl AppState {
 struct GlobalIPCData {
     chars: HashMap<String, CharData>,
     skins: HashMap<String, SkinData>,
-    char_skin_map: HashMap<String, CharSkinData>,
+    char2skin: HashMap<String, CharSkinData>,
 }
 #[tauri::command]
 fn get_global_data(state: State<'_, AppState>) -> GlobalIPCData {
     let data = GlobalIPCData {
         chars: state.chars.clone(),
         skins: state.skins.clone(),
-        char_skin_map: state.char_skin_map.clone(),
+        char2skin: state.char2skin.clone(),
     };
     data.into()
 }
@@ -68,13 +68,13 @@ fn get_menu_pref(state: State<'_, AppState>) -> MenuPref {
 #[derive(Serialize)]
 struct CharRankIPCData {
     ranked_chars: Vec<Player>,
-    char_rank_map: HashMap<String, usize>,
+    char2rank: HashMap<String, usize>,
 }
 #[tauri::command]
 fn get_char_ranks(state: State<'_, AppState>) -> CharRankIPCData {
     let data = CharRankIPCData {
         ranked_chars: state.clone_ranked_chars(),
-        char_rank_map: state.clone_char_rank_map(),
+        char2rank: state.clone_char2rank(),
     };
     data.into()
 }
@@ -87,7 +87,7 @@ fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let player_prefs = PlayerPrefs::initialize(&app_handle, &char2skin);
     let char_ids: Vec<&str> = chars.keys().map(|s| s.as_str()).collect();
     let mut ranked_chars = Player::initialize(&app_handle, &char_ids, "data.json");
-    let char2rank = calculate_ranking(&mut ranked_chars);
+    let char2rank = calculate_ranking(&mut ranked_chars, &chars);
 
     player_prefs.save(&app_handle);
     save_to_appdata(&app_handle, &ranked_chars, "data.json");
@@ -95,10 +95,10 @@ fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let app_state = AppState {
         chars,
         skins,
-        char_skin_map: char2skin,
+        char2skin,
         prefs: Mutex::new(player_prefs),
         ranked_chars: Mutex::new(ranked_chars),
-        char_rank_map: Mutex::new(char2rank),
+        char2rank: Mutex::new(char2rank),
     };
     app.manage(app_state);
 

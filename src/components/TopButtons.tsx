@@ -1,11 +1,11 @@
 import './TopButtons.css'
 import { LessThan, HomeIcon, MeshSphere } from './SVGIcons';
+import { useNavigate } from 'react-router-dom';
 
 export interface Props {
     className?: string;
     backOnClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     homeBtn?: boolean;
-    homeOnClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     thirdBtn?: any;
 }
 
@@ -13,9 +13,13 @@ function TopButtons({
     className = "",
     backOnClick = undefined,
     homeBtn = false,
-    homeOnClick = undefined,
     thirdBtn = undefined
 }: Props) {
+    const navigate = useNavigate();
+    function homeOnClick() {
+        navigate('/');
+    }
+
     return (
         <div className={'top-btns ' + className}>
             <button className='back-btn' onClick={backOnClick}>

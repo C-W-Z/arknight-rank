@@ -3,13 +3,18 @@ import ReactDOM from "react-dom/client";
 import './main.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { GlobalProvider } from "./components/GlobalContext";
-import Stat from './pages/Stat';
 import Menu from "./pages/Menu";
+import CharList from "./pages/CharList";
+import Stat from './pages/Stat';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Menu />
+  },
+  {
+    path: '/charlist',
+    element: <CharList />
   },
   {
     path: '/stat',

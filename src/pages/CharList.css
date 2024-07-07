@@ -1,0 +1,332 @@
+.charlist {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    box-shadow: inset 0 0 3em 0.5em rgba(0, 0, 0, 1);
+    /* background-image: url("../assets/stat_bg.webp"); */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.charlist .out-area {
+    height: 95%;
+    width: 97%;
+    position: relative;
+}
+
+.charlist .list-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 84%;
+    padding-bottom: 2%;
+}
+.charlist .list-area .list-grid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.charlist .list-area .list-grid .column {
+    height: 100%;
+    /* margin-left: 1.4%; */
+    aspect-ratio: 1 / 4;
+    display: grid;
+    grid-template-rows: 48% 48%;
+    row-gap: 4%;
+}
+.charlist .list-area .list-grid {
+    margin: 0 1em;
+}
+.charlist .list-area .list-grid .column .charcard {
+    height: 100%;
+    justify-self: center;
+    aspect-ratio: 4 / 9;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.charlist .charcard {
+    background-image: url('../assets/charcard/charcard_bg_r2.webp');
+}
+.charlist .charcard.r4 {
+    background-image: url('../assets/charcard/charcard_bg_r3.webp');
+}
+.charlist .charcard.r5 {
+    background-image: url('../assets/charcard/charcard_bg_r4.webp');
+}
+.charlist .charcard.r6 {
+    background-image: url('../assets/charcard/charcard_bg_r5.webp');
+}
+.charlist .charcard .portrait {
+    width: 100%;
+    aspect-ratio: 1 / 2;
+}
+.charlist .charcard .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.charlist .charcard .header {
+    background-image: url('../assets/charcard/header-1.webp');
+}
+.charlist .charcard .header.h2 {
+    background-image: url('../assets/charcard/header-2.webp');
+}
+.charlist .charcard .header.h3 {
+    background-image: url('../assets/charcard/header-3.webp');
+}
+.charlist .charcard .header.h4 {
+    background-image: url('../assets/charcard/header-4.webp');
+}
+.charlist .charcard .header.h5 {
+    background-image: url('../assets/charcard/header-5.webp');
+}
+.charlist .charcard .header.h6 {
+    background-image: url('../assets/charcard/header-6.webp');
+}
+.charlist .charcard .class-icon {
+    width: 21%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: 2%;
+    left: 4%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-shadow: -4px 6px 4px 0 rgba(0, 0, 0, 0.4);
+}
+.charlist .charcard .class-icon.PIONEER {
+    background-image: url('../assets/charcard/poineer_icon.webp');
+}
+.charlist .charcard .class-icon.WARRIOR {
+    background-image: url('../assets/charcard/warrior_icon.webp');
+}
+.charlist .charcard .class-icon.TANK {
+    background-image: url('../assets/charcard/tank_icon.webp');
+}
+.charlist .charcard .class-icon.SNIPER {
+    background-image: url('../assets/charcard/sniper_icon.webp');
+}
+.charlist .charcard .class-icon.CASTER {
+    background-image: url('../assets/charcard/caster_icon.webp');
+}
+.charlist .charcard .class-icon.MEDIC {
+    background-image: url('../assets/charcard/medic_icon.webp');
+}
+.charlist .charcard .class-icon.SUPPORT {
+    background-image: url('../assets/charcard/support_icon.webp');
+}
+.charlist .charcard .class-icon.SPECIAL {
+    background-image: url('../assets/charcard/special_icon.webp');
+}
+.charlist .charcard .star {
+    position: absolute;
+    top: 3%;
+    left: 28%;
+    height: 6.5%;
+    width: auto;
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.7));
+}
+.charlist .charcard .glow {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-position: center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.charlist .charcard .glow {
+    background-image: url('../assets/charcard/glow-1.webp');
+    bottom: 8%;
+}
+.charlist .charcard .glow.g2 {
+    background-image: url('../assets/charcard/glow-2.webp');
+    bottom: 7%;
+}
+.charlist .charcard .glow.g3 {
+    background-image: url('../assets/charcard/glow-3.webp');
+    bottom: 7%;
+}
+.charlist .charcard .glow.g4 {
+    background-image: url('../assets/charcard/glow-4.webp');
+    bottom: 10%;
+}
+.charlist .charcard .glow.g5 {
+    background-image: url('../assets/charcard/glow-5.webp');
+    bottom: 10%;
+}
+.charlist .charcard .glow.g6 {
+    background-image: url('../assets/charcard/glow-6.webp');
+    bottom: 11%;
+}
+.charlist .charcard .bottom {
+    height: 40%;
+    width: 106%;
+    position: absolute;
+    bottom: -2%;
+    left: -3%;
+    filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.5));
+}
+.charlist .charcard .bottom .banner {
+    height: 100%;
+    width: 100%;
+    /* background-color: #1b191b;
+    clip-path: polygon(0% 0%, 100% 60%, 100% 100%, 50% 100%, 0% 70%); */
+    background-position: center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.charlist .charcard .banner {
+    background-image: url('../assets/charcard/banner-1.webp');
+}
+.charlist .charcard .banner.b4 {
+    background-image: url('../assets/charcard/banner-4.webp');
+}
+.charlist .charcard .banner.b5 {
+    background-image: url('../assets/charcard/banner-5.webp');
+}
+.charlist .charcard .banner.b6 {
+    background-image: url('../assets/charcard/banner-6.webp');
+}
+.charlist .charcard .bottom-left {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 15%;
+    background-color: #333333;
+}
+.charlist .charcard .bottom .elite {
+    position: absolute;
+    left: 0;
+    bottom: 65%;
+    width: 45%;
+    background-position: center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.charlist .charcard .elite {
+    height: 35%;
+    background-image: url('../assets/elite/e0.webp');
+}
+.charlist .charcard .elite.e1 {
+    height: 35%;
+    background-image: url('../assets/elite/e1.webp');
+}
+.charlist .charcard .elite.e2 {
+    height: 45%;
+    background-image: url('../assets/elite/e2.webp');
+}
+.charlist .charcard .elite.e3 {
+    height: 60%;
+    background-image: url('../assets/elite/e3.webp');
+}
+.charlist .charcard .bottom .elite::after {
+    content: '';
+    height: 75%;
+    width: 30%;
+    background-color: #333333;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+    z-index: -1;
+}
+.charlist .charcard .bottom .potential-bg {
+    position: absolute;
+    bottom: 52.5%;
+    width: 19%;
+    aspect-ratio: 1 / 1;
+    right: 7.5%;
+}
+.charlist .charcard .bottom .potential-square {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    aspect-ratio: 1 / 1;
+    border: solid 1px gray;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* z-index: -1; */
+}
+.charlist .charcard .bottom .potential {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* height: 100%; */
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-position: center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+.charlist .charcard .potential {
+    background-image: url('../assets/potential/potential_1.png');
+}
+.charlist .charcard .potential.p2 {
+    background-image: url('../assets/potential/potential_2.png');
+}
+.charlist .charcard .potential.p3 {
+    background-image: url('../assets/potential/potential_3.png');
+}
+.charlist .charcard .potential.p4 {
+    background-image: url('../assets/potential/potential_4.png');
+}
+.charlist .charcard .potential.p5 {
+    background-image: url('../assets/potential/potential_5.png');
+}
+.charlist .charcard .potential.p6 {
+    background-image: url('../assets/potential/potential_6.png');
+}
+.charlist .charcard .bottom .name {
+    position: absolute;
+    right: 5%;
+    bottom: 0;
+    text-align: right;
+    font-size: 0.8em;
+}
+.charlist .charcard .bottom .progress-circle {
+    --stroke-width: 0.2em;
+    z-index: 1;
+    position: absolute;
+    bottom: 22.5%;
+    left: 7.5%;
+    /* height: 50%;
+    aspect-ratio: 1 / 1; */
+    font-size: 0.4em;
+}
+.charlist .charcard .rank-num {
+    font-size: 1.5em;
+    font-weight: bold;
+    transform: translateY(0.1em);
+}
+.charlist .charcard .rank-title {
+    font-size: 0.4em;
+    font-weight: 400;
+    position: absolute;
+    top: 14%;
+}
+.charlist .charcard .rank-num,
+.charlist .charcard .rank-title {
+    width: 100%;
+    text-align: center;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    font-family: Novecento;
+    font-weight: bold;
+    line-height: 1em;
+}

@@ -75,6 +75,10 @@ function Menu() {
         });
     }
 
+    function nagivateCharList() {
+        navigate('/charlist');
+    }
+
     return (
         <div className="menu">
             <DraggableBackground className='skin-bg'
@@ -90,8 +94,8 @@ function Menu() {
                             <ClockText></ClockText>
                         </div>
 
-                        <div className="btns btn1s" onClick={nagivateStat}>
-                            <button className="battle-btn">
+                        <div className="btns btn1s">
+                            <button className="battle-btn" onClick={nagivateStat}>
                                 <div className="battle-icon"></div>
                                 <div className="battle-icon2"></div>
                                 <div className="btn-title">终端</div>
@@ -103,7 +107,7 @@ function Menu() {
                                 <div className="icon"></div>
                                 <div className="btn-title">时装</div>
                             </button>
-                            <button className="char-btn">
+                            <button className="char-btn" onClick={nagivateCharList}>
                                 <div className="icon"></div>
                                 <div className="btn-title">干员</div>
                             </button>

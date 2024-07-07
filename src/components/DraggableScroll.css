@@ -1,19 +1,45 @@
-.vertical-scroll {
+.v-scroll {
     overflow-y: scroll;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
     /* touch-action: none; */
 }
-.vertical-scroll::-webkit-scrollbar {
+.v-scroll::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }
-.vertical-scroll .vertical-scroll-child {
+.v-scroll .v-scroll-child {
     margin: 0;
     padding: 0;
+    width: 100%;
 }
-.vertical-scroll .placeholder {
+.v-scroll .placeholder {
     margin: 0;
     padding: 0;
     height: 15em;
     width: 100%;
+}
+
+.h-scroll {
+    overflow-x: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    /* touch-action: none; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+.h-scroll::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+.h-scroll .h-scroll-child {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.h-scroll .placeholder {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-width: 15em;
 }

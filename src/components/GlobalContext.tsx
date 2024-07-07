@@ -1,5 +1,5 @@
 import { invoke } from '@tauri-apps/api';
-import React, { ReactNode, useContext, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 interface GlobalContextProps {
     loading: boolean;
@@ -31,12 +31,4 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             {children}
         </GlobalContext.Provider>
     );
-};
-
-export const useGlobalContext = () => {
-    const context = useContext(GlobalContext);
-    if (context === undefined) {
-        throw new Error('useGlobalContext must be used within a GlobalProvider');
-    }
-    return context;
 };

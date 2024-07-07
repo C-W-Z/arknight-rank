@@ -1,4 +1,7 @@
-use crate::data::{load_from_appdata, save_to_appdata};
+use crate::{
+    data::{load_from_appdata, save_to_appdata},
+    resource::CharData,
+};
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, VecDeque};
 use tauri::AppHandle;
@@ -114,14 +117,33 @@ impl Player {
     }
 }
 
-pub fn calculate_ranking(players: &mut [Player]) -> HashMap<String, usize> {
+pub fn calculate_ranking(
+    players: &mut [Player],
+    chars: &HashMap<String, CharData>,
+) -> HashMap<String, usize> {
+    let mut prof_order: HashMap<String, u8> = HashMap::new();
+    prof_order.insert("PIONEER".to_string(), 1);
+    prof_order.insert("WARRIOR".to_string(), 2);
+    prof_order.insert("TANK".to_string(), 3);
+    prof_order.insert("SNIPER".to_string(), 4);
+    prof_order.insert("CASTER".to_string(), 5);
+    prof_order.insert("MEDIC".to_string(), 6);
+    prof_order.insert("SUPPORT".to_string(), 7);
+    prof_order.insert("SPECIAL".to_string(), 8);
+
     players.sort_by(|a, b| {
+        let char_a = &chars[&a.id];
+        let char_b = &chars[&b.id];
         if a.rank.rati != b.rank.rati {
             b.rank.rati.total_cmp(&a.rank.rati)
         } else if a.rank.devi != b.rank.devi {
             b.rank.devi.total_cmp(&a.rank.devi)
+        } else if char_a.rarity != char_b.rarity {
+            char_b.rarity.cmp(&char_a.rarity)
+        } else if char_a.prof != char_b.prof {
+            prof_order[&char_a.prof].cmp(&prof_order[&char_b.prof])
         } else {
-            b.id.cmp(&a.id)
+            a.id.cmp(&b.id)
         }
     });
 

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Stat.css';
 import ProgressBar from '../components/ProgressBar';
 import ProgressCircle from '../components/ProgressCircle';
-import VerticalScroll, { VScrollRef } from '../components/DraggableScroll';
+import { VerticalScroll, VScrollRef } from '../components/DraggableScroll';
 import ExtendCard from '../components/ExtendCard';
 import TopButtons from '../components/TopButtons';
 import { loadImage } from '../utils/LoadResources';
@@ -10,7 +10,7 @@ import ArrowButton from '../components/ArrowButton';
 import DraggableBackground, { DragBGRef } from '../components/DraggableBackground';
 import CircleButton from '../components/CircleButton';
 import { CrossArrow, Star } from '../components/SVGIcons';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 interface NameOverlayProps {
     name: string;
@@ -150,7 +150,6 @@ function Ranking({ rank, total }: RankingProps) {
 
 function Stat() {
 
-    const navigate = useNavigate();
     const { state } = useLocation();
 
     const { name, name2 } = state;
@@ -181,7 +180,7 @@ function Stat() {
             <DraggableBackground className='skin-bg' backgroundImage={backgroundImage} ref={DragBGFuncRef}>
                 <div className='main-area'>
 
-                    <TopButtons homeBtn={true} homeOnClick={() => navigate('/')} thirdBtn={
+                    <TopButtons homeBtn={true} thirdBtn={
                         <CircleButton className='skin-pos-btn' squareBg={true}
                             onClick={openBGSetting}
                         >
