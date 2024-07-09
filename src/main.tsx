@@ -6,11 +6,16 @@ import { GlobalProvider } from "./components/GlobalContext";
 import Menu from "./pages/Menu";
 import CharList from "./pages/CharList";
 import Stat from './pages/Stat';
+import Battle from "./pages/Battle";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Menu />
+  },
+  {
+    path: '/battle',
+    element: <Battle />
   },
   {
     path: '/charlist',

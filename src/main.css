@@ -37,6 +37,10 @@
   src: local('NotoSansHans'), url('./assets/fonts/NotoSansHans-Black.woff2') format('woff2');
   font-weight: 800;
 }
+@font-face {
+  font-family: 'Bender';
+  src: local('Bender'), url('./assets/fonts/JovannyLemonad-Bender.woff') format('woff');
+}
 
 :root {
   --text-color-dark: #ffffff;

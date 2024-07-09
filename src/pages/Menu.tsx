@@ -68,6 +68,10 @@ function Menu() {
     //     DragBGFuncRef.current?.openSetting();
     // }
 
+    function nagivateBattle() {
+        navigate('/battle');
+    }
+
     function nagivateCharList() {
         navigate('/charlist');
     }
@@ -88,7 +92,7 @@ function Menu() {
                         </div>
 
                         <div className="btns btn1s">
-                            <button className="battle-btn">
+                            <button className="battle-btn" onClick={nagivateBattle}>
                                 <div className="battle-icon"></div>
                                 <div className="battle-icon2"></div>
                                 <div className="btn-title">终端</div>
