@@ -24,5 +24,8 @@ dist-ssr
 *.sw?
 
 
-python/*.json
+python/*
+!python/*.py
 src/assets/*.png
+src/assets/portrait/*
+src/assets/skin/*

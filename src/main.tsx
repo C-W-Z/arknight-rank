@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import './main.css'
+import './utils/skin.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { GlobalProvider } from "./components/GlobalContext";
 import Menu from "./pages/Menu";

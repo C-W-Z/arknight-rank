@@ -68,6 +68,8 @@
     justify-self: center;
     width: 100%;
     aspect-ratio: 1 / 2;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .battle .candidate .in-shadow {
     position: absolute;

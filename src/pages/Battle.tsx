@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Battle.css'
-import { loadImage } from '../utils/LoadResources';
 import { Star } from '../components/SVGIcons';
 
 interface CandidateProps {
@@ -25,20 +24,10 @@ function Candidate({
     onClick
 }: CandidateProps) {
 
-    const [portrait, setPortrait] = useState<string | undefined>(undefined);
-
-    useEffect(() => {
-        const loadImg = async () => {
-            const src = await loadImage(`assets/portrait/char_2023_ling_2.webp`);
-            setPortrait(src);
-        };
-        loadImg();
-    }, []);
-
     return (
         <div className={"candidate " + className} onClick={onClick}>
             <div className='bg-text'>OPERATOR</div>
-            <img src={portrait} alt="portrait" className='portrait' />
+            <div className={"portrait " + portraitId}></div>
             <div className="in-shadow"></div>
             <div className="header">OPERATOR</div>
             <div className="info">
@@ -92,7 +81,7 @@ function Battle() {
                     name={''}
                     rarity={0}
                     elite={0}
-                    portraitId={''}
+                    portraitId={'char_2023_ling_2'}
                     prof={''}
                 ></Candidate>
                 <Candidate className={className[1]} onClick={OnChoose(1)}
@@ -100,7 +89,7 @@ function Battle() {
                     name={''}
                     rarity={0}
                     elite={2}
-                    portraitId={''}
+                    portraitId={'char_2023_ling_2'}
                     prof={''}
                 ></Candidate>
                 <Candidate className={className[2]} onClick={OnChoose(2)}
@@ -108,7 +97,7 @@ function Battle() {
                     name={''}
                     rarity={0}
                     elite={3}
-                    portraitId={''}
+                    portraitId={'char_2023_ling_2'}
                     prof={''}
                 ></Candidate>
                 <Candidate className={className[3]} onClick={OnChoose(3)}
@@ -116,7 +105,7 @@ function Battle() {
                     name={''}
                     rarity={0}
                     elite={1}
-                    portraitId={''}
+                    portraitId={'char_2023_ling_2'}
                     prof={''}
                 ></Candidate>
                 <Candidate className={className[4]} onClick={OnChoose(4)}
@@ -124,7 +113,7 @@ function Battle() {
                     name={''}
                     rarity={0}
                     elite={0}
-                    portraitId={''}
+                    portraitId={'char_2023_ling_2'}
                     prof={''}
                 ></Candidate>
             </div>

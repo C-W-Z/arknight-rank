@@ -83,6 +83,8 @@
 .charlist .charcard .portrait {
     width: 100%;
     aspect-ratio: 1 / 2;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .charlist .charcard .header {
     position: absolute;

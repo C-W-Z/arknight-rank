@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { loadImage } from "../utils/LoadResources";
 import './Menu.css'
 import DraggableBackground, { DragBGRef } from "../components/DraggableBackground";
 import { useNavigate } from "react-router-dom";
@@ -37,29 +36,21 @@ function Menu() {
     const globalContext = useGlobalContext();
 
     const navigate = useNavigate()
-    const [assistantImg, setAssistantImg] = useState<string | undefined>(undefined);
+    const [assistantImg, setAssistantImg] = useState<string>('');
     const [assistantH, setAssistantH] = useState<number>(100);
     const [assistantX, setAssistantX] = useState<number>(0);
     const [assistantY, setAssistantY] = useState<number>(0);
-
-    let menu_pref: any;
 
     useEffect(() => {
         if (globalContext === undefined || globalContext.loading)
             return;
 
-        menu_pref = globalContext.vars.prefs.menu_pref;
+        const menu_pref = globalContext.vars.prefs.menu_pref;
 
         setAssistantH(menu_pref.h);
         setAssistantX(menu_pref.x);
         setAssistantY(menu_pref.y);
-
-        async function loadImg() {
-            const src = await loadImage(`assets/skin/${menu_pref.skin_id}.webp`);
-            setAssistantImg(src);
-        }
-        loadImg();
-
+        setAssistantImg(menu_pref.skin_id);
     }, [globalContext?.loading]);
 
     const DragBGFuncRef = useRef<DragBGRef>(null);

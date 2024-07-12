@@ -5,7 +5,6 @@ import ProgressCircle from '../components/ProgressCircle';
 import { VerticalScroll, VScrollRef } from '../components/DraggableScroll';
 import ExtendCard from '../components/ExtendCard';
 import TopButtons from '../components/TopButtons';
-import { loadImage } from '../utils/LoadResources';
 import ArrowButton from '../components/ArrowButton';
 import DraggableBackground, { DragBGRef } from '../components/DraggableBackground';
 import CircleButton from '../components/CircleButton';
@@ -184,17 +183,11 @@ function Stat() {
         if (globalContext === undefined || globalContext.loading)
             return;
 
-        // const skin_id = globalContext.data.char2skin[char_id].e0;
         const statPref = globalContext.vars.prefs.stat_pref[char_id];
         setSkinH(statPref.h);
         setSkinX(statPref.x);
         setSkinY(statPref.y);
-
-        const loadBg = async () => {
-            const src = await loadImage(`assets/skin/${statPref.skin_id}.webp`);
-            setSkinImg(src);
-        }
-        loadBg();
+        setSkinImg(statPref.skin_id);
     }, [globalContext?.loading]);
 
     function closeDragBgSetting() {

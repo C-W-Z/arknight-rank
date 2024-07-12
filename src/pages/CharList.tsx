@@ -2,7 +2,6 @@ import React, { RefObject, useEffect, useRef, useState } from 'react';
 import './CharList.css'
 import { Star } from '../components/SVGIcons';
 import TopButtons from '../components/TopButtons';
-import { loadImage } from '../utils/LoadResources';
 import ProgressCircle from '../components/ProgressCircle';
 import { HorizontalScroll, HScrollRef } from '../components/DraggableScroll';
 import { JSX } from 'react/jsx-runtime';
@@ -31,16 +30,6 @@ function CharCard({
     prof
 }: CharCardProps) {
     const navigate = useNavigate();
-
-    const [portrait, setPortrait] = useState<string | undefined>(undefined);
-
-    useEffect(() => {
-        const loadImg = async () => {
-            const src = await loadImage(`assets/portrait/${portraitId}.webp`);
-            setPortrait(src);
-        };
-        loadImg();
-    }, []);
 
     const elite = 1;
     const potential = 2;
@@ -77,7 +66,7 @@ function CharCard({
         <div className={"charcard " + "r" + rarity}
             onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}
         >
-            <img src={portrait} alt="portrait" className='portrait' />
+            <div className={"portrait " + portraitId}></div>
             <div className={"header " + "h" + rarity}></div>
             <div className={"class-icon " + prof}></div>
             <Star num={rarity} color={'#ffd900'}></Star>

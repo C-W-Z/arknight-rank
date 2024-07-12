@@ -83,6 +83,12 @@ with open('skin_table.json', 'r', encoding="utf-8") as file:
     with open('char_skin.json', 'w', encoding="utf-8") as out:
         out.write(json.dumps(charToSkin, ensure_ascii = False))
 
+    with open('skin.css', 'w', encoding="utf-8") as out:
+        for k, v in map.items():
+            out.write(".skin." + k + " {\nbackground-image: url('../assets/skin/" + k + ".webp');\n}\n")
+        for k, v in map.items():
+            out.write(".portrait." + v['portrait_id'] + " {\nbackground-image: url('../assets/portrait/" + v['portrait_id'] + ".webp');\n}\n")
+
     objs = []
 
     print(len(data['brandList']))

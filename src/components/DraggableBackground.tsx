@@ -108,8 +108,8 @@ const DraggableBackground = forwardRef<DragBGRef, Props>(({
     const class_name = (dragging ? 'drag-bg dragging ' : 'drag-bg ') + className;
 
     return (
-        <div className={class_name} style={{
-            backgroundImage: `url(${backgroundImage})`,
+        <div className={class_name + ' skin ' + backgroundImage} style={{
+            // backgroundImage: `url(${backgroundImage})`,
             backgroundSize: `auto ${imageHeight}%`,
             backgroundPositionX: `calc(50% + ${imagePosX}vw)`,
             backgroundPositionY: `calc(50% - ${imagePosY}vh)`,
