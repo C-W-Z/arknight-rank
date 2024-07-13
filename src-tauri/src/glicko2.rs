@@ -178,7 +178,7 @@ pub fn calculate_ranking(
 }
 
 // TODO: filter ?
-pub fn pick_2_player_ids(pool: &[Player]) -> (String, String) {
+pub fn pick_2_player_ids(pool: &[Player], n: usize) -> Vec<String> {
     let max = pool
         .iter()
         .max_by_key(|c| c.hist.battles())
@@ -186,46 +186,37 @@ pub fn pick_2_player_ids(pool: &[Player]) -> (String, String) {
         .hist
         .battles();
 
-    // Calculate the weights (inverse of the battles)
-    let weights: Vec<f64> = pool
-        .iter()
-        .map(|c: &Player| {
-            if max == c.hist.battles() {
-                return 0.0;
-            } else {
-                return (1 << (2 * (max - c.hist.battles()))) as f64;
-            }
-        })
-        .collect();
-
-    // Create a weighted index distribution
-    let distribution = WeightedIndex::new(&weights).unwrap();
+    let mut indices: Vec<usize> = Vec::new();
+    let mut oppos: HashSet<String> = HashSet::new();
     let mut rng = thread_rng();
 
-    // Select two distinct indices
-    let first_index = distribution.sample(&mut rng);
+    for _ in 0..n {
+        let mut weights: Vec<f64> = pool
+            .iter()
+            .map(|c: &Player| {
+                if max == c.hist.battles() {
+                    return 1.0 / (pool.len() as f64);
+                } else if oppos.contains(&c.id) {
+                    return (1 << (2 * (max - c.hist.battles()))) as f64 * (oppos.len() as f64) / (pool.len() as f64);
+                } else {
+                    return (1 << (2 * (max - c.hist.battles()))) as f64;
+                }
+            })
+            .collect();
 
-    // find recent opponents of first selected
-    let mut oppos: HashSet<String> = HashSet::new();
-    for b in pool[first_index].hist.old_match.iter() {
-        oppos.insert(b.oppo.clone());
+        for i in indices.iter() {
+            weights[*i] = 0.0;
+        }
+
+        let distribution = WeightedIndex::new(&weights).unwrap();
+        let idx = distribution.sample(&mut rng);
+
+        for b in pool[idx].hist.old_match.iter() {
+            oppos.insert(b.oppo.clone());
+        }
+
+        indices.push(idx);
     }
 
-    let weights2: Vec<f64> = pool
-        .iter()
-        .map(|c: &Player| {
-            if max == c.hist.battles() {
-                return 0.0;
-            } else if oppos.contains(&c.id) {
-                return (oppos.len() as f64) / (pool.len() as f64);
-            } else {
-                return (1 << (2 * (max - c.hist.battles()))) as f64;
-            }
-        })
-        .collect();
-
-    let distribution2 = WeightedIndex::new(&weights2).unwrap();
-    let second_index = distribution2.sample(&mut rng);
-
-    (pool[first_index].id.clone(), pool[second_index].id.clone())
+    indices.iter().map(|i| pool[*i].id.clone()).collect()
 }

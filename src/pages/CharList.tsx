@@ -164,18 +164,14 @@ function CharList() {
     if (globalContext === undefined || globalContext.loading) {
         return (
             <div className='charlist'>
-                <div className='out-area'>
-                    <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
-                </div>
+                <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
             </div>
         )
     }
 
     return (
         <div className='charlist'>
-            <div className='out-area'>
-                <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
-            </div>
+            <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
             <div className="logo-rhodes"></div>
             <HorizontalScroll alignDelay={100} className="list-area" ref={HScrollFuncRef}>
                 <div className="list-grid">

@@ -12,12 +12,6 @@
     align-items: center;
 }
 
-.charlist .out-area {
-    height: 95%;
-    width: 97%;
-    position: relative;
-}
-
 .charlist .logo-rhodes {
     height: 55%;
     aspect-ratio: 1 / 1;

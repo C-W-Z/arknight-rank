@@ -108,9 +108,9 @@ fn set_stat_pref(
 }
 
 #[tauri::command]
-fn pick_2_char(state: State<'_, AppState>) -> (String, String) {
+fn pick_chars(state: State<'_, AppState>, n: usize) -> Vec<String> {
     let players = state.ranked_chars.lock().unwrap();
-    pick_2_player_ids(&players).into()
+    pick_2_player_ids(&players, n).into()
 }
 
 fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
@@ -150,7 +150,7 @@ fn main() {
             get_global_data,
             set_menu_pref,
             set_stat_pref,
-            pick_2_char,
+            pick_chars,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

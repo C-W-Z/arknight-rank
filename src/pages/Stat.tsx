@@ -12,6 +12,7 @@ import { CrossArrow, Star } from '../components/SVGIcons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useGlobalContext from '../components/GlobalContext';
 import { invoke } from '@tauri-apps/api/tauri';
+import AutoSizeText from '../components/AutoSizeText';
 
 interface NameOverlayProps {
     name: string;
@@ -30,24 +31,6 @@ function NameOverlay({
     position,
     tags
 }: NameOverlayProps) {
-    let nameSize = '4em';
-    if (name.length == 5)
-        nameSize = '3.8em';
-    else if (name.length == 6)
-        nameSize = '3.15em';
-    else if (name.length == 7)
-        nameSize = '2.7em';
-    else if (name.length == 8)
-        nameSize = '2.35em';
-    else if (name.length > 8)
-        nameSize = '2em';
-
-    let nameSize2 = '1.5em';
-    if (name.length >= 32)
-        nameSize2 = '1em';
-    if (name.length >= 28)
-        nameSize2 = '1.2em';
-
     let tagStr = '';
     for (const t of tags) {
         tagStr += ' ' + t;
@@ -62,8 +45,8 @@ function NameOverlay({
     return (
         <div className="name-overlay">
             <Star num={6} color={'#ffffff'}></Star>
-            <div className='name2' style={{ fontSize: nameSize2 }}>{name2}</div>
-            <div className='name' style={{ fontSize: nameSize }}>{name}</div>
+            <AutoSizeText className='name2' maxSize={'1.5em'}>{name2}</AutoSizeText>
+            <AutoSizeText className='name' maxSize={'4em'}>{name}</AutoSizeText>
             <div className='class-tags'>
                 <div className={'class-img ' + prof}></div>
                 <div className='class-name'>{subProf}</div>
@@ -215,9 +198,7 @@ function Stat() {
     if (globalContext == undefined || globalContext.loading) {
         return (
             <div className='stat'>
-                <div className='main-area'>
-                    <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
-                </div>
+                <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
             </div>
         )
     }
@@ -245,6 +226,13 @@ function Stat() {
         <div className='stat'>
             {logo.length > 0 && <div className={"logo " + logo}></div>}
             <div className="in-shadow">
+                <TopButtons backOnClick={back} homeBtn={true} thirdBtn={
+                    <CircleButton className='skin-pos-btn' squareBg={true}
+                        onClick={openBGSetting}
+                    >
+                        <CrossArrow></CrossArrow>
+                    </CircleButton>
+                }></TopButtons>
                 <DraggableBackground className='skin-bg'
                     ref={DragBGFuncRef}
                     backgroundImage={skinImg}
@@ -252,28 +240,16 @@ function Stat() {
                     setH={setSkinH} setX={setSkinX} setY={setSkinY}
                     closeFunc={closeDragBgSetting}
                 >
-                    <div className='main-area'>
-
-                        <TopButtons backOnClick={back} homeBtn={true} thirdBtn={
-                            <CircleButton className='skin-pos-btn' squareBg={true}
-                                onClick={openBGSetting}
-                            >
-                                <CrossArrow></CrossArrow>
-                            </CircleButton>
-                        }></TopButtons>
-
-                        <div className='bottom-left-area'>
-                            <Statistic rati={rati} devi={devi} vola={vola} wins={wins} draw={draw} loss={loss}></Statistic>
-                            <NameOverlay
-                                name={charInfo.name}
-                                name2={charInfo.name2}
-                                prof={charInfo.prof}
-                                subProf={subProf}
-                                position={charInfo.position}
-                                tags={charInfo.tags}
-                            ></NameOverlay>
-                        </div>
-
+                    <div className='bottom-left-area'>
+                        <Statistic rati={rati} devi={devi} vola={vola} wins={wins} draw={draw} loss={loss}></Statistic>
+                        <NameOverlay
+                            name={charInfo.name}
+                            name2={charInfo.name2}
+                            prof={charInfo.prof}
+                            subProf={subProf}
+                            position={charInfo.position}
+                            tags={charInfo.tags}
+                        ></NameOverlay>
                     </div>
 
                     <VerticalScroll alignDelay={250} _ref={VScrollRef} ref={VScrollFuncRef} className='right-area'>

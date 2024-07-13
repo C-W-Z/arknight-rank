@@ -1,8 +1,8 @@
 .top-btns {
     height: 2.4em;
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 1.5%;
+    top: 2.5%;
     z-index: 1;
     transition: all ease-in-out 100ms;
     display: flex;

@@ -23,16 +23,10 @@
     align-items: center;
 }
 
-.stat .main-area {
-    height: 95%;
-    width: 97%;
-    position: relative;
-}
 .stat .bottom-left-area {
     position: absolute;
-    left: 0;
-    bottom: 1%;
-    /* height: 80%; */
+    left: 1.5%;
+    bottom: 4%;
     display: grid;
     grid-template-rows: auto auto;
 }
@@ -75,22 +69,29 @@
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
 }
 .stat .name-overlay .name {
-    font-family: 'FZTYSJW';
-    font-weight: bold;
-    font-size: 4em;
-    line-height: 1em;
-    padding-top: 0.05em;
     margin: 0;
+    width: 18.5rem;
+    z-index: 2;
+}
+.stat .name-overlay .name>div {
+    padding-top: 0.1em;
+    font-family: FZYS;
+    font-weight: 900;
+    /* font-size: 4em; */
+    line-height: 1em;
     text-shadow: var(--text-stroke);
 }
 .stat .name-overlay .name2 {
-    font-weight: 500;
-    font-size: 1.5em;
-    line-height: 1em;
+    width: 18.5rem;
     padding-left: 0.1em;
     margin: 0;
-    text-shadow: var(--text-stroke);
     z-index: 1;
+}
+.stat .name-overlay .name2>div {
+    font-weight: 500;
+    /* font-size: 1.5em; */
+    line-height: 1em;
+    text-shadow: var(--text-stroke);
 }
 .stat .name-overlay .class-tags {
     margin: 0.5em;

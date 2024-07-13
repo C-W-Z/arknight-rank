@@ -1,0 +1,12 @@
+.auto-size-text-container {
+    display: flex;
+    align-items: center;
+}
+
+.auto-size-text-container>.auto-size-text {
+    height: fit-content;
+    width: fit-content;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}

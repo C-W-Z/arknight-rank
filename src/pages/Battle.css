@@ -14,7 +14,7 @@
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -50%);
     height: 65%;
     width: 100%;
     display: flex;
@@ -25,15 +25,42 @@
 
 .battle .candidate {
     position: relative;
-    height: 80%;
-    aspect-ratio: 1 / 2;
+    height: 17.5em;
+    width: 8.75em;
     background-color: black;
     box-shadow: 0 0 1em 0.1em hsla(0, 0%, 100%, 0.3);
     /* display: flex;
     align-items: center;
     justify-content: start; */
-    --transiton-time: 0.25s;
+    --transiton-time: 0.2s;
     transition: all linear var(--transiton-time);
+    animation-name: display-in;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    opacity: 0;
+}
+@keyframes display-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-7.5%);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+.battle .candidate:nth-child(2) {
+    animation-delay: 100ms;
+}
+.battle .candidate:nth-child(3) {
+    animation-delay: 200ms;
+}
+.battle .candidate:nth-child(4) {
+    animation-delay: 300ms;
+}
+.battle .candidate:nth-child(5) {
+    animation-delay: 400ms;
 }
 .battle .candidate:first-child:nth-last-child(2),
 .battle .candidate:first-child:nth-last-child(2) ~ .candidate {
@@ -124,21 +151,22 @@
 }
 .battle .candidate .info .star {
     position: absolute;
-    left: 37.5%;
+    left: 37%;
     bottom: 21.5%;
     height: 12%;
 }
 .battle .candidate .info .name {
     position: absolute;
-    left: 37.5%;
+    left: 36.5%;
     bottom: 6.5%;
     height: 12%;
-    font-family: NotoSansHans;
+    width: 57.5%;
+}
+.battle .candidate .info .name>div {
+    font-family: FZYS;
     font-weight: 500;
     line-height: 1em;
-    /* font-size: 0.8em; */
-    display: flex;
-    align-items: center;
+    text-align: left;
 }
 .battle .candidate .info .elite {
     position: absolute;
@@ -185,8 +213,7 @@
     filter: brightness(0.5);
 }
 .battle .candidate.choose {
-    height: 84%;
-    aspect-ratio: 1 / 2.1;
+    height: 18.2em;
 }
 .battle .candidate.choose .in-shadow {
     background: linear-gradient(180deg, black 0%, transparent 10%, transparent 60%, black 80%, #d25d0f 90%, #ff6600 100%);
@@ -222,4 +249,31 @@
     position: absolute;
     left: 12.5%;
     white-space: pre;
+}
+
+.battle .confirm {
+    position: absolute;
+    right: 0;
+    bottom: 10%;
+    height: 2.25em;
+    width: 8.75em;
+    background-color: white;
+    color: black;
+    font-family: NotoSansHans;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: background-color 0.1s ease-in-out, bottom 50ms linear;
+}
+.battle .confirm:hover {
+    background-color: #ff6600;
+}
+.battle .confirm:active {
+    bottom: 9.75%
+}
+.battle .confirm .ok-square {
+    margin: 0 2.5%;
+    height: 80%;
+    aspect-ratio: 1 / 1;
 }

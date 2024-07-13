@@ -1,10 +1,17 @@
 @font-face {
-  font-family: 'FZTYSJW';
-  src: local('FZTYSJW'), url('./assets/fonts/FZTYSJW.woff2') format('woff2');
+  font-family: 'FZYS';
+  src: local('FZTYSJW'), url('./assets/fonts/FZYS-Special.woff2') format('woff2');
+  font-weight: 800;
 }
 @font-face {
-  font-family: 'FZDYSJW';
-  src: local('FZDYSJW'), url('./assets/fonts/FZDYSJW.woff2') format('woff2');
+  font-family: 'FZYS';
+  src: local('FZTYSJW'), url('./assets/fonts/FZDYSJW.woff2') format('woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'FZYS';
+  src: local('FZDYSJW'), url('./assets/fonts/FZYS-Medium.woff2') format('woff2');
+  font-weight: 400;
 }
 @font-face {
   font-family: 'Novecento';

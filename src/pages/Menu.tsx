@@ -108,7 +108,7 @@ function Menu() {
                         <div className="btns btn4s">
                             <button className="task-btn">
                                 <div className="icon"></div>
-                                <div className="btn-title">任务</div>
+                                <div className="btn-title">成就</div>
                             </button>
                             <button className="infra-btn">
                                 <div className="icon"></div>

@@ -73,7 +73,7 @@
     background-color: hsla(0, 0%, 93%, 0.925);
     color: #323232;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .menu .right-area .right-plate button:active {
     background-color: hsla(0, 0%, 77.5%, 0.925);
@@ -91,7 +91,8 @@
     z-index: 1;
 }
 .menu .right-area .right-plate .btn-title {
-    font-family: FZDYSJW;
+    font-family: FZYS;
+    font-weight: 700;
     font-size: 2.4em;
     line-height: 1em;
     color: #323232;
