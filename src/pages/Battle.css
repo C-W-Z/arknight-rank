@@ -251,6 +251,14 @@
     white-space: pre;
 }
 
+.battle .title {
+    position: absolute;
+    top: 12.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5em;
+}
+
 .battle .confirm {
     position: absolute;
     right: 0;
@@ -264,7 +272,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    transition: background-color 0.1s ease-in-out, bottom 50ms linear;
+    transition: background-color 0.1s ease-in-out, bottom 50ms linear, transform 250ms linear;
 }
 .battle .confirm:hover {
     background-color: #ff6600;
@@ -276,4 +284,61 @@
     margin: 0 2.5%;
     height: 80%;
     aspect-ratio: 1 / 1;
+}
+.battle .confirm.close {
+    transform: translateX(100%);
+}
+
+.battle .checkboxes {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 7.5%;
+}
+.battle .checkboxes .checkbox {
+    position: relative;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    padding-left: 1.4em;
+    cursor: pointer;
+}
+.battle .checkboxes .checkbox input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+.battle .checkboxes .checkbox input+span {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    background-color: white;
+    border-radius: 3px;
+}
+.battle .checkboxes .checkbox:hover {
+    filter: brightness(80%);
+}
+.battle .checkboxes .checkbox input:checked+span {
+    background-color: #ff6600;
+}
+.battle .checkboxes .checkbox input+span .checkmark {
+    display: none;
+}
+.battle .checkboxes .checkbox input:checked+span .checkmark {
+    display: block;
+    fill: white;
+    height: 70%;
+    width: 70%;
+    position: relative;
+    top: 15%;
+    left: 15%;
+}
+.battle .checkboxes .checkbox.alldraw {
+    cursor: not-allowed;
+}
+.battle .checkboxes .checkbox.alldraw input:checked+span {
+    background-color: gray;
 }
