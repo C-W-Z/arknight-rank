@@ -71,10 +71,11 @@
 .stat .name-overlay .name {
     margin: 0;
     width: 18.5rem;
+    height: 4rem;
+    padding-top: 0.4rem;
     z-index: 2;
 }
 .stat .name-overlay .name>div {
-    padding-top: 0.1em;
     font-family: FZYS;
     font-weight: 900;
     /* font-size: 4em; */
@@ -83,6 +84,7 @@
 }
 .stat .name-overlay .name2 {
     width: 18.5rem;
+    height: 1.5em;
     padding-left: 0.1em;
     margin: 0;
     z-index: 1;

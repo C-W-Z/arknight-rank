@@ -13,11 +13,14 @@ use crate::{
     resource::{CharData, CharSkinData, SkinData},
 };
 use data::save_to_appdata;
-use glicko2::{calculate_ranking, pick_2_player_ids};
+use glicko2::{calculate_ranking, calculate_results, pick_player_ids, Match};
 use prefer::StatPref;
 use serde::Serialize;
 use std::{collections::HashMap, sync::Mutex};
 use tauri::{AppHandle, Manager, State};
+
+const CHARRANK_FILE: &str = "char_rank.json";
+// const SKINRANK_FILE: &str = "skin_rank.json";
 
 #[derive(Debug)]
 pub struct AppState {
@@ -93,6 +96,16 @@ fn get_global_data(state: State<'_, AppState>) -> GlobalIPC {
 }
 
 #[tauri::command]
+fn get_global_vars(state: State<'_, AppState>) -> GlobalIPCVars {
+    let vars = GlobalIPCVars {
+        prefs: state.clone_prefs(),
+        ranked_chars: state.clone_ranked_chars(),
+        char2rank: state.clone_char2rank(),
+    };
+    vars.into()
+}
+
+#[tauri::command]
 fn set_menu_pref(app_handle: AppHandle, state: State<'_, AppState>, new_menu_pref: MenuPref) {
     state.update_menu_pref(&app_handle, new_menu_pref);
 }
@@ -110,7 +123,23 @@ fn set_stat_pref(
 #[tauri::command]
 fn pick_chars(state: State<'_, AppState>, n: usize) -> Vec<String> {
     let players = state.ranked_chars.lock().unwrap();
-    pick_2_player_ids(&players, n).into()
+    pick_player_ids(&players, n).into()
+}
+
+#[tauri::command]
+fn upload_char_matches(app_handle: AppHandle, state: State<'_, AppState>, matches: Vec<Match>) -> GlobalIPCVars {
+    let mut ranked_chars = state.ranked_chars.lock().unwrap();
+    calculate_results(&mut ranked_chars, &matches);
+    let new_char2rank = calculate_ranking(&mut ranked_chars, &state.chars);
+    let mut char2rank = state.char2rank.lock().unwrap();
+    (*char2rank) = new_char2rank;
+    let vars = GlobalIPCVars {
+        prefs: state.clone_prefs(),
+        ranked_chars: ranked_chars.clone(),
+        char2rank: char2rank.clone(),
+    };
+    save_to_appdata(&app_handle, &vars.ranked_chars, CHARRANK_FILE);
+    vars.into()
 }
 
 fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
@@ -123,11 +152,11 @@ fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
 
     let player_prefs = PlayerPrefs::initialize(&app_handle, &char2skin);
     let char_ids: Vec<&str> = chars.keys().map(|s| s.as_str()).collect();
-    let mut ranked_chars = Player::initialize(&app_handle, &char_ids, "data.json");
+    let mut ranked_chars = Player::initialize(&app_handle, &char_ids, CHARRANK_FILE);
     let char2rank = calculate_ranking(&mut ranked_chars, &chars);
 
     player_prefs.save(&app_handle);
-    save_to_appdata(&app_handle, &ranked_chars, "data.json");
+    save_to_appdata(&app_handle, &ranked_chars, CHARRANK_FILE);
 
     let app_state = AppState {
         chars,
@@ -148,9 +177,11 @@ fn main() {
         .setup(setup_app)
         .invoke_handler(tauri::generate_handler![
             get_global_data,
+            get_global_vars,
             set_menu_pref,
             set_stat_pref,
             pick_chars,
+            upload_char_matches,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

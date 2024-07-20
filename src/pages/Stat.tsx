@@ -11,7 +11,6 @@ import CircleButton from '../components/CircleButton';
 import { CrossArrow, Star } from '../components/SVGIcons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useGlobalContext from '../components/GlobalContext';
-import { invoke } from '@tauri-apps/api/tauri';
 import AutoSizeText from '../components/AutoSizeText';
 
 interface NameOverlayProps {
@@ -176,15 +175,7 @@ function Stat() {
     function closeDragBgSetting() {
         if (globalContext === undefined || globalContext.loading)
             return;
-        let tmp = globalContext.vars;
-        tmp.prefs.stat_pref[char_id].h = skinH;
-        tmp.prefs.stat_pref[char_id].x = skinX;
-        tmp.prefs.stat_pref[char_id].y = skinY;
-        globalContext.setVars(tmp);
-        invoke('set_stat_pref', {
-            charId: char_id,
-            newStatPref: tmp.prefs.stat_pref[char_id]
-        }).catch((e) => console.error(e));
+        globalContext.setStatPref(char_id, '', skinH, skinX, skinY);
     }
 
     const VScrollRef = useRef<HTMLDivElement>(null);
