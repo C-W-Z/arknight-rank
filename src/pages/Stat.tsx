@@ -109,8 +109,8 @@ function Statistic(s: StatisticProps) {
             {StatisticDetail('devi', 'φ', 'Deviation', s.devi, 1000, 2)}
             {StatisticDetail('vola', 'σ', 'Volatility', s.vola, 0.1, 4)}
             {StatisticDetail('wins', '▲', 'Wins', s.wins, 100)}
-            {StatisticDetail('draw', '▶', 'Draws', s.loss, 100)}
-            {StatisticDetail('loss', '▼', 'Losses', s.draw, 100)}
+            {StatisticDetail('draw', '▶', 'Draws', s.draw, 100)}
+            {StatisticDetail('loss', '▼', 'Losses', s.loss, 100)}
             {WinrateBar(winrate)}
         </div>
     )

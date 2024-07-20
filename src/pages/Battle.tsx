@@ -111,17 +111,14 @@ function Battle() {
     const [battleNum, setBattleNum] = useState(0);
     // const [show, setShow] = useState<boolean>(true);
     const [char_ids, setCharIds] = useState<string[]>([]);
-    function pickChars() {
-        invoke('pick_chars', { n: playerCount })
+
+    useEffect(() => {
+        invoke('start_battle_char', { n: playerCount })
             .then((chars: any) => {
                 // console.log(chars);
                 setCharIds(chars);
             })
             .catch((e) => { console.error(e) });
-    }
-
-    useEffect(() => {
-        pickChars();
     }, []);
 
     function confirm() {
@@ -140,7 +137,14 @@ function Battle() {
         }
         setMatches([...matches, new_matches]);
 
-        pickChars();
+        invoke('next_battle_char', { n: playerCount, matches: new_matches })
+            .then((chars: any) => {
+                // console.log(chars);
+                setCharIds(chars);
+            })
+            .catch((e) => { console.error(e) });
+
+        
         setClassName(['', '', '', '', '']);
         setBattleNum(prev => prev + 1);
         // restart animation & set font size
@@ -153,8 +157,8 @@ function Battle() {
         setAllDraw(false);
     }
 
-    function stop() {
-        globalContext?.uploadCharMatches(matches);
+    function back() {
+        globalContext?.endBattleChar();
         navigate('/');
     }
 
@@ -189,7 +193,7 @@ function Battle() {
 
     return (
         <div className='battle'>
-            <TopButtons backOnClick={stop}></TopButtons>
+            <TopButtons backOnClick={back}></TopButtons>
             <div className="title">请选择最喜欢的干员 (可复选)</div>
             <div className="candidate-area" key={battleNum}>
                 {candidates}

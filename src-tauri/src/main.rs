@@ -13,7 +13,7 @@ use crate::{
     resource::{CharData, CharSkinData, SkinData},
 };
 use data::save_to_appdata;
-use glicko2::{calculate_ranking, calculate_results, pick_player_ids, Match};
+use glicko2::{calculate_ranking, calculate_results, pick_player_ids, update_battle_history, update_rank_history, Match};
 use prefer::StatPref;
 use serde::Serialize;
 use std::{collections::HashMap, sync::Mutex};
@@ -31,6 +31,8 @@ pub struct AppState {
     pub prefs: Mutex<PlayerPrefs>,
     pub ranked_chars: Mutex<Vec<Player>>,
     pub char2rank: Mutex<HashMap<String, usize>>,
+    pub tmp_ranked_chars: Mutex<Vec<Player>>,
+    pub tmp_matches: Mutex<Vec<Match>>,
 }
 
 impl AppState {
@@ -121,18 +123,38 @@ fn set_stat_pref(
 }
 
 #[tauri::command]
-fn pick_chars(state: State<'_, AppState>, n: usize) -> Vec<String> {
+fn start_battle_char(state: State<'_, AppState>, n: usize) -> Vec<String> {
     let players = state.ranked_chars.lock().unwrap();
-    pick_player_ids(&players, n).into()
+    let mut tmp_player = state.tmp_ranked_chars.lock().unwrap();
+    let mut tmp_matches = state.tmp_matches.lock().unwrap();
+    *tmp_player = players.clone();
+    *tmp_matches = Vec::new();
+    pick_player_ids(&tmp_player, n).into()
 }
 
 #[tauri::command]
-fn upload_char_matches(app_handle: AppHandle, state: State<'_, AppState>, matches: Vec<Match>) -> GlobalIPCVars {
+fn next_battle_char(state: State<'_, AppState>, n: usize, mut matches: Vec<Match>) -> Vec<String> {
+    let mut tmp_player: std::sync::MutexGuard<Vec<Player>> = state.tmp_ranked_chars.lock().unwrap();
+    let mut tmp_matches = state.tmp_matches.lock().unwrap();
+    update_battle_history(&mut tmp_player, &matches);
+    tmp_matches.append(&mut matches);
+    pick_player_ids(&tmp_player, n).into()
+}
+
+#[tauri::command]
+fn end_battle_char(app_handle: AppHandle, state: State<'_, AppState>) -> GlobalIPCVars {
     let mut ranked_chars = state.ranked_chars.lock().unwrap();
-    calculate_results(&mut ranked_chars, &matches);
-    let new_char2rank = calculate_ranking(&mut ranked_chars, &state.chars);
     let mut char2rank = state.char2rank.lock().unwrap();
-    (*char2rank) = new_char2rank;
+
+    let tmp_player: std::sync::MutexGuard<Vec<Player>> = state.tmp_ranked_chars.lock().unwrap();
+    let tmp_matches = state.tmp_matches.lock().unwrap();
+
+    *ranked_chars = tmp_player.clone();
+
+    update_rank_history(&mut  ranked_chars, &tmp_matches, &char2rank);
+    calculate_results(&mut ranked_chars, &tmp_matches);
+    *char2rank = calculate_ranking(&mut ranked_chars, &state.chars);
+
     let vars = GlobalIPCVars {
         prefs: state.clone_prefs(),
         ranked_chars: ranked_chars.clone(),
@@ -166,6 +188,8 @@ fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
         prefs: Mutex::new(player_prefs),
         ranked_chars: Mutex::new(ranked_chars),
         char2rank: Mutex::new(char2rank),
+        tmp_ranked_chars: Mutex::new(Vec::new()),
+        tmp_matches: Mutex::new(Vec::new()),
     };
     app.manage(app_state);
 
@@ -180,8 +204,9 @@ fn main() {
             get_global_vars,
             set_menu_pref,
             set_stat_pref,
-            pick_chars,
-            upload_char_matches,
+            start_battle_char,
+            next_battle_char,
+            end_battle_char,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

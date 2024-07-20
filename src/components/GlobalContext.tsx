@@ -7,7 +7,7 @@ interface GlobalContextProps {
     vars: any;
     reloadVars: () => void;
     setStatPref: (char_id: string, skin_id: string, h: number, x: number, y: number) => void;
-    uploadCharMatches: (matches: { a: string; b: string; res: string; }[][]) => void;
+    endBattleChar: () => void;
 }
 
 export const GlobalContext = React.createContext<GlobalContextProps | undefined>(undefined);
@@ -46,15 +46,15 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         }).catch((e) => console.error(e));
     }
 
-    function uploadCharMatches(matches: { a: string; b: string; res: string; }[][]) {
+    function endBattleChar() {
         setLoading(true);
-        invoke('upload_char_matches', { matches: matches.flat() })
+        invoke('end_battle_char')
             .then((result: any) => {
                 setVars(result);
                 console.log(result);
             })
             .catch((e) => {
-                console.error('Error for upload_char_matches:', e);
+                console.error('Error for end_battle_char:', e);
             }).finally(() => {
                 setLoading(false);
             });
@@ -75,7 +75,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     }, []);
 
     return (
-        <GlobalContext.Provider value={{ loading, data, vars, reloadVars, setStatPref, uploadCharMatches }}>
+        <GlobalContext.Provider value={{ loading, data, vars, reloadVars, setStatPref, endBattleChar }}>
             {children}
         </GlobalContext.Provider>
     );

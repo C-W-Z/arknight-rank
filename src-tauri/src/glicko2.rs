@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 use std::{
     collections::{HashMap, HashSet, VecDeque},
     f64::consts::PI,
-    time::{Duration, SystemTime, UNIX_EPOCH},
+    time::{SystemTime, UNIX_EPOCH},
 };
 use tauri::AppHandle;
 
@@ -30,7 +30,7 @@ pub struct Match {
 pub struct Rival {
     pub oppo: String,     // opponent's id
     pub res: MatchResult, // AWins for I win, BWins for I lose
-    pub time: Duration,
+    pub time: u64,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -64,7 +64,10 @@ impl Rival {
         Self {
             oppo: (oppo),
             res: (res),
-            time: (SystemTime::now().duration_since(UNIX_EPOCH).unwrap()),
+            time: (SystemTime::now()
+                .duration_since(UNIX_EPOCH)
+                .unwrap()
+                .as_secs()),
         }
     }
 }
@@ -154,7 +157,7 @@ pub fn calculate_ranking(
         if a.rank.rati != b.rank.rati {
             b.rank.rati.total_cmp(&a.rank.rati)
         } else if a.rank.devi != b.rank.devi {
-            b.rank.devi.total_cmp(&a.rank.devi)
+            a.rank.devi.total_cmp(&b.rank.devi)
         } else if char_a.rarity != char_b.rarity {
             char_b.rarity.cmp(&char_a.rarity)
         } else if char_a.prof != char_b.prof {
@@ -305,9 +308,9 @@ pub fn calculate_results(players: &mut Vec<Player>, records: &[Match]) {
         c.rank.glicko_1_to_2_scale();
     }
 
-    let mut char_id_to_idx: HashMap<String, usize> = HashMap::new();
+    let mut id_to_idx: HashMap<String, usize> = HashMap::new();
     for (i, c) in players.iter().enumerate() {
-        char_id_to_idx.insert(c.id.clone(), i);
+        id_to_idx.insert(c.id.clone(), i);
     }
 
     // Compute the quantity v
@@ -326,8 +329,8 @@ pub fn calculate_results(players: &mut Vec<Player>, records: &[Match]) {
     }
 
     for m in records.iter() {
-        let id1 = char_id_to_idx[&m.a];
-        let id2 = char_id_to_idx[&m.b];
+        let id1 = id_to_idx[&m.a];
+        let id2 = id_to_idx[&m.b];
         let mu1 = players[id1].rank.rati;
         let mu2 = players[id2].rank.rati;
         let phi1 = players[id1].rank.devi;
@@ -382,5 +385,75 @@ pub fn calculate_results(players: &mut Vec<Player>, records: &[Match]) {
 
         // Convert the ratings and RD’s onto the Glicko-1 scale
         c.rank.glicko_2_to_1_scale();
+    }
+
+    // update battle history
+}
+
+pub fn update_battle_history(players: &mut Vec<Player>, records: &[Match]) {
+    let mut id_to_idx: HashMap<String, usize> = HashMap::new();
+    for (i, c) in players.iter().enumerate() {
+        id_to_idx.insert(c.id.clone(), i);
+    }
+
+    for m in records.iter() {
+        let id1 = id_to_idx[&m.a];
+        let id2 = id_to_idx[&m.b];
+
+        match m.res {
+            MatchResult::AWin => {
+                players[id1].hist.wins += 1;
+                players[id2].hist.loss += 1;
+            }
+            MatchResult::BWin => {
+                players[id1].hist.loss += 1;
+                players[id2].hist.wins += 1;
+            }
+            MatchResult::Draw => {
+                players[id1].hist.draw += 1;
+                players[id2].hist.draw += 1;
+            }
+        };
+
+        let (res_a, res_b) = match m.res {
+            MatchResult::AWin => (MatchResult::AWin, MatchResult::BWin),
+            MatchResult::BWin => (MatchResult::BWin, MatchResult::AWin),
+            MatchResult::Draw => (MatchResult::Draw, MatchResult::Draw),
+        };
+        players[id1]
+            .hist
+            .old_match
+            .push_back(Rival::new(m.b.clone(), res_a));
+        players[id2]
+            .hist
+            .old_match
+            .push_back(Rival::new(m.a.clone(), res_b));
+    }
+}
+
+pub fn update_rank_history(
+    players: &mut Vec<Player>,
+    records: &[Match],
+    rank: &HashMap<String, usize>,
+) {
+    if records.is_empty() {
+        return;
+    }
+
+    let mut battle_players: HashSet<String> = HashSet::new();
+    for m in records.iter() {
+        battle_players.insert(m.a.clone());
+        battle_players.insert(m.b.clone());
+    }
+
+    for c in players.iter_mut() {
+        if battle_players.contains(&c.id) {
+            c.hist.old_rate.push_back(c.rank.rati);
+            c.hist.old_rank.push_back(rank[&c.id]);
+        } else if c.hist.old_rank.is_empty()
+            || c.hist.old_rank.back().is_some_and(|r| *r != rank[&c.id])
+        {
+            c.hist.old_rank.push_back(rank[&c.id]);
+        }
     }
 }
