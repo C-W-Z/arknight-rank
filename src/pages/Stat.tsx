@@ -217,13 +217,6 @@ function Stat() {
         <div className='stat'>
             {logo.length > 0 && <div className={"logo " + logo}></div>}
             <div className="in-shadow">
-                <TopButtons backOnClick={back} homeBtn={true} thirdBtn={
-                    <CircleButton className='skin-pos-btn' squareBg={true}
-                        onClick={openBGSetting}
-                    >
-                        <CrossArrow></CrossArrow>
-                    </CircleButton>
-                }></TopButtons>
                 <DraggableBackground className='skin-bg'
                     ref={DragBGFuncRef}
                     backgroundImage={skinImg}
@@ -231,6 +224,14 @@ function Stat() {
                     setH={setSkinH} setX={setSkinX} setY={setSkinY}
                     closeFunc={closeDragBgSetting}
                 >
+                    <TopButtons backOnClick={back} homeBtn={true} thirdBtn={
+                        <CircleButton className='skin-pos-btn' squareBg={true}
+                            onClick={openBGSetting}
+                        >
+                            <CrossArrow></CrossArrow>
+                        </CircleButton>
+                    }></TopButtons>
+
                     <div className='bottom-left-area'>
                         <Statistic rati={rati} devi={devi} vola={vola} wins={wins} draw={draw} loss={loss}></Statistic>
                         <NameOverlay

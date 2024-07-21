@@ -3,7 +3,7 @@ import './Menu.css'
 import DraggableBackground, { DragBGRef } from "../components/DraggableBackground";
 import { useNavigate } from "react-router-dom";
 import useGlobalContext from "../components/GlobalContext";
-import { LessThan } from "../components/SVGIcons";
+import { Warning, Gear, InfoIcon, LessThan, RankStar, VolumeHigh } from "../components/SVGIcons";
 import { appCacheDir, appConfigDir, appDataDir, appLocalDataDir, appLogDir, resourceDir } from "@tauri-apps/api/path";
 import { VerticalScroll, VScrollRef } from "../components/DraggableScroll";
 import { getName, getVersion } from "@tauri-apps/api/app";
@@ -57,8 +57,7 @@ function AppDirLine({name, path}: {name: string, path: string}) {
                 <div className="text">{name}</div>
                 <button className="btn"
                     onClick={openDir(path)}
-                    onMouseMove={stopPropagation} onMouseDown={stopPropagation}
-                    onMouseUp={stopPropagation} onMouseLeave={stopPropagation}
+                    onMouseDown={stopPropagation}
                 >Open</button>
             </div>
             {path.length > 0 && <div className="line-subtitle">{path}</div>}
@@ -144,15 +143,16 @@ const Setting = forwardRef<SettingRef, {}>(({ }, ref) => {
                     </button>
                 </div>
                 <div className="title">
+                    <Gear></Gear>
                     <div className="text">设置</div>
                 </div>
             </div>
             <div className="main-area">
                 <div className="tabs">
-                    <button className="tab active">游戏</button>
-                    <button className="tab">排行</button>
-                    <button className="tab">声音</button>
-                    <button className="tab">报错</button>
+                    <button className="tab active"><InfoIcon></InfoIcon>游戏</button>
+                    <button className="tab"><RankStar></RankStar>排行</button>
+                    <button className="tab"><VolumeHigh></VolumeHigh>声音</button>
+                    <button className="tab"><Warning></Warning>报错</button>
                 </div>
                 <VerticalScroll className="context" ref={VScrollFuncRef}>
                     <div className="page">

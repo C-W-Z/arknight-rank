@@ -336,11 +336,18 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    padding-right: 1em;
+}
+.menu .panel .header>.title>svg {
+    fill: black;
+    height: 2.5em;
+    width: 2.5em;
+    filter: drop-shadow(0px 0.5em 0.3em rgba(0, 0, 0, 0.4));
 }
 .menu .panel .header>.title>.text {
     color: #333;
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: 500;
 }
 
@@ -372,7 +379,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     font-family: Novecento;
     font-weight: bold;
     font-size: 1.25em;
@@ -385,6 +392,14 @@
 .menu .panel .tabs .tab:active:not(.active) {
     background-color: hsla(0, 0%, 0%, 0.5);
     border-color: #bbb;
+}
+.menu .panel .tabs .tab svg {
+    width: 1.8em;
+    height: 1.8em;
+    fill: white;
+}
+.menu .panel .tabs .tab.active svg {
+    fill: #565656;
 }
 
 .menu .panel .context {
