@@ -56,7 +56,7 @@ function AutoSizeText({ maxSize = '1em', className = '', children = undefined }:
     return (
         <div className={"auto-size-text-container " + className} ref={textContainerRef}>
             <div className="auto-size-text"
-            // ref={mergeRefs(nameRef, nameCallbackRef)}
+                // ref={mergeRefs(nameRef, nameCallbackRef)}
                 ref={nameRef}
                 style={{ fontSize: fontSize }}>
                 {children}

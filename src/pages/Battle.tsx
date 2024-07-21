@@ -144,7 +144,7 @@ function Battle() {
             })
             .catch((e) => { console.error(e) });
 
-        
+
         setClassName(['', '', '', '', '']);
         setBattleNum(prev => prev + 1);
         // restart animation & set font size

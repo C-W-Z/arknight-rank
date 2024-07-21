@@ -24,7 +24,9 @@
         "readFile": true,
         "scope": [
           "$RESOURCE/assets/*",
-          "$RESOURCE/assets/**"
+          "$RESOURCE/assets/**",
+          "$APPDATA/*",
+          "$APPDATA/**"
         ]
       },
       "protocol": {

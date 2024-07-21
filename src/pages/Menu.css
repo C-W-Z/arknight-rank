@@ -89,6 +89,7 @@
     height: 3rem;
     aspect-ratio: 3 / 1;
     z-index: 1;
+    pointer-events: none;
 }
 .menu .right-area .right-plate .btn-title {
     font-family: FZYS;
@@ -270,4 +271,194 @@
 }
 .menu .right-area .right-plate .btn4s .store-btn:active .icon {
     filter: invert(70%);
+}
+
+.menu .panel {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(4px);
+}
+.menu .panel.close {
+    display: none;
+}
+
+.menu .panel .header {
+    position: relative;
+    height: 14%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-bottom: solid #ebebeb 1em;
+    box-shadow: 0 0em 1em 0.5em hsla(0, 0%, 0%, 0.5);
+    display: flex;
+    flex-direction: row;
+}
+
+.menu .panel .header .back-btn-area {
+    position: relative;
+    height: 100%;
+    width: 15%;
+    top: 0;
+    left: 0;
+}
+.menu .panel .header .back-btn-area .back-btn {
+    position: relative;
+    height: 40%;
+    aspect-ratio: 3 / 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    transition: all 100ms ease-in-out;
+}
+.menu .panel .header .back-btn-area .back-btn:active {
+    filter: brightness(90%);
+}
+.menu .panel .header .back-btn-area .back-btn>.less-than {
+    fill: gray;
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    height: 80%;
+    transform: translateY(-50%) scaleX(0.5);
+}
+
+.menu .panel .header>.title {
+    position: relative;
+    height: 100%;
+    width: 14%;
+    background-color: #eee;
+    box-shadow: 0 0 0.2em 0.2em hsla(0, 0%, 0%, 0.2);
+    z-index: -1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.menu .panel .header>.title>.text {
+    color: #333;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.menu .panel .main-area {
+    position: relative;
+    height: 86%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.menu .panel .tabs {
+    position: relative;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 1.5em;
+}
+.menu .panel .tabs .tab {
+    position: relative;
+    width: 75%;
+    aspect-ratio: 5 / 2;
+    margin: 0.25em 0;
+    background-color: hsla(0, 0%, 20%, 0.5);
+    border: solid 1px #eee;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: Novecento;
+    font-weight: bold;
+    font-size: 1.25em;
+    transition: all 50ms ease-in-out;
+}
+.menu .panel .tabs .tab.active {
+    background-color: #eee;
+    color: #333;
+}
+.menu .panel .tabs .tab:active:not(.active) {
+    background-color: hsla(0, 0%, 0%, 0.5);
+    border-color: #bbb;
+}
+
+.menu .panel .context {
+    position: relative;
+    height: 100%;
+    width: 80%;
+    background-color: hsla(0, 0%, 100%, 0.65);
+}
+
+.menu .panel .context .v-scroll-child {
+    min-height: 100%;
+}
+
+.menu .panel .context .page {
+    padding: 1.5rem 2rem;
+    font-size: 1.2em;
+}
+.menu .panel .context .page>.title {
+    background-color: #2e2e2e;
+    border-top: solid #555 3px;
+    color: #eee;
+    padding-left: 1rem;
+    font-family: Novecento;
+    font-weight: bold;
+}
+.menu .panel .context .page .line {
+    color: #323232;
+    font-weight: 500;
+    margin: 0.5rem 1rem;
+}
+.menu .panel .context .page .line:last-child {
+    margin-bottom: 1.5rem;
+}
+.menu .panel .context .page .line.app-name-version {
+    margin: 1rem 1rem;
+}
+.menu .panel .context .page .line>.line-title {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    
+}
+.menu .panel .context .page .line>.line-title>.text {
+    margin: 0.25em 0;
+}
+.menu .panel .context .page .line>.line-title>.btn {
+    box-sizing: border-box;
+    height: 100%;
+    width: 6em;
+    background-color: black;
+    border: solid hsl(0, 0%, 85%) 1px;
+    box-shadow: 0 0.5em 0.5em 0px hsla(0, 0%, 0%, 0.4);
+    color: #eee;
+    font-family: Novecento;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 100ms ease-in-out;
+}
+.menu .panel .context .page .line>.line-title>.btn:active {
+    filter: brightness(80%);
+}
+.menu .panel .context .page .line>.line-title+.line-subtitle {
+    font-size: 0.8em;
+    color: #757575;
+    padding-top: 0.5em;
+    position: relative;
+}
+.menu .panel .context .page .line>.line-title+.line-subtitle::before {
+    content: '';
+    border-top: solid 2px #757575;
+    position: absolute;
+    width: 30%;
+    top: 0;
+    left: 0;
 }

@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::{fs, path::Path};
-use tauri::{api::path::app_local_data_dir, AppHandle};
+use tauri::{api::path::app_data_dir, AppHandle};
 
 pub fn load<T, P>(json_path: P) -> Option<T>
 where
@@ -35,12 +35,21 @@ where
     for<'de> T: Deserialize<'de>,
 {
     let path;
-    match app_local_data_dir(&app_handle.config()) {
+    match app_data_dir(&app_handle.config()) {
         Some(dir) => {
-            path = dir.join(json_path);
+            if !dir.exists() {
+                match fs::create_dir_all(dir.clone()) {
+                    Ok(_) => {},
+                    Err(e) => {
+                        eprintln!("Error: {}", e);
+                        return None;
+                    },
+                }
+            }
+            path = dir.join(json_path)
         }
         None => {
-            eprintln!("Error: app_local_data_dir return None");
+            eprintln!("Error: app_data_dir return None");
             return None;
         }
     }
@@ -82,12 +91,21 @@ where
     T: Serialize,
 {
     let path;
-    match app_local_data_dir(&app_handle.config()) {
+    match app_data_dir(&app_handle.config()) {
         Some(dir) => {
-            path = dir.join(json_path);
+            if !dir.exists() {
+                match fs::create_dir_all(dir.clone()) {
+                    Ok(_) => {},
+                    Err(e) => {
+                        eprintln!("Error: {}", e);
+                        return;
+                    },
+                }
+            }
+            path = dir.join(json_path)
         }
         None => {
-            eprintln!("Error: app_local_data_dir return None");
+            eprintln!("Error: app_data_dir return None");
             return;
         }
     }

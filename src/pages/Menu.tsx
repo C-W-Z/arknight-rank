@@ -1,8 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import './Menu.css'
 import DraggableBackground, { DragBGRef } from "../components/DraggableBackground";
 import { useNavigate } from "react-router-dom";
 import useGlobalContext from "../components/GlobalContext";
+import { LessThan } from "../components/SVGIcons";
+import { appCacheDir, appConfigDir, appDataDir, appLocalDataDir, appLogDir, resourceDir } from "@tauri-apps/api/path";
+import { VerticalScroll, VScrollRef } from "../components/DraggableScroll";
+import { getName, getVersion } from "@tauri-apps/api/app";
+import { invoke } from "@tauri-apps/api/tauri";
 
 function ClockText() {
     const [time, setTime] = useState(() => new Date().toLocaleString())
@@ -30,6 +35,141 @@ function ClockText() {
 
     return <span className="clock">{time}</span>
 }
+
+
+function AppDirLine({name, path}: {name: string, path: string}) {
+    function openDir(path: string) {
+        return (e: React.MouseEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+            invoke('open_dir', { path: path })
+                .catch((e) => console.error(e));
+        }
+    }
+
+    function stopPropagation(e: React.MouseEvent) {
+        e.stopPropagation();
+    }
+
+    return (
+        <div className="line">
+            <div className="line-title">
+                <div className="text">{name}</div>
+                <button className="btn"
+                    onClick={openDir(path)}
+                    onMouseMove={stopPropagation} onMouseDown={stopPropagation}
+                    onMouseUp={stopPropagation} onMouseLeave={stopPropagation}
+                >Open</button>
+            </div>
+            {path.length > 0 && <div className="line-subtitle">{path}</div>}
+        </div>
+    )
+}
+
+type SettingRef = {
+    openSetting: () => void;
+}
+
+const Setting = forwardRef<SettingRef, {}>(({ }, ref) => {
+    const [close, setClose] = useState(true);
+
+    function closeSetting() {
+        setClose(true);
+    }
+
+    useImperativeHandle(ref, () => ({
+        openSetting() {
+            setClose(false);
+        }
+    }));
+
+    useEffect(() => {
+        if (!close)
+            VScrollFuncRef.current?.Align();
+    }, [close])
+
+    const VScrollFuncRef = useRef<VScrollRef>(null);
+
+    const [resourcePath, setResourcePath] = useState('');
+    const [appDataPath, setAppDataPath] = useState('');
+    const [appLocalDataPath, setAppLocalDataPath] = useState('');
+    const [appCachePath, setAppCachePath] = useState('');
+    const [appConfigPath, setAppConfigPath] = useState('');
+    const [appLogPath, setAppLogPath] = useState('');
+    const [appName, setAppName] = useState('');
+    const [appVersion, setAppVersion] = useState('');
+
+    useEffect(() => {
+        resourceDir().then((dir) => {
+            setResourcePath(dir);
+        }).catch((e) => console.error(e));
+
+        appDataDir().then((dir) => {
+            setAppDataPath(dir);
+        }).catch((e) => console.error(e));
+
+        appLocalDataDir().then((dir) => {
+            setAppLocalDataPath(dir);
+        }).catch((e) => console.error(e));
+
+        appCacheDir().then((dir) => {
+            setAppCachePath(dir);
+        }).catch((e) => console.error(e));
+
+        appConfigDir().then((dir) => {
+            setAppConfigPath(dir);
+        }).catch((e) => console.error(e));
+
+        appLogDir().then((dir) => {
+            setAppLogPath(dir);
+        }).catch((e) => console.error(e));
+
+        getName().then((name) => {
+            setAppName(name);
+        }).catch((e) => console.error(e));
+
+        getVersion().then((version) => {
+            setAppVersion(version);
+        }).catch((e) => console.error(e));
+    }, []);
+
+    const className = close ? "panel setting close" : "panel setting";
+
+    return (
+        <div className={className}>
+            <div className="header">
+                <div className="back-btn-area">
+                    <button className='back-btn' onClick={closeSetting}>
+                        <LessThan></LessThan>
+                    </button>
+                </div>
+                <div className="title">
+                    <div className="text">设置</div>
+                </div>
+            </div>
+            <div className="main-area">
+                <div className="tabs">
+                    <button className="tab active">游戏</button>
+                    <button className="tab">排行</button>
+                    <button className="tab">声音</button>
+                    <button className="tab">报错</button>
+                </div>
+                <VerticalScroll className="context" ref={VScrollFuncRef}>
+                    <div className="page">
+                        <div className="title">Game Info</div>
+                        <div className="line app-name-version">{appName} v{appVersion}</div>
+                        <AppDirLine name="App Resource Dir" path={resourcePath}></AppDirLine>
+                        <AppDirLine name="App Config Dir" path={appConfigPath}></AppDirLine>
+                        <AppDirLine name="App Data Dir" path={appDataPath}></AppDirLine>
+                        <AppDirLine name="App Local Data Dir" path={appLocalDataPath}></AppDirLine>
+                        <AppDirLine name="App Cache Dir" path={appCachePath}></AppDirLine>
+                        <AppDirLine name="App Log Dir" path={appLogPath}></AppDirLine>
+                    </div>
+                </VerticalScroll>
+            </div>
+        </div>
+    )
+});
 
 function Menu() {
 
@@ -65,6 +205,11 @@ function Menu() {
 
     function nagivateCharList() {
         navigate('/charlist');
+    }
+
+    const SettingFuncRef = useRef<SettingRef>(null);
+    function openSetting() {
+        SettingFuncRef.current?.openSetting();
     }
 
     return (
@@ -110,7 +255,7 @@ function Menu() {
                                 <div className="icon"></div>
                                 <div className="btn-title">成就</div>
                             </button>
-                            <button className="infra-btn">
+                            <button className="infra-btn" onClick={openSetting}>
                                 <div className="icon"></div>
                                 <div className="btn-title">设置</div>
                             </button>
@@ -123,6 +268,7 @@ function Menu() {
                     </div>
                 </div>
             </DraggableBackground>
+            <Setting ref={SettingFuncRef}></Setting>
         </div>
     );
 }

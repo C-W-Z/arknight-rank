@@ -13,14 +13,22 @@ use crate::{
     resource::{CharData, CharSkinData, SkinData},
 };
 use data::save_to_appdata;
-use glicko2::{calculate_ranking, calculate_results, pick_player_ids, update_battle_history, update_rank_history, Match};
+use glicko2::{
+    calculate_ranking, calculate_results, pick_player_ids, update_battle_history,
+    update_rank_history, Match,
+};
 use prefer::StatPref;
 use serde::Serialize;
-use std::{collections::HashMap, sync::Mutex};
+use std::{collections::HashMap, process::Command, sync::Mutex};
 use tauri::{AppHandle, Manager, State};
 
 const CHARRANK_FILE: &str = "char_rank.json";
 // const SKINRANK_FILE: &str = "skin_rank.json";
+
+#[tauri::command]
+fn open_dir(path: String) {
+    Command::new("explorer").arg(path).spawn().unwrap();
+}
 
 #[derive(Debug)]
 pub struct AppState {
@@ -151,7 +159,7 @@ fn end_battle_char(app_handle: AppHandle, state: State<'_, AppState>) -> GlobalI
 
     *ranked_chars = tmp_player.clone();
 
-    update_rank_history(&mut  ranked_chars, &tmp_matches, &char2rank);
+    update_rank_history(&mut ranked_chars, &tmp_matches, &char2rank);
     calculate_results(&mut ranked_chars, &tmp_matches);
     *char2rank = calculate_ranking(&mut ranked_chars, &state.chars);
 
@@ -200,6 +208,7 @@ fn main() {
     tauri::Builder::default()
         .setup(setup_app)
         .invoke_handler(tauri::generate_handler![
+            open_dir,
             get_global_data,
             get_global_vars,
             set_menu_pref,
