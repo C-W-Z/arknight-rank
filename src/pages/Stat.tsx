@@ -149,12 +149,12 @@ function Stat() {
     const globalContext = useGlobalContext();
 
     const navigate = useNavigate();
-    function back() {
-        navigate('/charlist');
-    }
-
     const { state } = useLocation();
-    const { char_id } = state;
+    const { char_id, filt_prof } = state;
+
+    function back() {
+        navigate('/charlist', { state: { filt_prof: filt_prof } });
+    }
 
     const [skinImg, setSkinImg] = useState<string | undefined>(undefined);
     const [skinH, setSkinH] = useState<number>(100);

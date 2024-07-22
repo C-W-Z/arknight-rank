@@ -37,7 +37,7 @@ function ClockText() {
 }
 
 
-function AppDirLine({name, path}: {name: string, path: string}) {
+function AppDirLine({ name, path }: { name: string, path: string }) {
     function openDir(path: string) {
         return (e: React.MouseEvent) => {
             e.preventDefault();
@@ -200,11 +200,11 @@ function Menu() {
     // }
 
     function nagivateBattle() {
-        navigate('/battle');
+        navigate('/battle', { state: { playerCount: 2 } });
     }
 
     function nagivateCharList() {
-        navigate('/charlist');
+        navigate('/charlist', { state: { filt_prof: "ALL" } });
     }
 
     const SettingFuncRef = useRef<SettingRef>(null);

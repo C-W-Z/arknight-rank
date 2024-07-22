@@ -5,7 +5,7 @@ import { invoke } from '@tauri-apps/api/tauri';
 import useGlobalContext from '../components/GlobalContext';
 import AutoSizeText from '../components/AutoSizeText';
 import TopButtons from '../components/TopButtons';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface CandidateProps {
     className?: string;
@@ -47,10 +47,10 @@ function Candidate({
 }
 
 function Battle() {
-    const playerCount = 2;
     const globalContext = useGlobalContext();
-
     const navigate = useNavigate();
+    const { state } = useLocation();
+    const { playerCount } = state;
 
     const [className, setClassName] = useState<string[]>(['', '', '', '', '']);
     const [confirmShow, setConfirmShow] = useState(false);
@@ -113,6 +113,15 @@ function Battle() {
     const [char_ids, setCharIds] = useState<string[]>([]);
 
     useEffect(() => {
+        if (globalContext === undefined || globalContext.loading)
+            return;
+
+        const tmp = globalContext.vars.prefs.char_battle_pref;
+        setChoosedDraw(tmp.choose_draw[playerCount]);
+        setUnchoosedDraw(tmp.unchoose_draw[playerCount]);
+    }, [globalContext?.loading])
+
+    useEffect(() => {
         invoke('start_battle_char', { n: playerCount })
             .then((chars: any) => {
                 // console.log(chars);
@@ -144,7 +153,6 @@ function Battle() {
             })
             .catch((e) => { console.error(e) });
 
-
         setClassName(['', '', '', '', '']);
         setBattleNum(prev => prev + 1);
         // restart animation & set font size
@@ -158,6 +166,7 @@ function Battle() {
     }
 
     function back() {
+        globalContext?.setCharBattlePref(playerCount, choosedDraw, unchoosedDraw);
         globalContext?.endBattleChar();
         navigate('/');
     }

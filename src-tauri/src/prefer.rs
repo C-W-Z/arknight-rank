@@ -27,9 +27,23 @@ pub struct StatPref {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct CharListPref {
+    pub prof_filter_open: bool,
+    // TODO: sort by rati/devi/vola/...
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct BattlePref {
+    pub choose_draw: Vec<bool>, // player_count 2~5
+    pub unchoose_draw: Vec<bool>, // player_count 2~5
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct PlayerPrefs {
     pub menu_pref: MenuPref,
     pub stat_pref: HashMap<String, StatPref>, // char_id -> StatPref
+    pub char_list_pref: CharListPref,
+    pub char_battle_pref: BattlePref,
 }
 
 impl MenuPref {
@@ -56,6 +70,23 @@ impl StatPref {
     }
 }
 
+impl CharListPref {
+    pub fn default() -> Self {
+        Self {
+            prof_filter_open: (false),
+        }
+    }
+}
+
+impl BattlePref {
+    pub fn default() -> Self {
+        Self {
+            choose_draw: (vec![false, false, false, false, false, false]),
+            unchoose_draw: (vec![false, false, false, false, false, false]),
+        }
+    }
+}
+
 impl PlayerPrefs {
     pub fn default(char_skin_map: &HashMap<String, CharSkinData>) -> Self {
         let mut map: HashMap<String, StatPref> = HashMap::with_capacity(char_skin_map.len());
@@ -67,6 +98,8 @@ impl PlayerPrefs {
         Self {
             menu_pref: MenuPref::default(),
             stat_pref: map,
+            char_list_pref: CharListPref::default(),
+            char_battle_pref: BattlePref::default(),
         }
     }
 

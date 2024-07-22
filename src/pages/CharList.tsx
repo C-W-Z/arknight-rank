@@ -6,7 +6,7 @@ import ProgressCircle from '../components/ProgressCircle';
 import { HorizontalScroll, HScrollRef } from '../components/DraggableScroll';
 import { JSX } from 'react/jsx-runtime';
 import useGlobalContext from '../components/GlobalContext';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface CharCardProps {
     char_id: string;
@@ -17,6 +17,7 @@ interface CharCardProps {
     sliderFuncRef: RefObject<HScrollRef>;
     portraitId: string;
     prof: string;
+    filtProf: string;
 }
 
 function CharCard({
@@ -27,7 +28,8 @@ function CharCard({
     total_rank,
     sliderFuncRef,
     portraitId,
-    prof
+    prof,
+    filtProf,
 }: CharCardProps) {
     const navigate = useNavigate();
 
@@ -57,7 +59,8 @@ function CharCard({
         sliderFuncRef.current?.setMouseDown(false);
         navigate('/stat', {
             state: {
-                char_id: char_id
+                char_id: char_id,
+                filt_prof: filtProf
             }
         });
     }
@@ -98,15 +101,54 @@ function CharList() {
     function back() {
         navigate('/');
     }
+    const { state } = useLocation();
+    const { filt_prof } = state;
 
     const HScrollFuncRef = useRef<HScrollRef>(null);
 
     const [list, setList] = useState<JSX.Element[]>([]);
 
     let newClasses = Array(9).fill("filter");
-    newClasses[0] += " choose";
+    // newClasses[0] += " choose";
+    function initNewClasses() {
+        console.log("execute");
+        switch (filt_prof) {
+            case "ALL":
+                newClasses[0] += " choose";
+                break;
+            case "PIONEER":
+                newClasses[1] += " choose";
+                break;
+            case "WARRIOR":
+                newClasses[2] += " choose";
+                break;
+            case "TANK":
+                newClasses[3] += " choose";
+                break;
+            case "SNIPER":
+                newClasses[4] += " choose";
+                break;
+            case "CASTER":
+                newClasses[5] += " choose";
+                break;
+            case "MEDIC":
+                newClasses[6] += " choose";
+                break;
+            case "SUPPORT":
+                newClasses[7] += " choose";
+                break;
+            case "SPECIAL":
+                newClasses[8] += " choose";
+                break;
+    
+            default:
+                newClasses[0] += " choose";
+                break;
+        }
+    }
+    initNewClasses();
     const [chooseClasses, setChooseClasses] = useState<string[]>(newClasses);
-    const [filtProf, setFiltProf] = useState<string>("all");
+    const [filtProf, setFiltProf] = useState<string>(filt_prof);
     function filtTo(prof: string, i: number) {
         return () => {
             setFiltProf(prof);
@@ -122,7 +164,7 @@ function CharList() {
             return;
 
         let filtChars;
-        if (filtProf == "all")
+        if (filtProf == "ALL")
             filtChars = globalContext.vars.ranked_chars;
         else
             filtChars = globalContext.vars.ranked_chars.filter((c: any) => globalContext.data.chars[c.id].prof == filtProf);
@@ -145,6 +187,7 @@ function CharList() {
                     portraitId={portrait_id}
                     rank={rank}
                     total_rank={filtChars.length}
+                    filtProf={filtProf}
                 ></CharCard>
             );
         }
@@ -179,7 +222,7 @@ function CharList() {
                 </div>
             </HorizontalScroll>
             <div className="class-filter">
-                <button className={chooseClasses[0]} onClick={filtTo("all", 0)}>
+                <button className={chooseClasses[0]} onClick={filtTo("ALL", 0)}>
                     <div className="icon all">全部</div>
                 </button>
                 <button className={chooseClasses[1]} onClick={filtTo("PIONEER", 1)}>

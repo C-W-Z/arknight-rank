@@ -68,6 +68,18 @@ impl AppState {
         (*data).stat_pref.insert(char_id, new_stat_pref);
         data.save(app_handle);
     }
+    pub fn update_char_battle_pref(
+        &self,
+        app_handle: &AppHandle,
+        player_count: usize,
+        choose_draw: bool,
+        unchoose_draw: bool,
+    ) {
+        let mut data = self.prefs.lock().unwrap();
+        (*data).char_battle_pref.choose_draw[player_count] = choose_draw;
+        (*data).char_battle_pref.unchoose_draw[player_count] = unchoose_draw;
+        data.save(app_handle);
+    }
 }
 
 #[derive(Serialize)]
@@ -128,6 +140,17 @@ fn set_stat_pref(
     new_stat_pref: StatPref,
 ) {
     state.update_stat_pref(&app_handle, char_id, new_stat_pref);
+}
+
+#[tauri::command]
+fn set_char_battle_pref(
+    app_handle: AppHandle,
+    state: State<'_, AppState>,
+    player_count: usize,
+    choose_draw: bool,
+    unchoose_draw: bool,
+) {
+    state.update_char_battle_pref(&app_handle, player_count, choose_draw, unchoose_draw);
 }
 
 #[tauri::command]
@@ -213,6 +236,7 @@ fn main() {
             get_global_vars,
             set_menu_pref,
             set_stat_pref,
+            set_char_battle_pref,
             start_battle_char,
             next_battle_char,
             end_battle_char,

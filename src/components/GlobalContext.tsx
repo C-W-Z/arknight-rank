@@ -7,6 +7,7 @@ interface GlobalContextProps {
     vars: any;
     reloadVars: () => void;
     setStatPref: (char_id: string, skin_id: string, h: number, x: number, y: number) => void;
+    setCharBattlePref: (playerCount: number, chooseDraw: boolean, unchooseDraw: boolean) => void;
     endBattleChar: () => void;
 }
 
@@ -46,6 +47,19 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         }).catch((e) => console.error(e));
     }
 
+    function setCharBattlePref(playerCount: number, chooseDraw: boolean, unchooseDraw: boolean) {
+        let tmp = vars.prefs.char_battle_pref;
+        tmp.choose_draw[playerCount] = chooseDraw;
+        tmp.unchoose_draw[playerCount] = unchooseDraw;
+        vars.prefs.char_battle_pref = tmp;
+        setVars(vars);
+        invoke('set_char_battle_pref', {
+            playerCount: playerCount,
+            chooseDraw: chooseDraw,
+            unchooseDraw: unchooseDraw,
+        }).catch((e) => console.error(e));
+    }
+
     function endBattleChar() {
         setLoading(true);
         invoke('end_battle_char')
@@ -75,7 +89,15 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     }, []);
 
     return (
-        <GlobalContext.Provider value={{ loading, data, vars, reloadVars, setStatPref, endBattleChar }}>
+        <GlobalContext.Provider value={{
+            loading,
+            data,
+            vars,
+            reloadVars,
+            setStatPref,
+            setCharBattlePref,
+            endBattleChar
+        }}>
             {children}
         </GlobalContext.Provider>
     );
