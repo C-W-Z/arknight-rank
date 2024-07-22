@@ -1,5 +1,5 @@
 import './TopButtons.css'
-import { LessThan, HomeIcon, MeshSphere } from './SVGIcons';
+import { ChevronLeft, HomeIcon, MeshSphere } from './SVGIcons';
 import { useNavigate } from 'react-router-dom';
 
 export interface Props {
@@ -23,7 +23,7 @@ function TopButtons({
     return (
         <div className={'top-btns ' + className}>
             <button className='back-btn' onClick={backOnClick}>
-                <LessThan></LessThan>
+                <ChevronLeft></ChevronLeft>
             </button>
             {homeBtn && <div className="vr"></div>}
             {homeBtn &&

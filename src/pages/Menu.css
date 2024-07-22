@@ -317,13 +317,13 @@
 .menu .panel .header .back-btn-area .back-btn:active {
     filter: brightness(90%);
 }
-.menu .panel .header .back-btn-area .back-btn>.less-than {
+.menu .panel .header .back-btn-area .back-btn>.chevron-left {
     fill: gray;
     position: absolute;
-    left: 10%;
+    left: 5%;
     top: 50%;
-    height: 80%;
-    transform: translateY(-50%) scaleX(0.5);
+    height: 75%;
+    transform: translateY(-50%);
 }
 
 .menu .panel .header>.title {

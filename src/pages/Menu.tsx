@@ -3,7 +3,7 @@ import './Menu.css'
 import DraggableBackground, { DragBGRef } from "../components/DraggableBackground";
 import { useNavigate } from "react-router-dom";
 import useGlobalContext from "../components/GlobalContext";
-import { Warning, Gear, InfoIcon, LessThan, RankStar, VolumeHigh } from "../components/SVGIcons";
+import { Warning, Gear, InfoIcon, ChevronLeft, RankStar, VolumeHigh } from "../components/SVGIcons";
 import { appCacheDir, appConfigDir, appDataDir, appLocalDataDir, appLogDir, resourceDir } from "@tauri-apps/api/path";
 import { VerticalScroll, VScrollRef } from "../components/DraggableScroll";
 import { getName, getVersion } from "@tauri-apps/api/app";
@@ -139,7 +139,7 @@ const Setting = forwardRef<SettingRef, {}>(({ }, ref) => {
             <div className="header">
                 <div className="back-btn-area">
                     <button className='back-btn' onClick={closeSetting}>
-                        <LessThan></LessThan>
+                        <ChevronLeft></ChevronLeft>
                     </button>
                 </div>
                 <div className="title">

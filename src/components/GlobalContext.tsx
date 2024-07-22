@@ -7,6 +7,7 @@ interface GlobalContextProps {
     vars: any;
     reloadVars: () => void;
     setStatPref: (char_id: string, skin_id: string, h: number, x: number, y: number) => void;
+    setCharListPref: (prof_filter_open: boolean) => void;
     setCharBattlePref: (playerCount: number, chooseDraw: boolean, unchooseDraw: boolean) => void;
     endBattleChar: () => void;
 }
@@ -44,6 +45,16 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         invoke('set_stat_pref', {
             charId: char_id,
             newStatPref: tmp,
+        }).catch((e) => console.error(e));
+    }
+
+    function setCharListPref(prof_filter_open: boolean) {
+        let tmp = vars.prefs.char_list_pref;
+        tmp.prof_filter_open = prof_filter_open;
+        vars.prefs.char_list_pref = tmp;
+        setVars(vars);
+        invoke('set_char_list_pref', {
+            profFilterOpen: prof_filter_open,
         }).catch((e) => console.error(e));
     }
 
@@ -95,6 +106,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             vars,
             reloadVars,
             setStatPref,
+            setCharListPref,
             setCharBattlePref,
             endBattleChar
         }}>

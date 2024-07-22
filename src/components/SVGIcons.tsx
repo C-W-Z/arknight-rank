@@ -21,10 +21,22 @@ export function Star({ num, color }: StarProps) {
     )
 }
 
-export function LessThan() {
+export function ChevronLeft() {
     return (
-        <svg className="less-than" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-            <path d="M380.6 81.7c7.9 15.8 1.5 35-14.3 42.9L103.6 256 366.3 387.4c15.8 7.9 22.2 27.1 14.3 42.9s-27.1 22.2-42.9 14.3l-320-160C6.8 279.2 0 268.1 0 256s6.8-23.2 17.7-28.6l320-160c15.8-7.9 35-1.5 42.9 14.3z" />
+        <svg className="chevron-left" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <g>
+                <path d="M16.707,20.293a1,1,0,1,1-1.414,1.414l-9-9a1,1,0,0,1,0-1.414l9-9a1,1,0,1,1,1.414,1.414L8.414,12Z" />
+            </g>
+        </svg>
+    )
+}
+
+export function ChevronRight() {
+    return (
+        <svg className="chevron-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <g>
+                <path d="M17.707,12.707l-9,9a1,1,0,1,1-1.414-1.414L15.586,12,7.293,3.707A1,1,0,1,1,8.707,2.293l9,9A1,1,0,0,1,17.707,12.707Z" />
+            </g>
         </svg>
     )
 }

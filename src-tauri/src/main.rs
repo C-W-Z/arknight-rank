@@ -9,7 +9,7 @@ mod resource;
 
 use crate::{
     glicko2::Player,
-    prefer::{MenuPref, PlayerPrefs},
+    prefer::{MenuPref, PlayerPrefs, StatPref},
     resource::{CharData, CharSkinData, SkinData},
 };
 use data::save_to_appdata;
@@ -17,7 +17,6 @@ use glicko2::{
     calculate_ranking, calculate_results, pick_player_ids, update_battle_history,
     update_rank_history, Match,
 };
-use prefer::StatPref;
 use serde::Serialize;
 use std::{collections::HashMap, process::Command, sync::Mutex};
 use tauri::{AppHandle, Manager, State};
@@ -66,6 +65,11 @@ impl AppState {
     ) {
         let mut data = self.prefs.lock().unwrap();
         (*data).stat_pref.insert(char_id, new_stat_pref);
+        data.save(app_handle);
+    }
+    pub fn update_char_list_pref(&self, app_handle: &AppHandle, prof_filter_open: bool) {
+        let mut data = self.prefs.lock().unwrap();
+        (*data).char_list_pref.prof_filter_open = prof_filter_open;
         data.save(app_handle);
     }
     pub fn update_char_battle_pref(
@@ -140,6 +144,11 @@ fn set_stat_pref(
     new_stat_pref: StatPref,
 ) {
     state.update_stat_pref(&app_handle, char_id, new_stat_pref);
+}
+
+#[tauri::command]
+fn set_char_list_pref(app_handle: AppHandle, state: State<'_, AppState>, prof_filter_open: bool) {
+    state.update_char_list_pref(&app_handle, prof_filter_open);
 }
 
 #[tauri::command]
@@ -236,6 +245,7 @@ fn main() {
             get_global_vars,
             set_menu_pref,
             set_stat_pref,
+            set_char_list_pref,
             set_char_battle_pref,
             start_battle_char,
             next_battle_char,

@@ -36,16 +36,17 @@
     position: relative;
 }
 
-.top-btns .back-btn .less-than {
+.top-btns .back-btn .chevron-left {
     fill: #ffffff;
     position: absolute;
-    left: 10%;
+    left: 5%;
     top: 50%;
-    height: 80%;
-    transform: translateY(-50%) scaleX(0.5);
+    height: 75%;
+    transform: translateY(-50%);
+    /* transform: translateY(-50%) scaleX(0.5); */
     /* margin-left: 10%; */
 }
-.top-btns .back-btn:active .less-than {
+.top-btns .back-btn:active .chevron-left {
     fill: #999999;
 }
 
