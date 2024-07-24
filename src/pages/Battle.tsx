@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Battle.css'
 import { CheckMark, OKSquare, Star } from '../components/SVGIcons';
 import { invoke } from '@tauri-apps/api/tauri';
@@ -6,6 +6,7 @@ import useGlobalContext from '../components/GlobalContext';
 import AutoSizeText from '../components/AutoSizeText';
 import TopButtons from '../components/TopButtons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import ReturnButton, { ReturnBtnRef } from '../components/ReturnButton';
 
 interface CandidateProps {
     className?: string;
@@ -165,7 +166,13 @@ function Battle() {
         setAllDraw(false);
     }
 
+    const rtnBtnFuncRef = useRef<ReturnBtnRef>(null);
+
     function back() {
+        rtnBtnFuncRef.current?.open();
+    }
+
+    function ret() {
         globalContext?.setCharBattlePref(playerCount, choosedDraw, unchoosedDraw);
         globalContext?.endBattleChar();
         navigate('/');
@@ -231,6 +238,10 @@ function Battle() {
                 <OKSquare></OKSquare>
                 {allDraw ? '确认平手' : '确认选择'}
             </button>
+            <ReturnButton ref={rtnBtnFuncRef} confirmText='结算' confirmClick={ret}>
+                <div>已进行{battleNum}场比赛</div>
+                <div>是否结束比赛，结算比赛结果？</div>
+            </ReturnButton>
         </div>
     )
 }

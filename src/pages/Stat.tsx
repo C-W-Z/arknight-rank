@@ -106,7 +106,7 @@ function Statistic(s: StatisticProps) {
         <div className={className} onClick={toggleClose}>
             <div className='rank-title'>Statistic »</div>
             {StatisticDetail('rati', 'μ', 'Rating', s.rati, 5000, 2)}
-            {StatisticDetail('devi', 'φ', 'Deviation', s.devi, 1000, 2)}
+            {StatisticDetail('devi', 'φ', 'Deviation', s.devi, 350, 2)}
             {StatisticDetail('vola', 'σ', 'Volatility', s.vola, 0.1, 4)}
             {StatisticDetail('wins', '▲', 'Wins', s.wins, 100)}
             {StatisticDetail('draw', '▶', 'Draws', s.draw, 100)}
@@ -130,7 +130,7 @@ function Ranking({ rank, total }: RankingProps) {
 
     return (
         <button className='ranking'>
-            <ProgressCircle value={1 - (rank - 1) / total} size={"5.2em"}>
+            <ProgressCircle value={1 - (rank - 1) / (total - 1)} size={"5.2em"}>
                 <div className='rank-title'>RANK</div>
                 <div className='rank-num' style={{ fontSize: fontSize }}>{rank}</div>
             </ProgressCircle>
@@ -196,7 +196,7 @@ function Stat() {
 
     const charInfo = globalContext.data.chars[char_id];
     const rank = globalContext.vars.char2rank[char_id];
-    const totalRank = globalContext.vars.ranked_chars.length;
+    const totalRank = globalContext.vars.char2rank[globalContext.vars.ranked_chars[globalContext.vars.ranked_chars.length - 1].id];
     const charRankInfo = globalContext.vars.ranked_chars.find((obj: any) => obj.id == char_id);
     const rati = charRankInfo ? charRankInfo.rank.rati : 1500;
     const devi = charRankInfo ? charRankInfo.rank.devi : 350;

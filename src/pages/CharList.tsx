@@ -69,6 +69,7 @@ function CharCard({
         <button className={"charcard " + "r" + rarity}
             onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}
         >
+            <div className="bg"></div>
             <div className={"portrait " + portraitId}></div>
             <div className={"header " + "h" + rarity}></div>
             <div className={"class-icon " + prof}></div>
@@ -84,7 +85,7 @@ function CharCard({
                         <div className={"potential " + "p" + potential}></div>
                     </div>
                 }
-                <ProgressCircle value={1 - (rank - 1) / total_rank} size={"5.2em"}>
+                <ProgressCircle value={1 - (rank - 1) / (total_rank - 1)} size={"5.2em"}>
                     <div className='rank-title'>RANK</div>
                     <div className='rank-num' style={{ fontSize: fontSize }}>{rank}</div>
                 </ProgressCircle>
@@ -165,6 +166,8 @@ function CharList() {
             }
         }
         return () => {
+            if (filtProf == prof)
+                return;
             setFiltProf(prof);
             newClasses = Array(9).fill("filter");
             newClasses[i] += " choose";
@@ -177,6 +180,8 @@ function CharList() {
         if (globalContext === undefined || globalContext.loading)
             return;
 
+        const total_rank = globalContext.vars.char2rank[globalContext.vars.ranked_chars[globalContext.vars.ranked_chars.length - 1].id];
+        console.log(total_rank);
         let filtChars;
         if (filtProf == "ALL")
             filtChars = globalContext.vars.ranked_chars;
@@ -200,7 +205,7 @@ function CharList() {
                     prof={charInfo.prof}
                     portraitId={portrait_id}
                     rank={rank}
-                    total_rank={filtChars.length}
+                    total_rank={total_rank}
                     filtProf={filtProf}
                 ></CharCard>
             );

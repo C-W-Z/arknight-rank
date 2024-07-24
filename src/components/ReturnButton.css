@@ -1,0 +1,75 @@
+.return-panel {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background-color: hsla(0, 0%, 0%, 50%);
+}
+.return-panel.close {
+    display: none;
+}
+
+.return-panel .return-btn {
+    width: 100%;
+    height: 50%;
+    background-color: #fff;
+    background-image: url('../assets/texture.webp');
+    background-position: 0 0;
+    display: grid;
+    background-size: cover;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 4fr 1fr;
+    position: relative;
+}
+
+.return-panel .return-btn .text {
+    grid-area: 1 / 1 / 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    color: black;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+.return-panel .return-btn .confirm-btn {
+    background-color: #731010;
+}
+.return-panel .return-btn .cancel-btn {
+    background-color: #0c0c0c;
+}
+.return-panel .return-btn button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    line-height: 1em;
+    transition: all 50ms ease-in-out;
+}
+.return-panel .return-btn button::after {
+    content: '';
+    background-image: url('../assets/texture.webp');
+    background-size: 200%;
+    filter: invert(0.5);
+    background-position-x: 0%;
+    background-position-y: 44%;
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+.return-panel .return-btn .confirm-btn::after {
+    background-position-x: 50%;
+}
+.return-panel .return-btn button:active {
+    filter: brightness(75%);
+}
