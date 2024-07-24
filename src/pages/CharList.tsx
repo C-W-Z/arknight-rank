@@ -66,7 +66,7 @@ function CharCard({
     }
 
     return (
-        <div className={"charcard " + "r" + rarity}
+        <button className={"charcard " + "r" + rarity}
             onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}
         >
             <div className={"portrait " + portraitId}></div>
@@ -90,7 +90,7 @@ function CharCard({
                 </ProgressCircle>
                 <div className="name">{name}</div>
             </div>
-        </div>
+        </button>
     )
 }
 
@@ -150,8 +150,7 @@ function CharList() {
     const [chooseClasses, setChooseClasses] = useState<string[]>(newClasses);
     const [filtProf, setFiltProf] = useState<string>(filt_prof);
     function filtTo(prof: string, i: number) {
-        if (prof == "ALL")
-        {
+        if (prof == "ALL") {
             return () => {
                 if (filtProf == "ALL") {
                     setProfFilterClose(true);
@@ -246,43 +245,43 @@ function CharList() {
     return (
         <div className='charlist'>
             <button className={profFilterBtnClass} onClick={openProfFilter}>职业☰</button>
-            <div className="in-shadow">
-                <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
-                <div className="logo-rhodes"></div>
-                <HorizontalScroll alignDelay={100} className="list-area" ref={HScrollFuncRef}>
-                    <div className="list-grid">
-                        {list}
-                    </div>
-                </HorizontalScroll>
-                <div className={profFilterClass}>
-                    <button className={"all " + chooseClasses[0]} onClick={filtTo("ALL", 0)}>
-                        <div className="icon all">{chooseClasses[0].endsWith("choose") ? "收起" : "全部"}</div>
-                    </button>
-                    <button className={chooseClasses[1]} onClick={filtTo("PIONEER", 1)}>
-                        <div className="icon PIONEER"></div>
-                    </button>
-                    <button className={chooseClasses[2]} onClick={filtTo("WARRIOR", 2)}>
-                        <div className="icon WARRIOR"></div>
-                    </button>
-                    <button className={chooseClasses[3]} onClick={filtTo("TANK", 3)}>
-                        <div className="icon TANK"></div>
-                    </button>
-                    <button className={chooseClasses[4]} onClick={filtTo("SNIPER", 4)}>
-                        <div className="icon SNIPER"></div>
-                    </button>
-                    <button className={chooseClasses[5]} onClick={filtTo("CASTER", 5)}>
-                        <div className="icon CASTER"></div>
-                    </button>
-                    <button className={chooseClasses[6]} onClick={filtTo("MEDIC", 6)}>
-                        <div className="icon MEDIC"></div>
-                    </button>
-                    <button className={chooseClasses[7]} onClick={filtTo("SUPPORT", 7)}>
-                        <div className="icon SUPPORT"></div>
-                    </button>
-                    <button className={chooseClasses[8]} onClick={filtTo("SPECIAL", 8)}>
-                        <div className="icon SPECIAL"></div>
-                    </button>
+            <div className={"in-shadow" + (profFilterClose ? "" : " shrink")}></div>
+            <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
+            <div className="logo-rhodes"></div>
+            <HorizontalScroll alignDelay={100} className="list-area" ref={HScrollFuncRef}>
+                <div className="list-grid">
+                    {list}
                 </div>
+                <div className={"proffilt-padding" + (profFilterClose ? " close" : "")}></div>
+            </HorizontalScroll>
+            <div className={profFilterClass}>
+                <button className={"all " + chooseClasses[0]} onClick={filtTo("ALL", 0)}>
+                    <div className="icon all">{chooseClasses[0].endsWith("choose") ? "收起" : "全部"}</div>
+                </button>
+                <button className={chooseClasses[1]} onClick={filtTo("PIONEER", 1)}>
+                    <div className="icon PIONEER"></div>
+                </button>
+                <button className={chooseClasses[2]} onClick={filtTo("WARRIOR", 2)}>
+                    <div className="icon WARRIOR"></div>
+                </button>
+                <button className={chooseClasses[3]} onClick={filtTo("TANK", 3)}>
+                    <div className="icon TANK"></div>
+                </button>
+                <button className={chooseClasses[4]} onClick={filtTo("SNIPER", 4)}>
+                    <div className="icon SNIPER"></div>
+                </button>
+                <button className={chooseClasses[5]} onClick={filtTo("CASTER", 5)}>
+                    <div className="icon CASTER"></div>
+                </button>
+                <button className={chooseClasses[6]} onClick={filtTo("MEDIC", 6)}>
+                    <div className="icon MEDIC"></div>
+                </button>
+                <button className={chooseClasses[7]} onClick={filtTo("SUPPORT", 7)}>
+                    <div className="icon SUPPORT"></div>
+                </button>
+                <button className={chooseClasses[8]} onClick={filtTo("SPECIAL", 8)}>
+                    <div className="icon SPECIAL"></div>
+                </button>
             </div>
         </div>
     )
