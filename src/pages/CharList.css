@@ -373,6 +373,42 @@
     font-weight: bold;
     line-height: 1em;
 }
+.charlist .charcard .bottom .show-attr {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, #0098dc 0%, #007fb5 15%, hsla(0, 0%, 0%, 70%) 50%, transparent);
+}
+.charlist .charcard .bottom .show-attr .icon {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    height: 70%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: 700;
+}
+.charlist .charcard .bottom .show-attr .icon>svg {
+    fill: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50%;
+    aspect-ratio: 1 / 1;
+}
+.charlist .charcard .bottom .show-attr .text {
+    /* line-height: 1em; */
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    font-size: 0.8em;
+}
 
 .charlist .btn-class-filter {
     position: fixed;

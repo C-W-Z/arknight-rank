@@ -74,8 +74,8 @@ function StatisticDetail({
     to_fixed = 0
 }: StatisticDetailProps) {
 
-    const roundDown = function (num: number, decimal: number) {
-        return Math.floor((num + Number.EPSILON) * Math.pow(10, decimal)) / Math.pow(10, decimal);
+    function roundDown (num: number, decimal: number) {
+        return (Math.floor((num + Number.EPSILON) * Math.pow(10, decimal)) / Math.pow(10, decimal)).toFixed(decimal);
     }
 
     return (
@@ -83,7 +83,7 @@ function StatisticDetail({
             <div className='detail-icon'>{icon_word}</div>
             <div className='extend-word'>{word}</div>
             <ProgressBar className={'detail-number'} value={num} max={max}>
-                {roundDown(num, to_fixed).toFixed(to_fixed)}
+                {roundDown(num, to_fixed)}
             </ProgressBar>
         </div>
     )

@@ -17,6 +17,8 @@ interface CharCardProps {
     sliderFuncRef: RefObject<HScrollRef>;
     portraitId: string;
     prof: string;
+    showAttrIcon?: any;
+    showAttrText?: any;
 }
 
 function CharCard({
@@ -28,6 +30,8 @@ function CharCard({
     sliderFuncRef,
     portraitId,
     prof,
+    showAttrIcon = undefined,
+    showAttrText = undefined,
 }: CharCardProps) {
     const globalContext = useGlobalContext();
     const navigate = useNavigate();
@@ -85,6 +89,12 @@ function CharCard({
                     <div className='rank-num' style={{ fontSize: fontSize }}>{rank}</div>
                 </ProgressCircle>
                 <div className="name">{name}</div>
+                {showAttrIcon !== undefined && showAttrText !== undefined &&
+                    <div className="show-attr">
+                        <div className="icon">{showAttrIcon}</div>
+                        <div className="text">{showAttrText}</div>
+                    </div>
+                }
             </div>
         </button>
     )
@@ -215,7 +225,8 @@ function CharList() {
             const ascend = chooseSort[2].endsWith('ascend') ? 1 : -1;
             switch (otherSort) {
                 case 'Rating':
-                    filtChars.sort((a, b) => ascend * (a.rank.rati - b.rank.rati));
+                    if (ascend == 1)
+                        filtChars.reverse();
                     break;
                 case 'Deviation':
                     filtChars.sort((a, b) => ascend * (a.rank.devi - b.rank.devi));
@@ -243,13 +254,58 @@ function CharList() {
             }
         }
 
+        function roundDown(num: number, decimal: number) {
+            return (Math.floor((num + Number.EPSILON) * Math.pow(10, decimal)) / Math.pow(10, decimal)).toFixed(decimal);
+        }
+
+        const showAttr = sortBy == 'other' ? otherSort : undefined;
         const cards = [];
-        for (let i = 0; i < filtChars.length; i++) {
-            const char_id = filtChars[i].id;
+        for (const c of filtChars) {
+            const char_id = c.id;
             const rank = globalContext.vars.char2rank[char_id];
             const charInfo = charData[char_id];
             const skin_id = globalContext.vars.prefs.stat_pref[char_id].skin_id;
             const portrait_id = globalContext.data.skins[skin_id].portrait_id;
+
+            let showAttrIcon: any = undefined;
+            let showAttrText: any = undefined;
+            if (showAttr !== undefined)
+                switch (showAttr) {
+                    case 'Rating':
+                        showAttrIcon = 'μ';
+                        showAttrText = roundDown(c.rank.rati, 2);
+                        break;
+                    case 'Deviation':
+                        showAttrIcon = 'φ';
+                        showAttrText = roundDown(c.rank.devi, 2);
+                        break;
+                    case 'Volatility':
+                        showAttrIcon = 'σ';
+                        showAttrText = roundDown(c.rank.vola, 4);
+                        break;
+                    case 'Wins':
+                        showAttrIcon = '▲';
+                        showAttrText = c.hist.wins;
+                        break;
+                    case 'Draws':
+                        showAttrIcon = '▶';
+                        showAttrText = c.hist.draw;
+                        break;
+                    case 'Losses':
+                        showAttrIcon = '▼';
+                        showAttrText = c.hist.loss;
+                        break;
+                    case 'Battles':
+                        showAttrIcon = <AtkIcon></AtkIcon>;
+                        showAttrText = c.hist.wins + c.hist.draw + c.hist.loss;
+                        break;
+                    case 'Winrate':
+                        showAttrIcon = <Trophy></Trophy>;
+                        showAttrText = (100 * c.hist.wins / (c.hist.wins + c.hist.draw + c.hist.loss)).toFixed(0) + '%';
+                        break;
+                    default:
+                        break;
+                }
 
             cards.push(
                 <CharCard key={char_id}
@@ -261,6 +317,8 @@ function CharList() {
                     portraitId={portrait_id}
                     rank={rank}
                     total_rank={total_rank}
+                    showAttrIcon={showAttrIcon}
+                    showAttrText={showAttrText}
                 ></CharCard>
             );
         }
