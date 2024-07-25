@@ -67,9 +67,17 @@ impl AppState {
         (*data).stat_pref.insert(char_id, new_stat_pref);
         data.save(app_handle);
     }
-    pub fn update_char_list_pref(&self, app_handle: &AppHandle, prof_filter_open: bool) {
+    pub fn update_char_list_pref(
+        &self,
+        app_handle: &AppHandle,
+        prof_filter: String,
+        sortby: String,
+        ascend: bool,
+    ) {
         let mut data = self.prefs.lock().unwrap();
-        (*data).char_list_pref.prof_filter_open = prof_filter_open;
+        (*data).char_list_pref.prof_filter = prof_filter;
+        (*data).char_list_pref.sortby = sortby;
+        (*data).char_list_pref.ascend = ascend;
         data.save(app_handle);
     }
     pub fn update_char_battle_pref(
@@ -147,8 +155,14 @@ fn set_stat_pref(
 }
 
 #[tauri::command]
-fn set_char_list_pref(app_handle: AppHandle, state: State<'_, AppState>, prof_filter_open: bool) {
-    state.update_char_list_pref(&app_handle, prof_filter_open);
+fn set_char_list_pref(
+    app_handle: AppHandle,
+    state: State<'_, AppState>,
+    prof_filter: String,
+    sortby: String,
+    ascend: bool,
+) {
+    state.update_char_list_pref(&app_handle, prof_filter, sortby, ascend);
 }
 
 #[tauri::command]

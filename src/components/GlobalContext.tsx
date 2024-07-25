@@ -7,7 +7,8 @@ interface GlobalContextProps {
     vars: any;
     reloadVars: () => void;
     setStatPref: (char_id: string, skin_id: string, h: number, x: number, y: number) => void;
-    setCharListPref: (prof_filter_open: boolean) => void;
+    setCharListPref: (prof_filter?: string, sortby?: string, ascend?: boolean) => void;
+    uploadCharListPref: () => void;
     setCharBattlePref: (playerCount: number, chooseDraw: boolean, unchooseDraw: boolean) => void;
     endBattleChar: () => void;
 }
@@ -41,20 +42,31 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         tmp.x = x;
         tmp.y = y;
         vars.prefs.stat_pref[char_id] = tmp;
-        setVars(vars);
+        // setVars(vars);
         invoke('set_stat_pref', {
             charId: char_id,
             newStatPref: tmp,
         }).catch((e) => console.error(e));
     }
 
-    function setCharListPref(prof_filter_open: boolean) {
+    function setCharListPref(prof_filter?: string, sortby?: string, ascend?: boolean) {
         let tmp = vars.prefs.char_list_pref;
-        tmp.prof_filter_open = prof_filter_open;
+        if (prof_filter !== undefined)
+            tmp.prof_filter = prof_filter;
+        if (sortby !== undefined)
+            tmp.sortby = sortby;
+        if (ascend !== undefined)
+            tmp.ascend = ascend;
         vars.prefs.char_list_pref = tmp;
-        setVars(vars);
+        // setVars(vars);
+    }
+
+    function uploadCharListPref() {
+        let tmp = vars.prefs.char_list_pref;
         invoke('set_char_list_pref', {
-            profFilterOpen: prof_filter_open,
+            profFilter: tmp.prof_filter,
+            sortby: tmp.sortby,
+            ascend: tmp.ascend,
         }).catch((e) => console.error(e));
     }
 
@@ -63,7 +75,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         tmp.choose_draw[playerCount] = chooseDraw;
         tmp.unchoose_draw[playerCount] = unchooseDraw;
         vars.prefs.char_battle_pref = tmp;
-        setVars(vars);
+        // setVars(vars);
         invoke('set_char_battle_pref', {
             playerCount: playerCount,
             chooseDraw: chooseDraw,
@@ -107,6 +119,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             reloadVars,
             setStatPref,
             setCharListPref,
+            uploadCharListPref,
             setCharBattlePref,
             endBattleChar
         }}>

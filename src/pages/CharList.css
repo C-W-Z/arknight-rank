@@ -22,9 +22,6 @@
     top: 0;
     pointer-events: none;
 }
-.charlist .in-shadow.shrink {
-    width: 92.5%;
-}
 .charlist .in-shadow * {
     pointer-events: initial;
 }
@@ -389,13 +386,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: var(--shadow);
     transition: all 100ms ease-in-out;
 }
 .charlist .btn-class-filter:active {
     color: hsl(0, 0%, 50%);
 }
 .charlist .btn-class-filter.close {
-    display: none;
+    transform: translateX(100%);
 }
 .charlist .class-filter {
     position: fixed;
@@ -404,9 +402,12 @@
     width: 7.5%;
     display: grid;
     grid-template-rows: repeat(9, 1fr);
+    transition: all 100ms ease-in-out;
+    box-shadow: 0 0 4em 1em rgba(0, 0, 0, 0.5);
 }
 .charlist .class-filter.close {
-    display: none;
+    transform: translateX(100%);
+    box-shadow: none;
 }
 .charlist .class-filter .filter {
     position: relative;
@@ -486,4 +487,230 @@
 }
 .charlist .class-filter .filter .icon.SPECIAL {
     background-image: url('../assets/class/class_special.webp');
+}
+
+.charlist .sortby {
+    position: absolute;
+    top: 2.5%;
+    right: 10%;
+    height: 2.4rem;
+    width: 25em;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr;
+    background: #303030;
+    color: #bbb;
+    font-size: 0.8em;
+    box-shadow: var(--shadow);
+}
+.charlist .sortby>button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+/* .charlist .sortby>button.other {
+    justify-content: right;
+} */
+.charlist .sortby>button.more {
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+}
+.charlist .sortby>button.more:active {
+    color: #999;
+}
+.charlist .sortby>button.rank:before,
+.charlist .sortby>button.rarity:before {
+    content: '';
+    position: absolute;
+    top: 25%;
+    right: -1px;
+    height: 50%;
+    width: 2px;
+    z-index: 1;
+    background-color: #484848;
+}
+.charlist .sortby>button.choose .text {
+    z-index: 1;
+    line-height: 1em;
+    color: #00b5fd;
+    transform: translateY(-30%);
+}
+.charlist .sortby>button.choose.descend::after {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1.5em;
+    aspect-ratio: 1 / 1;
+    color: #00b5fd;
+    /* # -> %23 (unicode) */
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="%2300b5fd"><path d="M21.707,8.707l-9,9a1,1,0,0,1-1.414,0l-9-9A1,1,0,1,1,3.707,7.293L12,15.586l8.293-8.293a1,1,0,1,1,1.414,1.414Z" /></g></svg>');
+}
+.charlist .sortby>button.choose.ascend::after {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1.5em;
+    aspect-ratio: 1 / 1;
+    color: #00b5fd;
+    /* # -> %23 (unicode) */
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="%2300b5fd"><path d="M21.707,16.707a1,1,0,0,1-1.414,0L12,8.414,3.707,16.707a1,1,0,0,1-1.414-1.414l9-9a1,1,0,0,1,1.414,0l9,9A1,1,0,0,1,21.707,16.707Z" /></g></svg>');
+}
+
+.charlist .more-sort-panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.charlist .more-sort-panel.close {
+    display: none;
+}
+.charlist .sortby-other {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: 25%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    color: #313131;
+    box-shadow: 0 0 4em 1em rgba(0, 0, 0, 0.5);
+    transition: all 100ms ease-in-out;
+}
+.charlist .sortby-other.close {
+    transform: translateX(100%);
+    box-shadow: none;
+}
+.charlist .sortby-other .header {
+    height: 10%;
+    position: relative;
+}
+.charlist .sortby-other .header svg {
+    position: absolute;
+    top: 30%;
+    height: 40%;
+    aspect-ratio: 1 / 1;
+    right: 10%;
+    fill: #808080;
+}
+.charlist .sortby-other .header:active svg {
+    filter: brightness(125%);
+}
+.charlist .sortby-other>*:nth-child(odd) {
+    background-color: hsl(0, 0%, 92%, 90%);
+}
+.charlist .sortby-other>*:nth-child(even) {
+    background-color: hsla(0, 0%, 98%, 95%);
+}
+.charlist .sortby-other .placeholder {
+    flex: 1;
+}
+.charlist .sortby-other .option {
+    padding: 0.5em 1.25em;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    transition: all 100ms ease-in-out;
+}
+.charlist .sortby-other .option:active {
+    color: #9d9d9d;
+}
+.charlist .sortby-other .option .text {
+    font-weight: 500;
+}
+.charlist .sortby-other .option .icon {
+    color: white;
+    background-color: #313131;
+    position: relative;
+    top: 10%;
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    font-weight: 700;
+    box-shadow: 0 0.4em 0.5em 0 rgba(0, 0, 0, 0.3);
+    margin-right: 0.5em;
+    transition: all 100ms ease-in-out;
+}
+.charlist .sortby-other .option:active .icon {
+    color: #c6c6c6;
+    background-color: #8e8e8e;
+}
+.charlist .sortby-other .option .icon>svg {
+    fill: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    aspect-ratio: 1 / 1;
+    transition: all 100ms ease-in-out;
+}
+.charlist .sortby-other .option:active .icon>svg {
+    fill: #c6c6c6;
+}
+.charlist .sortby-other .option .arrows {
+    position: absolute;
+    right: 1.25em;
+    top: 25%;
+    height: 50%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+}
+.charlist .sortby-other .option .arrows>svg {
+    transition: all 100ms ease-in-out;
+}
+.charlist .sortby-other .option .arrows>svg:first-child {
+    transform: translateX(20%);
+    fill: #313131;
+}
+.charlist .sortby-other .option:active .arrows>svg:first-child {
+    fill: #8e8e8e;
+}
+.charlist .sortby-other .option .arrows>svg:last-child {
+    transform: translateY(10%);
+    fill: #bababa;
+}
+.charlist .sortby-other .option:active .arrows>svg:last-child {
+    fill: #bfbfbf;
+}
+.charlist .sortby-other .option.choose {
+    background-color: #0084bd;
+    color: white;
+}
+.charlist .sortby-other .option.choose:active {
+    color: #7fc1de;
+}
+.charlist .sortby-other .option.choose .icon {
+    color: #0084bd;
+    background-color: white;
+    box-shadow: 0 0.4em 0.5em 0 rgba(255, 255, 255, 0.3);
+}
+.charlist .sortby-other .option.choose:active .icon {
+    color: #419dc6;
+    background-color: #7fc1de;
+}
+.charlist .sortby-other .option.choose .icon>svg {
+    fill: #0084bd;
+}
+.charlist .sortby-other .option.choose:active .icon>svg {
+    fill: #419dc6;
+}
+.charlist .sortby-other .option.choose.descend .arrows>svg:first-child,
+.charlist .sortby-other .option.choose.ascend .arrows>svg:last-child {
+    fill: white;
+}
+.charlist .sortby-other .option.choose.descend .arrows>svg:last-child,
+.charlist .sortby-other .option.choose.ascend .arrows>svg:first-child {
+    fill: #3badcd;
 }

@@ -56,19 +56,40 @@ function NameOverlay({
     )
 }
 
-function StatisticDetail(className: string = "", icon_word: string, word: string, num: number, max: number, to_fixed: number = 0) {
+interface StatisticDetailProps {
+    className?: string;
+    icon_word: string;
+    word: string;
+    num: number;
+    max: number;
+    to_fixed?: number;
+}
+
+function StatisticDetail({
+    className = "",
+    icon_word,
+    word,
+    num,
+    max,
+    to_fixed = 0
+}: StatisticDetailProps) {
+
+    const roundDown = function (num: number, decimal: number) {
+        return Math.floor((num + Number.EPSILON) * Math.pow(10, decimal)) / Math.pow(10, decimal);
+    }
+
     return (
         <div className={"detail-item " + className}>
             <div className='detail-icon'>{icon_word}</div>
             <div className='extend-word'>{word}</div>
             <ProgressBar className={'detail-number'} value={num} max={max}>
-                {num.toFixed(to_fixed)}
+                {roundDown(num, to_fixed).toFixed(to_fixed)}
             </ProgressBar>
         </div>
     )
 }
 
-function WinrateBar(percent: number) {
+function WinrateBar({ percent }: { percent: number }) {
     return (
         <div className='winrate'>
             <label className='winrate-title'>
@@ -105,13 +126,19 @@ function Statistic(s: StatisticProps) {
     return (
         <div className={className} onClick={toggleClose}>
             <div className='rank-title'>Statistic »</div>
-            {StatisticDetail('rati', 'μ', 'Rating', s.rati, 5000, 2)}
-            {StatisticDetail('devi', 'φ', 'Deviation', s.devi, 350, 2)}
-            {StatisticDetail('vola', 'σ', 'Volatility', s.vola, 0.1, 4)}
-            {StatisticDetail('wins', '▲', 'Wins', s.wins, 100)}
-            {StatisticDetail('draw', '▶', 'Draws', s.draw, 100)}
-            {StatisticDetail('loss', '▼', 'Losses', s.loss, 100)}
-            {WinrateBar(winrate)}
+            <StatisticDetail className={'rati'} icon_word={'μ'} word={'Rating'}
+                num={s.rati} max={5000} to_fixed={2}></StatisticDetail>
+            <StatisticDetail className={'devi'} icon_word={'φ'} word={'Deviation'}
+                num={s.devi} max={350} to_fixed={2}></StatisticDetail>
+            <StatisticDetail className={'vola'} icon_word={'σ'} word={'Volatility'}
+                num={s.vola} max={0.1} to_fixed={4}></StatisticDetail>
+            <StatisticDetail className={'wins'} icon_word={'▲'} word={'Wins'}
+                num={s.wins} max={100}></StatisticDetail>
+            <StatisticDetail className={'draw'} icon_word={'▶'} word={'Draws'}
+                num={s.draw} max={100}></StatisticDetail>
+            <StatisticDetail className={'loss'} icon_word={'▼'} word={'Losses'}
+                num={s.loss} max={100}></StatisticDetail>
+            <WinrateBar percent={winrate}></WinrateBar>
         </div>
     )
 }
@@ -150,10 +177,10 @@ function Stat() {
 
     const navigate = useNavigate();
     const { state } = useLocation();
-    const { char_id, filt_prof } = state;
+    const { char_id } = state;
 
     function back() {
-        navigate('/charlist', { state: { filt_prof: filt_prof } });
+        navigate('/charlist');
     }
 
     const [skinImg, setSkinImg] = useState<string | undefined>(undefined);

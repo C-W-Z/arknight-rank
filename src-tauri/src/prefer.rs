@@ -28,8 +28,9 @@ pub struct StatPref {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CharListPref {
-    pub prof_filter_open: bool,
-    // TODO: sort by rati/devi/vola/...
+    pub prof_filter: String,
+    pub sortby: String,
+    pub ascend: bool,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -73,7 +74,9 @@ impl StatPref {
 impl CharListPref {
     pub fn default() -> Self {
         Self {
-            prof_filter_open: (false),
+            prof_filter: ("CLOSE".to_string()),
+            sortby: ("rank".to_string()),
+            ascend: (false),
         }
     }
 }

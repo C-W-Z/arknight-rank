@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export interface Props {
     className?: string;
     backOnClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    homeOnClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     homeBtn?: boolean;
     thirdBtn?: any;
 }
@@ -12,11 +13,12 @@ export interface Props {
 function TopButtons({
     className = "",
     backOnClick = undefined,
+    homeOnClick = undefined,
     homeBtn = false,
     thirdBtn = undefined
 }: Props) {
     const navigate = useNavigate();
-    function homeOnClick() {
+    function goHome() {
         navigate('/');
     }
 
@@ -27,7 +29,7 @@ function TopButtons({
             </button>
             {homeBtn && <div className="vr"></div>}
             {homeBtn &&
-                <button className='home-btn'  onClick={homeOnClick}>
+                <button className='home-btn' onClick={homeOnClick !== undefined ? homeOnClick : goHome}>
                     <MeshSphere></MeshSphere>
                     <HomeIcon></HomeIcon>
                 </button>

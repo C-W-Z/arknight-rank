@@ -204,7 +204,7 @@ function Menu() {
     }
 
     function nagivateCharList() {
-        navigate('/charlist', { state: { filt_prof: "ALL" } });
+        navigate('/charlist');
     }
 
     const SettingFuncRef = useRef<SettingRef>(null);

@@ -1,12 +1,12 @@
 import React, { RefObject, useEffect, useRef, useState } from 'react';
 import './CharList.css'
-import { Star } from '../components/SVGIcons';
+import { AtkIcon, ChevronDown, ChevronUp, Star, Trophy, XMark } from '../components/SVGIcons';
 import TopButtons from '../components/TopButtons';
 import ProgressCircle from '../components/ProgressCircle';
 import { HorizontalScroll, HScrollRef } from '../components/DraggableScroll';
 import { JSX } from 'react/jsx-runtime';
 import useGlobalContext from '../components/GlobalContext';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface CharCardProps {
     char_id: string;
@@ -17,7 +17,6 @@ interface CharCardProps {
     sliderFuncRef: RefObject<HScrollRef>;
     portraitId: string;
     prof: string;
-    filtProf: string;
 }
 
 function CharCard({
@@ -29,8 +28,8 @@ function CharCard({
     sliderFuncRef,
     portraitId,
     prof,
-    filtProf,
 }: CharCardProps) {
+    const globalContext = useGlobalContext();
     const navigate = useNavigate();
 
     const elite = 1;
@@ -57,12 +56,8 @@ function CharCard({
             return;
         e.stopPropagation();
         sliderFuncRef.current?.setMouseDown(false);
-        navigate('/stat', {
-            state: {
-                char_id: char_id,
-                filt_prof: filtProf
-            }
-        });
+        globalContext?.uploadCharListPref();
+        navigate('/stat', { state: { char_id: char_id, } });
     }
 
     return (
@@ -100,20 +95,198 @@ function CharList() {
 
     const navigate = useNavigate();
     function back() {
+        globalContext?.uploadCharListPref();
         navigate('/');
     }
-    const { state } = useLocation();
-    const { filt_prof } = state;
 
     const HScrollFuncRef = useRef<HScrollRef>(null);
 
     const [list, setList] = useState<JSX.Element[]>([]);
 
     let newClasses = Array(9).fill("filter");
-    // newClasses[0] += " choose";
-    function initNewClasses() {
-        console.log("execute");
-        switch (filt_prof) {
+    newClasses[0] += " choose";
+    const [chooseClasses, setChooseClasses] = useState<string[]>(newClasses);
+    const [filtProf, setFiltProf] = useState<string>("ALL");
+    function filtTo(prof: string, i: number) {
+        if (prof == "ALL") {
+            return () => {
+                if (filtProf == "ALL") {
+                    setProfFilterClose(true);
+                    globalContext?.setCharListPref("CLOSE");
+                } else {
+                    setFiltProf(prof);
+                    newClasses = Array(9).fill("filter");
+                    newClasses[i] += " choose";
+                    setChooseClasses(newClasses);
+                    HScrollFuncRef.current?.JumpToLeft();
+                    globalContext?.setCharListPref(prof);
+                }
+            }
+        }
+        return () => {
+            if (filtProf == prof)
+                return;
+            setFiltProf(prof);
+            newClasses = Array(9).fill("filter");
+            newClasses[i] += " choose";
+            setChooseClasses(newClasses);
+            HScrollFuncRef.current?.JumpToLeft();
+            globalContext?.setCharListPref(prof);
+        };
+    }
+
+    const [otherSort, setOtherSort] = useState('Rating');
+    const [sortBy, setSortBy] = useState<string>('rank');
+    const [chooseSort, setChooseSort] = useState<string[]>([' choose descend', '', '']);
+    const [moreSortClose, setMoreSortClose] = useState(true);
+    const [chooseSortOther, setChooseSortOther] = useState<string[]>(Array(8).fill(''));
+
+    function sortTo(sortby: string, i: number) {
+        return () => {
+            if (sortBy == sortby) {
+                newClasses = ['', '', ''];
+                if (chooseSort[i].endsWith('ascend')) {
+                    newClasses[i] = ' choose descend';
+                    globalContext?.setCharListPref(undefined, i < 2 ? sortby : otherSort, false);
+                } else {
+                    newClasses[i] = ' choose ascend';
+                    globalContext?.setCharListPref(undefined, i < 2 ? sortby : otherSort, true);
+                }
+                setChooseSort(newClasses);
+            } else {
+                setSortBy(sortby);
+                newClasses = ['', '', ''];
+                newClasses[i] = ' choose descend';
+                setChooseSort(newClasses);
+                globalContext?.setCharListPref(undefined, i < 2 ? sortby : otherSort, false);
+            }
+        }
+    }
+
+    function SortToOther(sortby: string, i: number) {
+        return () => {
+            if (otherSort == sortby) {
+                newClasses = Array(8).fill('');
+                if (chooseSortOther[i].endsWith('ascend')) {
+                    newClasses[i] = ' choose descend';
+                    globalContext?.setCharListPref(undefined, sortby, false);
+                } else {
+                    newClasses[i] = ' choose ascend';
+                    globalContext?.setCharListPref(undefined, sortby, true);
+                }
+                setChooseSortOther(newClasses);
+                setSortBy('other');
+                setChooseSort(['', '', newClasses[i]]);
+            } else {
+                setOtherSort(sortby);
+                newClasses = Array(8).fill('');
+                newClasses[i] = ' choose descend';
+                setChooseSortOther(newClasses);
+                setSortBy('other');
+                setChooseSort(['', '', ' choose descend']);
+                globalContext?.setCharListPref(undefined, sortby, false);
+            }
+        }
+    }
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (loading || globalContext === undefined || globalContext.loading)
+            return;
+
+        const total_rank = globalContext.vars.char2rank[globalContext.vars.ranked_chars[globalContext.vars.ranked_chars.length - 1].id];
+
+        const charData = globalContext.data.chars;
+
+        let filtChars: any[];
+        if (filtProf == "ALL")
+            filtChars = Array.from(globalContext.vars.ranked_chars);
+        else
+            filtChars = globalContext.vars.ranked_chars.filter((c: any) => charData[c.id].prof == filtProf);
+
+        if (sortBy == 'rank' && chooseSort[0].endsWith('ascend'))
+            filtChars.reverse();
+        else if (sortBy == 'rarity') {
+            const ascend = chooseSort[1].endsWith('ascend') ? 1 : -1;
+            filtChars.sort((a, b) => ascend * (charData[a.id].rarity - charData[b.id].rarity));
+        }
+        else if (sortBy == 'other') {
+            const ascend = chooseSort[2].endsWith('ascend') ? 1 : -1;
+            switch (otherSort) {
+                case 'Rating':
+                    filtChars.sort((a, b) => ascend * (a.rank.rati - b.rank.rati));
+                    break;
+                case 'Deviation':
+                    filtChars.sort((a, b) => ascend * (a.rank.devi - b.rank.devi));
+                    break;
+                case 'Volatility':
+                    filtChars.sort((a, b) => ascend * (a.rank.vola - b.rank.vola));
+                    break;
+                case 'Wins':
+                    filtChars.sort((a, b) => ascend * (a.hist.wins - b.hist.wins));
+                    break;
+                case 'Draws':
+                    filtChars.sort((a, b) => ascend * (a.hist.draw - b.hist.draw));
+                    break;
+                case 'Losses':
+                    filtChars.sort((a, b) => ascend * (a.hist.loss - b.hist.loss));
+                    break;
+                case 'Battles':
+                    filtChars.sort((a, b) => ascend * (a.hist.wins + a.hist.draw + a.hist.loss - b.hist.wins - b.hist.draw - b.hist.loss));
+                    break;
+                case 'Winrate':
+                    filtChars.sort((a, b) => ascend * (a.hist.wins / (a.hist.wins + a.hist.draw + a.hist.loss) - b.hist.wins / (b.hist.wins + b.hist.draw + b.hist.loss)));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        const cards = [];
+        for (let i = 0; i < filtChars.length; i++) {
+            const char_id = filtChars[i].id;
+            const rank = globalContext.vars.char2rank[char_id];
+            const charInfo = charData[char_id];
+            const skin_id = globalContext.vars.prefs.stat_pref[char_id].skin_id;
+            const portrait_id = globalContext.data.skins[skin_id].portrait_id;
+
+            cards.push(
+                <CharCard key={char_id}
+                    sliderFuncRef={HScrollFuncRef}
+                    char_id={char_id}
+                    name={charInfo.name}
+                    rarity={charInfo.rarity + 1}
+                    prof={charInfo.prof}
+                    portraitId={portrait_id}
+                    rank={rank}
+                    total_rank={total_rank}
+                ></CharCard>
+            );
+        }
+
+        const columns = [];
+        for (let i = 0; i < cards.length; i += 2) {
+            columns.push(
+                <div key={i} className="column">
+                    {cards[i]}
+                    {i + 1 < cards.length && cards[i + 1]}
+                </div>
+            );
+        }
+        setList(columns);
+    }, [loading, filtProf, chooseSort]);
+
+    const [profFilterClose, setProfFilterClose] = useState(true);
+
+    useEffect(() => {
+        if (globalContext === undefined || globalContext.loading)
+            return;
+        const pref = globalContext.vars.prefs.char_list_pref;
+        console.log(pref);
+
+        newClasses = Array(9).fill('filter');
+        switch (pref.prof_filter) {
             case "ALL":
                 newClasses[0] += " choose";
                 break;
@@ -146,103 +319,73 @@ function CharList() {
                 newClasses[0] += " choose";
                 break;
         }
-    }
-    initNewClasses();
-    const [chooseClasses, setChooseClasses] = useState<string[]>(newClasses);
-    const [filtProf, setFiltProf] = useState<string>(filt_prof);
-    function filtTo(prof: string, i: number) {
-        if (prof == "ALL") {
-            return () => {
-                if (filtProf == "ALL") {
-                    setProfFilterClose(true);
-                    globalContext?.setCharListPref(false);
-                } else {
-                    setFiltProf(prof);
-                    newClasses = Array(9).fill("filter");
-                    newClasses[i] += " choose";
-                    setChooseClasses(newClasses);
-                    HScrollFuncRef.current?.JumpToLeft();
-                }
+        setChooseClasses(newClasses);
+        if (pref.prof_filter == "CLOSE") {
+            setProfFilterClose(true);
+            setFiltProf("ALL");
+        } else {
+            setProfFilterClose(false);
+            setFiltProf(pref.prof_filter);
+        }
+
+        const selectClass = pref.ascend ? " choose ascend" : " choose descend";
+        if (pref.sortby == 'rank') {
+            setSortBy(pref.sortby);
+            setChooseSort([selectClass, '', '']);
+        } else if (pref.sortby == 'rarity') {
+            setSortBy(pref.sortby);
+            setChooseSort(['', selectClass, '']);
+        } else {
+            setSortBy('other');
+            setChooseSort(['', '', selectClass]);
+            setOtherSort(pref.sortby);
+            newClasses = Array(8).fill('');
+            switch (pref.sortby) {
+                case 'Rating':
+                    newClasses[0] = selectClass;
+                    break;
+                case 'Deviation':
+                    newClasses[1] = selectClass;
+                    break;
+                case 'Volatility':
+                    newClasses[2] = selectClass;
+                    break;
+                case 'Wins':
+                    newClasses[3] = selectClass;
+                    break;
+                case 'Draws':
+                    newClasses[4] = selectClass;
+                    break;
+                case 'Losses':
+                    newClasses[5] = selectClass;
+                    break;
+                case 'Battles':
+                    newClasses[6] = selectClass;
+                    break;
+                case 'Winrate':
+                    newClasses[7] = selectClass;
+                    break;
+                default:
+                    break;
             }
+            setChooseSortOther(newClasses);
         }
-        return () => {
-            if (filtProf == prof)
-                return;
-            setFiltProf(prof);
-            newClasses = Array(9).fill("filter");
-            newClasses[i] += " choose";
-            setChooseClasses(newClasses);
-            HScrollFuncRef.current?.JumpToLeft();
-        };
-    }
-
-    useEffect(() => {
-        if (globalContext === undefined || globalContext.loading)
-            return;
-
-        const total_rank = globalContext.vars.char2rank[globalContext.vars.ranked_chars[globalContext.vars.ranked_chars.length - 1].id];
-        console.log(total_rank);
-        let filtChars;
-        if (filtProf == "ALL")
-            filtChars = globalContext.vars.ranked_chars;
-        else
-            filtChars = globalContext.vars.ranked_chars.filter((c: any) => globalContext.data.chars[c.id].prof == filtProf);
-
-        let cards = [];
-        for (let i = 0; i < filtChars.length; i++) {
-            const char_id = filtChars[i].id;
-            const rank = globalContext.vars.char2rank[char_id];
-            const charInfo = globalContext.data.chars[char_id];
-            const skin_id = globalContext.vars.prefs.stat_pref[char_id].skin_id;
-            const portrait_id = globalContext.data.skins[skin_id].portrait_id;
-
-            cards.push(
-                <CharCard key={char_id}
-                    sliderFuncRef={HScrollFuncRef}
-                    char_id={char_id}
-                    name={charInfo.name}
-                    rarity={charInfo.rarity + 1}
-                    prof={charInfo.prof}
-                    portraitId={portrait_id}
-                    rank={rank}
-                    total_rank={total_rank}
-                    filtProf={filtProf}
-                ></CharCard>
-            );
-        }
-
-        let columns = [];
-        for (let i = 0; i < cards.length; i += 2) {
-            columns.push(
-                <div key={i} className="column">
-                    {cards[i]}
-                    {i + 1 < cards.length && cards[i + 1]}
-                </div>
-            );
-        }
-        setList(columns);
-    }, [globalContext?.loading, filtProf]);
-
-    const [profFilterClose, setProfFilterClose] = useState(true);
-
-    useEffect(() => {
-        if (globalContext === undefined || globalContext.loading)
-            return;
-        setProfFilterClose(!globalContext.vars.prefs.char_list_pref.prof_filter_open);
-        console.log(globalContext.vars.prefs.char_list_pref.prof_filter_open);
+        setLoading(false);
     }, [globalContext?.loading]);
 
     function openProfFilter() {
         setProfFilterClose(false);
-        globalContext?.setCharListPref(true);
+        globalContext?.setCharListPref("ALL");
     }
     const profFilterBtnClass = profFilterClose ? "btn-class-filter" : "btn-class-filter close";
     const profFilterClass = profFilterClose ? "class-filter close" : "class-filter";
 
+    const moreSortClass = moreSortClose ? " close" : "";
+
     if (globalContext === undefined || globalContext.loading) {
         return (
             <div className='charlist'>
-                <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
+                <TopButtons backOnClick={back} homeBtn={true} homeOnClick={back}></TopButtons>
             </div>
         )
     }
@@ -250,8 +393,19 @@ function CharList() {
     return (
         <div className='charlist'>
             <button className={profFilterBtnClass} onClick={openProfFilter}>职业☰</button>
-            <div className={"in-shadow" + (profFilterClose ? "" : " shrink")}></div>
-            <TopButtons backOnClick={back} homeBtn={true}></TopButtons>
+            <div className="sortby">
+                <button className={"rank" + chooseSort[0]} onClick={sortTo('rank', 0)}>
+                    <div className='text'>Rank</div>
+                </button>
+                <button className={"rarity" + chooseSort[1]} onClick={sortTo('rarity', 1)}>
+                    <div className='text'>Rarity</div>
+                </button>
+                <button className={"other" + chooseSort[2]} onClick={sortTo('other', 2)}>
+                    <div className='text'>{otherSort}</div>
+                </button>
+                <button className="more" onClick={() => setMoreSortClose(false)}>•••</button>
+            </div>
+            <div className="in-shadow"></div>
             <div className="logo-rhodes"></div>
             <HorizontalScroll alignDelay={100} className="list-area" ref={HScrollFuncRef}>
                 <div className="list-grid">
@@ -288,6 +442,80 @@ function CharList() {
                     <div className="icon SPECIAL"></div>
                 </button>
             </div>
+            <div className={"more-sort-panel" + moreSortClass} onClick={() => setMoreSortClose(true)}></div>
+            <div className={"sortby-other" + moreSortClass}>
+                <button className="header" onClick={() => setMoreSortClose(true)}>
+                    <div className='close-btn'>
+                        <XMark></XMark>
+                    </div>
+                </button>
+                <button className={'option' + chooseSortOther[0]} onClick={SortToOther('Rating', 0)}>
+                    <div className="icon">μ</div>
+                    <div className="text">Rating</div>
+                    <div className="arrows">
+                        <ChevronDown></ChevronDown>
+                        <ChevronUp></ChevronUp>
+                    </div>
+                </button>
+                <button className={'option' + chooseSortOther[1]} onClick={SortToOther('Deviation', 1)}>
+                    <div className="icon">φ</div>
+                    <div className="text">Deviation</div>
+                    <div className="arrows">
+                        <ChevronDown></ChevronDown>
+                        <ChevronUp></ChevronUp>
+                    </div>
+                </button>
+                <button className={'option' + chooseSortOther[2]} onClick={SortToOther('Volatility', 2)}>
+                    <div className="icon">σ</div>
+                    <div className="text">Volatility</div>
+                    <div className="arrows">
+                        <ChevronDown></ChevronDown>
+                        <ChevronUp></ChevronUp>
+                    </div>
+                </button>
+                <button className={'option' + chooseSortOther[3]} onClick={SortToOther('Wins', 3)}>
+                    <div className="icon">▲</div>
+                    <div className="text">Wins</div>
+                    <div className="arrows">
+                        <ChevronDown></ChevronDown>
+                        <ChevronUp></ChevronUp>
+                    </div>
+                </button>
+                <button className={'option' + chooseSortOther[4]} onClick={SortToOther('Draws', 4)}>
+                    <div className="icon">▶</div>
+                    <div className="text">Draws</div>
+                    <div className="arrows">
+                        <ChevronDown></ChevronDown>
+                        <ChevronUp></ChevronUp>
+                    </div>
+                </button>
+                <button className={'option' + chooseSortOther[5]} onClick={SortToOther('Losses', 5)}>
+                    <div className="icon">▼</div>
+                    <div className="text">Losses</div>
+                    <div className="arrows">
+                        <ChevronDown></ChevronDown>
+                        <ChevronUp></ChevronUp>
+                    </div>
+                </button>
+                <button className={'option' + chooseSortOther[6]} onClick={SortToOther('Battles', 6)}>
+                    <div className="icon"><AtkIcon></AtkIcon></div>
+                    <div className="text">Battles</div>
+                    <div className="arrows">
+                        <ChevronDown></ChevronDown>
+                        <ChevronUp></ChevronUp>
+                    </div>
+                </button>
+                <button className={'option' + chooseSortOther[7]} onClick={SortToOther('Winrate', 7)}>
+                    <div className="icon"><Trophy></Trophy></div>
+                    <div className="text">Winrate</div>
+                    <div className="arrows">
+                        <ChevronDown></ChevronDown>
+                        <ChevronUp></ChevronUp>
+                    </div>
+                </button>
+                <div className="placeholder"></div>
+            </div>
+            <TopButtons backOnClick={back} homeBtn={true} homeOnClick={back}></TopButtons>
         </div>
     )
 }
