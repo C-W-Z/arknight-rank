@@ -100,6 +100,31 @@ function CharCard({
     )
 }
 
+interface SortOptionProps {
+    className?: string;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    icon?: any;
+    text?: string;
+}
+
+function SortOption({
+    className = '',
+    onClick = undefined,
+    icon = undefined,
+    text = ''
+}: SortOptionProps) {
+    return (
+        <button className={'option ' + className} onClick={onClick}>
+            <div className="icon">{icon}</div>
+            <div className="text">{text}</div>
+            <div className="arrows">
+                <ChevronDown></ChevronDown>
+                <ChevronUp></ChevronUp>
+            </div>
+        </button>
+    )
+}
+
 function CharList() {
     const globalContext = useGlobalContext();
 
@@ -169,6 +194,13 @@ function CharList() {
                 newClasses[i] = ' choose descend';
                 setChooseSort(newClasses);
                 globalContext?.setCharListPref(undefined, i < 2 ? sortby : otherSort, false);
+                if (i < 2) {
+                    chooseSortOther.forEach((s, i) => {
+                        if (s.endsWith('end'))
+                            chooseSortOther[i] = ' choose ascend';
+                    });
+                    setChooseSortOther(chooseSortOther);
+                }
             }
         }
     }
@@ -443,6 +475,8 @@ function CharList() {
     if (globalContext === undefined || globalContext.loading) {
         return (
             <div className='charlist'>
+                <div className="in-shadow"></div>
+                <div className="logo-rhodes"></div>
                 <TopButtons backOnClick={back} homeBtn={true} homeOnClick={back}></TopButtons>
             </div>
         )
@@ -503,74 +537,24 @@ function CharList() {
             <div className={"more-sort-panel" + moreSortClass} onClick={() => setMoreSortClose(true)}></div>
             <div className={"sortby-other" + moreSortClass}>
                 <button className="header" onClick={() => setMoreSortClose(true)}>
-                    <div className='close-btn'>
-                        <XMark></XMark>
-                    </div>
+                    <XMark></XMark>
                 </button>
-                <button className={'option' + chooseSortOther[0]} onClick={SortToOther('Rating', 0)}>
-                    <div className="icon">μ</div>
-                    <div className="text">Rating</div>
-                    <div className="arrows">
-                        <ChevronDown></ChevronDown>
-                        <ChevronUp></ChevronUp>
-                    </div>
-                </button>
-                <button className={'option' + chooseSortOther[1]} onClick={SortToOther('Deviation', 1)}>
-                    <div className="icon">φ</div>
-                    <div className="text">Deviation</div>
-                    <div className="arrows">
-                        <ChevronDown></ChevronDown>
-                        <ChevronUp></ChevronUp>
-                    </div>
-                </button>
-                <button className={'option' + chooseSortOther[2]} onClick={SortToOther('Volatility', 2)}>
-                    <div className="icon">σ</div>
-                    <div className="text">Volatility</div>
-                    <div className="arrows">
-                        <ChevronDown></ChevronDown>
-                        <ChevronUp></ChevronUp>
-                    </div>
-                </button>
-                <button className={'option' + chooseSortOther[3]} onClick={SortToOther('Wins', 3)}>
-                    <div className="icon">▲</div>
-                    <div className="text">Wins</div>
-                    <div className="arrows">
-                        <ChevronDown></ChevronDown>
-                        <ChevronUp></ChevronUp>
-                    </div>
-                </button>
-                <button className={'option' + chooseSortOther[4]} onClick={SortToOther('Draws', 4)}>
-                    <div className="icon">▶</div>
-                    <div className="text">Draws</div>
-                    <div className="arrows">
-                        <ChevronDown></ChevronDown>
-                        <ChevronUp></ChevronUp>
-                    </div>
-                </button>
-                <button className={'option' + chooseSortOther[5]} onClick={SortToOther('Losses', 5)}>
-                    <div className="icon">▼</div>
-                    <div className="text">Losses</div>
-                    <div className="arrows">
-                        <ChevronDown></ChevronDown>
-                        <ChevronUp></ChevronUp>
-                    </div>
-                </button>
-                <button className={'option' + chooseSortOther[6]} onClick={SortToOther('Battles', 6)}>
-                    <div className="icon"><AtkIcon></AtkIcon></div>
-                    <div className="text">Battles</div>
-                    <div className="arrows">
-                        <ChevronDown></ChevronDown>
-                        <ChevronUp></ChevronUp>
-                    </div>
-                </button>
-                <button className={'option' + chooseSortOther[7]} onClick={SortToOther('Winrate', 7)}>
-                    <div className="icon"><Trophy></Trophy></div>
-                    <div className="text">Winrate</div>
-                    <div className="arrows">
-                        <ChevronDown></ChevronDown>
-                        <ChevronUp></ChevronUp>
-                    </div>
-                </button>
+                <SortOption className={chooseSortOther[0]} onClick={SortToOther('Rating', 0)}
+                    icon={'μ'} text={'Rating'}></SortOption>
+                <SortOption className={chooseSortOther[1]} onClick={SortToOther('Deviation', 1)}
+                    icon={'φ'} text={'Deviation'}></SortOption>
+                <SortOption className={chooseSortOther[2]} onClick={SortToOther('Volatility', 2)}
+                    icon={'σ'} text={'Volatility'}></SortOption>
+                <SortOption className={chooseSortOther[3]} onClick={SortToOther('Wins', 3)}
+                    icon={'▲'} text={'Wins'}></SortOption>
+                <SortOption className={chooseSortOther[4]} onClick={SortToOther('Draws', 4)}
+                    icon={'▶'} text={'Draws'}></SortOption>
+                <SortOption className={chooseSortOther[5]} onClick={SortToOther('Losses', 5)}
+                    icon={'▼'} text={'Losses'}></SortOption>
+                <SortOption className={chooseSortOther[6]} onClick={SortToOther('Battles', 6)}
+                    icon={<AtkIcon></AtkIcon>} text={'Battles'}></SortOption>
+                <SortOption className={chooseSortOther[7]} onClick={SortToOther('Winrate', 7)}
+                    icon={<Trophy></Trophy>} text={'Winrate'}></SortOption>
                 <div className="placeholder"></div>
             </div>
             <TopButtons backOnClick={back} homeBtn={true} homeOnClick={back}></TopButtons>
