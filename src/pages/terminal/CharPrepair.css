@@ -79,7 +79,7 @@
     bottom: 0;
     right: 0;
     width: 80%;
-    height: 35%;
+    height: 15%;
 }
 .char-prepair .bottom-area .footer {
     position: absolute;
@@ -95,6 +95,10 @@
     height: 100%;
     background-color: #a40a1a;
     overflow: hidden;
+    transition: all 100ms ease-in-out;
+}
+.char-prepair .bottom-area .footer .start:active {
+    filter: brightness(80%);
 }
 .char-prepair .bottom-area .footer .start .cc-icon {
     position: absolute;
@@ -118,7 +122,7 @@
     position: fixed;
     right: 0;
     top: 12.5%;
-    height: 50%;
+    height: 70%;
     width: 77.5%;
     border-radius: 6px;
     overflow: hidden;
@@ -130,8 +134,40 @@
     top: 0;
     height: 100%;
     width: 10%;
-    background-color: rgba(0, 0, 0, 0.3);;
+    background-color: rgba(0, 0, 0, 0.3);
 }
+.char-prepair .select-area .header>div {
+    position: relative;
+    top: 2.5%;
+    height: 95%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+}
+.char-prepair .select-area .header>div .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1em;
+    position: relative;
+}
+.char-prepair .select-area .header>div .box.text {
+    font-size: 1.25rem;
+}
+.char-prepair .select-area .header>div .box>.text {
+    position: absolute;
+    top: 0;
+    font-size: 0.75rem;
+    margin-bottom: 0.1rem;
+}
+.char-prepair .select-area .header>div .select-all {
+    height: 35%;
+    aspect-ratio: 1 / 1;
+    border: solid 0.2rem white;
+}
+
 .char-prepair .select-area .select-box {
     position: absolute;
     left: 10%;
@@ -141,16 +177,14 @@
 }
 .char-prepair .select-area .select-box .h-scroll-child {
     /* padding: 1% 0.5%; */
-    padding-left: 0.5em;
-    padding-right: 3em;
+    padding-left: 1%;
+    padding-right: 6%;
     height: 95%;
     display: grid;
-    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 2fr;
     grid-template-columns: 1fr;
 }
-.char-prepair .select-box .prof-options,
-.char-prepair .select-box .star-options,
-.char-prepair .select-box .camp-options {
+.char-prepair .select-box .options {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(40, 1fr);
@@ -165,45 +199,80 @@
     position: relative;
 }
 .char-prepair .select-box .option>.btn {
-    position: relative;
+    position: absolute;
     top: 15%;
     left: 15%;
     height: 70%;
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
-    border: solid 0.2rem white;
-    border-radius: 5px;
     filter: drop-shadow( 0px 0.25em 0.1em rgba(0, 0, 0, 0.5));
     background-size: contain;
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 100ms ease-in-out;
 }
+.char-prepair .select-box .option:active>.btn {
+    filter: drop-shadow( 0px 0.25em 0.1em rgba(0, 0, 0, 0.5)) brightness(80%);
+}
+.char-prepair .select-box .option:not(.hex)>.btn {
+    border: solid 0.2rem white;
+    border-radius: 5px;
+}
+.char-prepair .select-box .option.hex>.btn::before {
+    content: '';
+    position: absolute;
+    top: -7.5%;
+    left: -7.5%;
+    aspect-ratio: 1 / 1;
+    height: 115%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><g fill="white"><path d="M256,37.303l198.333,109.919v217.555L256,474.697L57.667,364.778V147.222L256,37.303 M256,0 L25.045,128v256L256,512l230.955-128V128L256,0z"/></g></svg>');
+}
+.char-prepair .select-box .option.hex.lock>.btn::before {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><g fill="%2385555f"><path d="M256,37.303l198.333,109.919v217.555L256,474.697L57.667,364.778V147.222L256,37.303 M256,0 L25.045,128v256L256,512l230.955-128V128L256,0z"/></g></svg>');
+}
+
 .char-prepair .select-box .option>.btn::after {
     font-family: Novecento;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     line-height: 1em;
     text-align: center;
+    color: white;
 }
-.char-prepair .select-box .option>.btn.r1::after {
-    content: '1';
+.char-prepair .select-box .option.lock>.btn::after {
+    color: #85555f;
 }
-.char-prepair .select-box .option>.btn.r2::after {
+.char-prepair .select-box .option>.btn.rarity.r1::after {
+    content: '1★';
+}
+.char-prepair .select-box .option>.btn.rarity.r2::after {
+    content: '2★';
+}
+.char-prepair .select-box .option>.btn.rarity.r3::after {
+    content: '3★';
+}
+.char-prepair .select-box .option>.btn.rarity.r4::after {
+    content: '4★';
+}
+.char-prepair .select-box .option>.btn.rarity.r5::after {
+    content: '5★';
+}
+.char-prepair .select-box .option>.btn.rarity.r6::after {
+    content: '6★';
+}
+.char-prepair .select-box .option>.btn.num.n2::after {
     content: '2';
 }
-.char-prepair .select-box .option>.btn.r3::after {
+.char-prepair .select-box .option>.btn.num.n3::after {
     content: '3';
 }
-.char-prepair .select-box .option>.btn.r4::after {
+.char-prepair .select-box .option>.btn.num.n4::after {
     content: '4';
 }
-.char-prepair .select-box .option>.btn.r5::after {
+.char-prepair .select-box .option>.btn.num.n5::after {
     content: '5';
-}
-.char-prepair .select-box .option>.btn.r6::after {
-    content: '6';
 }
 
 .char-prepair .select-box .option.vline::before {
@@ -212,7 +281,7 @@
     left: 50%;
     bottom: 0;
     transform: translate(-50%, 50%);
-    height: 40%;
+    height: 35%;
     width: 0.2rem;
     background-color: white;
     z-index: -1;
@@ -223,18 +292,24 @@
     right: 0;
     top: 50%;
     transform: translate(50%, -50%);
-    width: 40%;
+    width: 35%;
     height: 0.2rem;
     background-color: white;
     z-index: -1;
+}
+.char-prepair .select-box .option.unlock.vline::before,
+.char-prepair .select-box .option.unlock.hline::after,
+.char-prepair .select-box .option.lock.vline::before,
+.char-prepair .select-box .option.lock.hline::after {
+    background-color: #85555f;
 }
 
 .char-prepair .option .bg {
     position: absolute;
     left: 7.5%;
-    top: 15%;
+    top: 20%;
     width: 85%;
-    height: 70%;
+    height: 62.5%;
     box-sizing: border-box;
     background-color: #00a7e9;
     border-left: solid 0.2rem white;
@@ -246,7 +321,7 @@
 
 .char-prepair .option .circle-checkmark {
     position: absolute;
-    right: 5%;
+    right: 7.5%;
     bottom: 10%;
     width: 20%;
     height: 20%;

@@ -176,7 +176,7 @@ function Battle() {
         globalContext?.setCharBattlePref(playerCount, choosedDraw, unchoosedDraw);
         if (battleNum > 0)
             globalContext?.endBattleChar();
-        navigate('/');
+        navigate('/terminal/charprepair');
     }
 
     const [candidates, setCandidates] = useState<JSX.Element[]>([]);
