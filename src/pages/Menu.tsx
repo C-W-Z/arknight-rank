@@ -199,8 +199,8 @@ function Menu() {
     //     DragBGFuncRef.current?.openSetting();
     // }
 
-    function nagivateBattle() {
-        navigate('/battle', { state: { playerCount: 2 } });
+    function nagivateTerminal() {
+        navigate('/terminal');
     }
 
     function nagivateCharList() {
@@ -228,7 +228,7 @@ function Menu() {
                         </div>
 
                         <div className="btns btn1s">
-                            <button className="battle-btn" onClick={nagivateBattle}>
+                            <button className="battle-btn" onClick={nagivateTerminal}>
                                 <div className="battle-icon"></div>
                                 <div className="battle-icon2"></div>
                                 <div className="btn-title">终端</div>

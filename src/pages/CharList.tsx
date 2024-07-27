@@ -19,6 +19,7 @@ interface CharCardProps {
     prof: string;
     showAttrIcon?: any;
     showAttrText?: any;
+    showAttrDiffColor?: boolean;
 }
 
 function CharCard({
@@ -32,6 +33,7 @@ function CharCard({
     prof,
     showAttrIcon = undefined,
     showAttrText = undefined,
+    showAttrDiffColor,
 }: CharCardProps) {
     const globalContext = useGlobalContext();
     const navigate = useNavigate();
@@ -77,11 +79,11 @@ function CharCard({
             <div className="bottom-left"></div>
             <div className="bottom">
                 <div className={"banner " + "b" + rarity}></div>
-                {elite > 0 && <div className={"elite " + "e" + elite}></div>}
+                {elite > 0 && <div className={"elite-icon " + "e" + elite}></div>}
                 {potential > 1 &&
                     <div className="potential-bg">
                         <div className="potential-square"></div>
-                        <div className={"potential " + "p" + potential}></div>
+                        <div className={"potential-icon " + "p" + potential}></div>
                     </div>
                 }
                 <ProgressCircle value={1 - (rank - 1) / (total_rank - 1)} size={"5.2em"}>
@@ -90,7 +92,7 @@ function CharCard({
                 </ProgressCircle>
                 <div className="name">{name}</div>
                 {showAttrIcon !== undefined && showAttrText !== undefined &&
-                    <div className="show-attr">
+                    <div className={"show-attr" + (showAttrDiffColor ? ' diff-color': '')}>
                         <div className="icon">{showAttrIcon}</div>
                         <div className="text">{showAttrText}</div>
                     </div>
@@ -301,6 +303,7 @@ function CharList() {
 
             let showAttrIcon: any = undefined;
             let showAttrText: any = undefined;
+            let showAttrDiffColor: boolean = false;
             if (showAttr !== undefined)
                 switch (showAttr) {
                     case 'Rating':
@@ -334,6 +337,7 @@ function CharList() {
                     case 'Winrate':
                         showAttrIcon = <Trophy></Trophy>;
                         showAttrText = (100 * c.hist.wins / (c.hist.wins + c.hist.draw + c.hist.loss)).toFixed(0) + '%';
+                        showAttrDiffColor = true;
                         break;
                     default:
                         break;
@@ -351,6 +355,7 @@ function CharList() {
                     total_rank={total_rank}
                     showAttrIcon={showAttrIcon}
                     showAttrText={showAttrText}
+                    showAttrDiffColor={showAttrDiffColor}
                 ></CharCard>
             );
         }
@@ -507,31 +512,31 @@ function CharList() {
             </HorizontalScroll>
             <div className={profFilterClass}>
                 <button className={"all " + chooseClasses[0]} onClick={filtTo("ALL", 0)}>
-                    <div className="icon all">{chooseClasses[0].endsWith("choose") ? "收起" : "全部"}</div>
+                    <div className="class-img all">{chooseClasses[0].endsWith("choose") ? "收起" : "全部"}</div>
                 </button>
                 <button className={chooseClasses[1]} onClick={filtTo("PIONEER", 1)}>
-                    <div className="icon PIONEER"></div>
+                    <div className="class-img PIONEER"></div>
                 </button>
                 <button className={chooseClasses[2]} onClick={filtTo("WARRIOR", 2)}>
-                    <div className="icon WARRIOR"></div>
+                    <div className="class-img WARRIOR"></div>
                 </button>
                 <button className={chooseClasses[3]} onClick={filtTo("TANK", 3)}>
-                    <div className="icon TANK"></div>
+                    <div className="class-img TANK"></div>
                 </button>
                 <button className={chooseClasses[4]} onClick={filtTo("SNIPER", 4)}>
-                    <div className="icon SNIPER"></div>
+                    <div className="class-img SNIPER"></div>
                 </button>
                 <button className={chooseClasses[5]} onClick={filtTo("CASTER", 5)}>
-                    <div className="icon CASTER"></div>
+                    <div className="class-img CASTER"></div>
                 </button>
                 <button className={chooseClasses[6]} onClick={filtTo("MEDIC", 6)}>
-                    <div className="icon MEDIC"></div>
+                    <div className="class-img MEDIC"></div>
                 </button>
                 <button className={chooseClasses[7]} onClick={filtTo("SUPPORT", 7)}>
-                    <div className="icon SUPPORT"></div>
+                    <div className="class-img SUPPORT"></div>
                 </button>
                 <button className={chooseClasses[8]} onClick={filtTo("SPECIAL", 8)}>
-                    <div className="icon SPECIAL"></div>
+                    <div className="class-img SPECIAL"></div>
                 </button>
             </div>
             <div className={"more-sort-panel" + moreSortClass} onClick={() => setMoreSortClose(true)}></div>

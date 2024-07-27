@@ -35,10 +35,10 @@ function Candidate({
             <div className="in-shadow"></div>
             <div className="header">OPERATOR</div>
             <div className="info">
-                <div className={"prof-img " + prof}></div>
+                <div className={"class-img " + prof}></div>
                 <Star num={rarity} color={'#ffffff'}></Star>
                 <AutoSizeText className='name'>{name}</AutoSizeText>
-                <div className={"elite " + "e" + elite}></div>
+                <div className={"elite-icon " + "e" + elite}></div>
             </div>
             <div className="bottom-text">
                 <div className="text">CURRENT   SELECTION</div>
@@ -174,7 +174,8 @@ function Battle() {
 
     function ret() {
         globalContext?.setCharBattlePref(playerCount, choosedDraw, unchoosedDraw);
-        globalContext?.endBattleChar();
+        if (battleNum > 0)
+            globalContext?.endBattleChar();
         navigate('/');
     }
 

@@ -114,7 +114,7 @@
     transition: bottom linear var(--transiton-time);
 }
 
-.battle .candidate .info .prof-img {
+.battle .candidate .info .class-img {
     position: absolute;
     bottom: 6%;
     left: 6%;
@@ -124,30 +124,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     filter: invert(1);
-}
-.battle .candidate .prof-img.PIONEER {
-    background-image: url('../assets/class/class_pioneer.webp');
-}
-.battle .candidate .prof-img.WARRIOR {
-    background-image: url('../assets/class/class_warrior.webp');
-}
-.battle .candidate .prof-img.TANK {
-    background-image: url('../assets/class/class_tank.webp');
-}
-.battle .candidate .prof-img.SNIPER {
-    background-image: url('../assets/class/class_sniper.webp');
-}
-.battle .candidate .prof-img.CASTER {
-    background-image: url('../assets/class/class_caster.webp');
-}
-.battle .candidate .prof-img.MEDIC {
-    background-image: url('../assets/class/class_medic.webp');
-}
-.battle .candidate .prof-img.SUPPORT {
-    background-image: url('../assets/class/class_support.webp');
-}
-.battle .candidate .prof-img.SPECIAL {
-    background-image: url('../assets/class/class_special.webp');
 }
 .battle .candidate .info .star {
     position: absolute;
@@ -168,7 +144,7 @@
     line-height: 1em;
     text-align: left;
 }
-.battle .candidate .info .elite {
+.battle .candidate .info .elite-icon {
     position: absolute;
     bottom: 34%;
     left: 3.5%;
@@ -177,18 +153,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-}
-.battle .candidate .elite.e0 {
-    background-image: url('../assets/elite/e0.webp');
-}
-.battle .candidate .elite.e1 {
-    background-image: url('../assets/elite/e1.webp');
-}
-.battle .candidate .elite.e2 {
-    background-image: url('../assets/elite/e2.webp');
-}
-.battle .candidate .elite.e3 {
-    background-image: url('../assets/elite/e3.webp');
 }
 .battle .candidate .header {
     position: absolute;
@@ -221,7 +185,7 @@
 .battle .candidate.choose .info {
     bottom: 8%;
 }
-.battle .candidate.choose .info .prof-img {
+.battle .candidate.choose .info .class-img {
     box-shadow: 0 0.3em 0.2em 0 hsla(0, 0%, 100%, 0.6);
 }
 .battle .candidate:not(.choose) .bottom-text {

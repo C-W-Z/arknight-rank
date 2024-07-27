@@ -1,0 +1,269 @@
+.char-prepair {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background-image: url("../../assets/bg1.png");
+    background-repeat: repeat;
+    background-size: 12%;
+    position: relative;
+}
+.char-prepair .in-shadow {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: inset 0 0 5em 1em rgba(0, 0, 0, 1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+
+.char-prepair .left-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 20%;
+    background-color: #151515;
+}
+.char-prepair .left-bar .rate-area {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+.char-prepair .left-bar .rate-area .cc-icon {
+    fill: #2d2d2d;
+    aspect-ratio: 1 / 1;
+    transform: scale(120%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.char-prepair .left-bar .rate-area .clip {
+    position: absolute;
+    bottom: 22.5%;
+    left: 17.5%;
+    width: 65%;
+    aspect-ratio: 8 / 5;
+    --color: rgb(153, 0, 0);
+    --width: 0.25rem;
+    --length: 15%;
+    background: 
+    linear-gradient(var(--color) 0 0) bottom left / var(--length) var(--width),
+    linear-gradient(var(--color) 0 0) top left / var(--length) var(--width),
+    linear-gradient(var(--color) 0 0) left / var(--width) 100%,
+    linear-gradient(var(--color) 0 0) bottom right/ var(--length) var(--width),
+    linear-gradient(var(--color) 0 0) top right / var(--length) var(--width),
+    linear-gradient(var(--color) 0 0) right / var(--width) 100%;
+    background-repeat:no-repeat;
+}
+.char-prepair .left-bar .rate-area .rating {
+    position: absolute;
+    width: 70%;
+    aspect-ratio: 1 / 1;
+    bottom: 10%;
+    left: 15%;
+    background-image: url('../../assets/CC/SSS.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.char-prepair .bottom-area {
+    background-color: #200000;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 80%;
+    height: 35%;
+}
+.char-prepair .bottom-area .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.5rem;
+}
+.char-prepair .bottom-area .footer .start {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 18rem;
+    height: 100%;
+    background-color: #a40a1a;
+    overflow: hidden;
+}
+.char-prepair .bottom-area .footer .start .cc-icon {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    transform: translate(-20%, -45%);
+    fill: #550410;
+}
+.char-prepair .bottom-area .footer .start .text {
+    z-index: 1;
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: NotoSansHans;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.char-prepair .select-area {
+    position: fixed;
+    right: 0;
+    top: 12.5%;
+    height: 50%;
+    width: 77.5%;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.char-prepair .select-area .header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 10%;
+    background-color: rgba(0, 0, 0, 0.3);;
+}
+.char-prepair .select-area .select-box {
+    position: absolute;
+    left: 10%;
+    width: 90%;
+    top: 0;
+    height: 100%;
+}
+.char-prepair .select-area .select-box .h-scroll-child {
+    /* padding: 1% 0.5%; */
+    padding-left: 0.5em;
+    padding-right: 3em;
+    height: 95%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-columns: 1fr;
+}
+.char-prepair .select-box .prof-options,
+.char-prepair .select-box .star-options,
+.char-prepair .select-box .camp-options {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(40, 1fr);
+    grid-auto-flow: column;
+    position: relative;
+}
+.char-prepair .select-box .camp-options {
+    grid-template-rows: 1fr 1fr;
+}
+.char-prepair .select-box .option {
+    aspect-ratio: 1 / 1;
+    position: relative;
+}
+.char-prepair .select-box .option>.btn {
+    position: relative;
+    top: 15%;
+    left: 15%;
+    height: 70%;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    border: solid 0.2rem white;
+    border-radius: 5px;
+    filter: drop-shadow( 0px 0.25em 0.1em rgba(0, 0, 0, 0.5));
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.char-prepair .select-box .option>.btn::after {
+    font-family: Novecento;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1em;
+    text-align: center;
+}
+.char-prepair .select-box .option>.btn.r1::after {
+    content: '1';
+}
+.char-prepair .select-box .option>.btn.r2::after {
+    content: '2';
+}
+.char-prepair .select-box .option>.btn.r3::after {
+    content: '3';
+}
+.char-prepair .select-box .option>.btn.r4::after {
+    content: '4';
+}
+.char-prepair .select-box .option>.btn.r5::after {
+    content: '5';
+}
+.char-prepair .select-box .option>.btn.r6::after {
+    content: '6';
+}
+
+.char-prepair .select-box .option.vline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    height: 40%;
+    width: 0.2rem;
+    background-color: white;
+    z-index: -1;
+}
+.char-prepair .select-box .option.hline::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: 40%;
+    height: 0.2rem;
+    background-color: white;
+    z-index: -1;
+}
+
+.char-prepair .option .bg {
+    position: absolute;
+    left: 7.5%;
+    top: 15%;
+    width: 85%;
+    height: 70%;
+    box-sizing: border-box;
+    background-color: #00a7e9;
+    border-left: solid 0.2rem white;
+    transition: all 100ms ease-in-out;
+}
+.char-prepair .option:not(.select) .bg {
+    opacity: 0;
+}
+
+.char-prepair .option .circle-checkmark {
+    position: absolute;
+    right: 5%;
+    bottom: 10%;
+    width: 20%;
+    height: 20%;
+    aspect-ratio: 1 / 1;
+    background-color: #00a7e9;
+    border-radius: 50%;
+    box-shadow: 0 0.14em 0.2em 0.05em rgba(0, 0, 0, 0.5);
+    transition: all 100ms ease-in-out;
+}
+.char-prepair .option:not(.select) .circle-checkmark {
+    opacity: 0;
+}
+.char-prepair .option .circle-checkmark .checkmark {
+    fill: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}

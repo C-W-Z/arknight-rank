@@ -1,0 +1,41 @@
+.terminal {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background-image: url("../assets/bg3.png");
+    background-repeat: repeat;
+    background-position: 2% 0;
+    background-size: 10%;
+    position: relative;
+}
+.terminal .in-shadow {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: inset 0 0 5em 1em rgba(0, 0, 0, 1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+
+.terminal .select-area {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    bottom: 5%;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.terminal .select-area>button {
+    background-color: gray;
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    border: solid 0.2em white;
+    box-shadow: 0 0.5em 1em 0 hsla(0, 0%, 0%, 0.5);
+}

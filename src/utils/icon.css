@@ -1,0 +1,204 @@
+.class-img.PIONEER {
+    background-image: url('../assets/class/class_pioneer.webp');
+}
+.class-img.WARRIOR {
+    background-image: url('../assets/class/class_warrior.webp');
+}
+.class-img.TANK {
+    background-image: url('../assets/class/class_tank.webp');
+}
+.class-img.SNIPER {
+    background-image: url('../assets/class/class_sniper.webp');
+}
+.class-img.CASTER {
+    background-image: url('../assets/class/class_caster.webp');
+}
+.class-img.MEDIC {
+    background-image: url('../assets/class/class_medic.webp');
+}
+.class-img.SUPPORT {
+    background-image: url('../assets/class/class_support.webp');
+}
+.class-img.SPECIAL {
+    background-image: url('../assets/class/class_special.webp');
+}
+.class-icon.PIONEER {
+    background-image: url('../assets/charcard/pioneer_icon.webp');
+}
+.class-icon.WARRIOR {
+    background-image: url('../assets/charcard/warrior_icon.webp');
+}
+.class-icon.TANK {
+    background-image: url('../assets/charcard/tank_icon.webp');
+}
+.class-icon.SNIPER {
+    background-image: url('../assets/charcard/sniper_icon.webp');
+}
+.class-icon.CASTER {
+    background-image: url('../assets/charcard/caster_icon.webp');
+}
+.class-icon.MEDIC {
+    background-image: url('../assets/charcard/medic_icon.webp');
+}
+.class-icon.SUPPORT {
+    background-image: url('../assets/charcard/support_icon.webp');
+}
+.class-icon.SPECIAL {
+    background-image: url('../assets/charcard/special_icon.webp');
+}
+.potential-icon {
+    background-image: url('../assets/potential/potential_1.png');
+}
+.potential-icon.p2 {
+    background-image: url('../assets/potential/potential_2.png');
+}
+.potential-icon.p3 {
+    background-image: url('../assets/potential/potential_3.png');
+}
+.potential-icon.p4 {
+    background-image: url('../assets/potential/potential_4.png');
+}
+.potential-icon.p5 {
+    background-image: url('../assets/potential/potential_5.png');
+}
+.potential-icon.p6 {
+    background-image: url('../assets/potential/potential_6.png');
+}
+.elite-icon {
+    background-image: url('../assets/elite/e0.webp');
+}
+.elite-icon.e1 {
+    background-image: url('../assets/elite/e1.webp');
+}
+.elite-icon.e2 {
+    background-image: url('../assets/elite/e2.webp');
+}
+.elite-icon.e3 {
+    background-image: url('../assets/elite/e3.webp');
+}
+.logo.abyssal {
+    background-image: url('../assets/logo/logo_abyssal.webp');
+}
+.logo.action4 {
+    background-image: url('../assets/logo/logo_action4.webp');
+}
+.logo.babel {
+    background-image: url('../assets/logo/logo_babel.webp');
+}
+.logo.blacksteel {
+    background-image: url('../assets/logo/logo_blacksteel.webp');
+}
+.logo.bolivar {
+    background-image: url('../assets/logo/logo_bolivar.webp');
+}
+.logo.chiave {
+    background-image: url('../assets/logo/logo_chiave.webp');
+}
+.logo.columbia {
+    background-image: url('../assets/logo/logo_columbia.webp');
+}
+.logo.dublinn {
+    background-image: url('../assets/logo/logo_dublinn.webp');
+}
+.logo.egir {
+    background-image: url('../assets/logo/logo_egir.webp');
+}
+.logo.elite {
+    background-image: url('../assets/logo/logo_elite.webp');
+}
+.logo.followers {
+    background-image: url('../assets/logo/logo_followers.webp');
+}
+.logo.glasgow {
+    background-image: url('../assets/logo/logo_glasgow.webp');
+}
+.logo.higashi {
+    background-image: url('../assets/logo/logo_higashi.webp');
+}
+.logo.iberia {
+    background-image: url('../assets/logo/logo_iberia.webp');
+}
+.logo.karlan {
+    background-image: url('../assets/logo/logo_karlan.webp');
+}
+.logo.kazimierz {
+    background-image: url('../assets/logo/logo_kazimierz.webp');
+}
+.logo.kjerag {
+    background-image: url('../assets/logo/logo_kjerag.webp');
+}
+.logo.laterano {
+    background-image: url('../assets/logo/logo_laterano.webp');
+}
+.logo.lee {
+    background-image: url('../assets/logo/logo_lee.webp');
+}
+.logo.leithanien {
+    background-image: url('../assets/logo/logo_leithanien.webp');
+}
+.logo.lgd {
+    background-image: url('../assets/logo/logo_lgd.webp');
+}
+.logo.lungmen {
+    background-image: url('../assets/logo/logo_lungmen.webp');
+}
+.logo.minos {
+    background-image: url('../assets/logo/logo_minos.webp');
+}
+.logo.penguin {
+    background-image: url('../assets/logo/logo_penguin.webp');
+}
+.logo.pinus {
+    background-image: url('../assets/logo/logo_pinus.webp');
+}
+.logo.rainbow {
+    background-image: url('../assets/logo/logo_rainbow.webp');
+}
+.logo.reserve1 {
+    background-image: url('../assets/logo/logo_reserve1.webp');
+}
+.logo.reserve4 {
+    background-image: url('../assets/logo/logo_reserve4.webp');
+}
+.logo.reserve6 {
+    background-image: url('../assets/logo/logo_reserve6.webp');
+}
+.logo.rhine {
+    background-image: url('../assets/logo/logo_rhine.webp');
+}
+.logo.rhodes {
+    background-image: url('../assets/logo/logo_rhodes.webp');
+}
+.logo.rim {
+    background-image: url('../assets/logo/logo_rim.webp');
+}
+.logo.sami {
+    background-image: url('../assets/logo/logo_sami.webp');
+}
+.logo.sargon {
+    background-image: url('../assets/logo/logo_sargon.webp');
+}
+.logo.siesta {
+    background-image: url('../assets/logo/logo_siesta.webp');
+}
+.logo.siracusa {
+    background-image: url('../assets/logo/logo_siracusa.webp');
+}
+.logo.student {
+    background-image: url('../assets/logo/logo_student.webp');
+}
+.logo.sui {
+    background-image: url('../assets/logo/logo_sui.webp');
+}
+.logo.sweep {
+    background-image: url('../assets/logo/logo_sweep.webp');
+}
+.logo.ursus {
+    background-image: url('../assets/logo/logo_ursus.webp');
+}
+.logo.victoria {
+    background-image: url('../assets/logo/logo_victoria.webp');
+}
+.logo.yan {
+    background-image: url('../assets/logo/logo_yan.webp');
+}

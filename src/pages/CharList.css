@@ -22,9 +22,6 @@
     top: 0;
     pointer-events: none;
 }
-.charlist .in-shadow * {
-    pointer-events: initial;
-}
 
 .charlist .logo-rhodes {
     height: 55%;
@@ -148,30 +145,6 @@
     background-size: contain;
     box-shadow: -4px 6px 4px 0 rgba(0, 0, 0, 0.4);
 }
-.charlist .charcard .class-icon.PIONEER {
-    background-image: url('../assets/charcard/pioneer_icon.webp');
-}
-.charlist .charcard .class-icon.WARRIOR {
-    background-image: url('../assets/charcard/warrior_icon.webp');
-}
-.charlist .charcard .class-icon.TANK {
-    background-image: url('../assets/charcard/tank_icon.webp');
-}
-.charlist .charcard .class-icon.SNIPER {
-    background-image: url('../assets/charcard/sniper_icon.webp');
-}
-.charlist .charcard .class-icon.CASTER {
-    background-image: url('../assets/charcard/caster_icon.webp');
-}
-.charlist .charcard .class-icon.MEDIC {
-    background-image: url('../assets/charcard/medic_icon.webp');
-}
-.charlist .charcard .class-icon.SUPPORT {
-    background-image: url('../assets/charcard/support_icon.webp');
-}
-.charlist .charcard .class-icon.SPECIAL {
-    background-image: url('../assets/charcard/special_icon.webp');
-}
 .charlist .charcard .star {
     position: absolute;
     top: 3%;
@@ -251,7 +224,7 @@
     height: 15%;
     background-color: #333333;
 }
-.charlist .charcard .bottom .elite {
+.charlist .charcard .bottom .elite-icon {
     position: absolute;
     left: 0;
     bottom: 65%;
@@ -260,21 +233,17 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-.charlist .charcard .elite {
+.charlist .charcard .elite-icon {
     height: 35%;
-    background-image: url('../assets/elite/e0.webp');
 }
-.charlist .charcard .elite.e1 {
+.charlist .charcard .elite-icon.e1 {
     height: 35%;
-    background-image: url('../assets/elite/e1.webp');
 }
-.charlist .charcard .elite.e2 {
+.charlist .charcard .elite-icon.e2 {
     height: 45%;
-    background-image: url('../assets/elite/e2.webp');
 }
-.charlist .charcard .elite.e3 {
+.charlist .charcard .elite-icon.e3 {
     height: 60%;
-    background-image: url('../assets/elite/e3.webp');
 }
 .charlist .charcard .bottom .elite::after {
     content: '';
@@ -305,7 +274,7 @@
     background-color: rgba(0, 0, 0, 0.7);
     /* z-index: -1; */
 }
-.charlist .charcard .bottom .potential {
+.charlist .charcard .bottom .potential-icon {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -317,24 +286,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 1;
-}
-.charlist .charcard .potential {
-    background-image: url('../assets/potential/potential_1.png');
-}
-.charlist .charcard .potential.p2 {
-    background-image: url('../assets/potential/potential_2.png');
-}
-.charlist .charcard .potential.p3 {
-    background-image: url('../assets/potential/potential_3.png');
-}
-.charlist .charcard .potential.p4 {
-    background-image: url('../assets/potential/potential_4.png');
-}
-.charlist .charcard .potential.p5 {
-    background-image: url('../assets/potential/potential_5.png');
-}
-.charlist .charcard .potential.p6 {
-    background-image: url('../assets/potential/potential_6.png');
 }
 .charlist .charcard .bottom .name {
     position: absolute;
@@ -380,6 +331,9 @@
     width: 100%;
     height: 40%;
     background: linear-gradient(to top, #0098dc 0%, #007fb5 15%, hsla(0, 0%, 0%, 70%) 50%, transparent);
+}
+.charlist .charcard .bottom .show-attr.diff-color {
+    background: linear-gradient(to top, #fea160 0%, #c17b4a 15%, hsla(0, 0%, 0%, 70%) 50%, transparent);
 }
 .charlist .charcard .bottom .show-attr .icon {
     color: white;
@@ -449,7 +403,7 @@
     position: relative;
     background: rgba(0, 0, 0, 0.85);
 }
-.charlist .class-filter .filter .icon {
+.charlist .class-filter .filter .class-img {
     height: 100%;
     width: 100%;
     background-size: 55%;
@@ -458,13 +412,13 @@
     filter: brightness(50%);
     transition: all 100ms ease-in-out;
 }
-.charlist .class-filter .filter:active .icon {
+.charlist .class-filter .filter:active .class-img {
     filter: brightness(25%);
 }
 .charlist .class-filter .filter.choose:not(.all) {
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 50%, rgba(0, 38, 53, 0.85) 70%, rgba(0, 120, 167, 0.85) 100%);
 }
-.charlist .class-filter .filter.choose .icon {
+.charlist .class-filter .filter.choose .class-img {
     filter: brightness(0) saturate(100%) invert(60%) sepia(47%) saturate(4997%) hue-rotate(163deg) brightness(102%) contrast(100%);
 }
 .charlist .class-filter .filter.choose:not(.all)::after {
@@ -489,40 +443,16 @@
     /* # -> %23 (unicode) */
     background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="%2300b5fd"><path d="M17.707,12.707l-9,9a1,1,0,1,1-1.414-1.414L15.586,12,7.293,3.707A1,1,0,1,1,8.707,2.293l9,9A1,1,0,0,1,17.707,12.707Z" /></g></svg>');
 }
-.charlist .class-filter .filter.choose.all:active .icon {
+.charlist .class-filter .filter.choose.all:active .class-img {
     color: #00b5fd;
     filter: brightness(70%);
 }
-.charlist .class-filter .filter .icon.all {
+.charlist .class-filter .filter .class-img.all {
     text-align: center;
     font-size: 0.8em;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.charlist .class-filter .filter .icon.PIONEER {
-    background-image: url('../assets/class/class_pioneer.webp');
-}
-.charlist .class-filter .filter .icon.WARRIOR {
-    background-image: url('../assets/class/class_warrior.webp');
-}
-.charlist .class-filter .filter .icon.TANK {
-    background-image: url('../assets/class/class_tank.webp');
-}
-.charlist .class-filter .filter .icon.SNIPER {
-    background-image: url('../assets/class/class_sniper.webp');
-}
-.charlist .class-filter .filter .icon.CASTER {
-    background-image: url('../assets/class/class_caster.webp');
-}
-.charlist .class-filter .filter .icon.MEDIC {
-    background-image: url('../assets/class/class_medic.webp');
-}
-.charlist .class-filter .filter .icon.SUPPORT {
-    background-image: url('../assets/class/class_support.webp');
-}
-.charlist .class-filter .filter .icon.SPECIAL {
-    background-image: url('../assets/class/class_special.webp');
 }
 
 .charlist .sortby {

@@ -118,30 +118,6 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-.stat .name-overlay .class-img.PIONEER {
-    background-image: url('../assets/class/class_pioneer.webp');
-}
-.stat .name-overlay .class-img.WARRIOR {
-    background-image: url('../assets/class/class_warrior.webp');
-}
-.stat .name-overlay .class-img.TANK {
-    background-image: url('../assets/class/class_tank.webp');
-}
-.stat .name-overlay .class-img.SNIPER {
-    background-image: url('../assets/class/class_sniper.webp');
-}
-.stat .name-overlay .class-img.CASTER {
-    background-image: url('../assets/class/class_caster.webp');
-}
-.stat .name-overlay .class-img.MEDIC {
-    background-image: url('../assets/class/class_medic.webp');
-}
-.stat .name-overlay .class-img.SUPPORT {
-    background-image: url('../assets/class/class_support.webp');
-}
-.stat .name-overlay .class-img.SPECIAL {
-    background-image: url('../assets/class/class_special.webp');
-}
 .stat .name-overlay .class-tags .class-name {
     grid-area: class-name;
 }
@@ -414,130 +390,11 @@
     filter: invert(0.5);
     opacity: 0.4;
 }
-.stat .logo.abyssal {
-    background-image: url('../assets/logo/logo_abyssal.webp');
-}
-.stat .logo.action4 {
-    background-image: url('../assets/logo/logo_action4.webp');
-}
-.stat .logo.babel {
-    background-image: url('../assets/logo/logo_babel.webp');
-}
-.stat .logo.blacksteel {
-    background-image: url('../assets/logo/logo_blacksteel.webp');
-}
-.stat .logo.bolivar {
-    background-image: url('../assets/logo/logo_bolivar.webp');
-}
-.stat .logo.chiave {
-    background-image: url('../assets/logo/logo_chiave.webp');
-}
-.stat .logo.columbia {
-    background-image: url('../assets/logo/logo_columbia.webp');
-}
-.stat .logo.dublinn {
-    background-image: url('../assets/logo/logo_dublinn.webp');
-}
-.stat .logo.egir {
-    background-image: url('../assets/logo/logo_egir.webp');
-}
-.stat .logo.elite {
-    background-image: url('../assets/logo/logo_elite.webp');
-}
-.stat .logo.followers {
-    background-image: url('../assets/logo/logo_followers.webp');
-}
-.stat .logo.glasgow {
-    background-image: url('../assets/logo/logo_glasgow.webp');
-}
-.stat .logo.higashi {
-    background-image: url('../assets/logo/logo_higashi.webp');
-}
-.stat .logo.iberia {
-    background-image: url('../assets/logo/logo_iberia.webp');
-}
-.stat .logo.karlan {
-    background-image: url('../assets/logo/logo_karlan.webp');
-}
-.stat .logo.kazimierz {
-    background-image: url('../assets/logo/logo_kazimierz.webp');
-}
-.stat .logo.kjerag {
-    background-image: url('../assets/logo/logo_kjerag.webp');
-}
-.stat .logo.laterano {
-    background-image: url('../assets/logo/logo_laterano.webp');
-}
-.stat .logo.lee {
-    background-image: url('../assets/logo/logo_lee.webp');
-}
-.stat .logo.leithanien {
-    background-image: url('../assets/logo/logo_leithanien.webp');
-}
-.stat .logo.lgd {
-    background-image: url('../assets/logo/logo_lgd.webp');
-}
-.stat .logo.lungmen {
-    background-image: url('../assets/logo/logo_lungmen.webp');
-}
-.stat .logo.minos {
-    background-image: url('../assets/logo/logo_minos.webp');
-}
-.stat .logo.penguin {
-    background-image: url('../assets/logo/logo_penguin.webp');
-}
-.stat .logo.pinus {
-    background-image: url('../assets/logo/logo_pinus.webp');
-}
-.stat .logo.rainbow {
-    background-image: url('../assets/logo/logo_rainbow.webp');
-}
-.stat .logo.reserve1 {
-    background-image: url('../assets/logo/logo_reserve1.webp');
-}
-.stat .logo.reserve4 {
-    background-image: url('../assets/logo/logo_reserve4.webp');
-}
-.stat .logo.reserve6 {
-    background-image: url('../assets/logo/logo_reserve6.webp');
-}
-.stat .logo.rhine {
-    background-image: url('../assets/logo/logo_rhine.webp');
-}
 .stat .logo.rhodes {
     filter: none;
     background-image: url('../assets/logo/logo_rhodes_override.webp');
 }
-.stat .logo.rim {
-    background-image: url('../assets/logo/logo_rim.webp');
-}
-.stat .logo.sami {
-    background-image: url('../assets/logo/logo_sami.webp');
-}
-.stat .logo.sargon {
-    background-image: url('../assets/logo/logo_sargon.webp');
-}
-.stat .logo.siesta {
-    background-image: url('../assets/logo/logo_siesta.webp');
-}
-.stat .logo.siracusa {
-    background-image: url('../assets/logo/logo_siracusa.webp');
-}
-.stat .logo.student {
-    background-image: url('../assets/logo/logo_student.webp');
-}
-.stat .logo.sui {
-    background-image: url('../assets/logo/logo_sui.webp');
-}
-.stat .logo.sweep {
-    background-image: url('../assets/logo/logo_sweep.webp');
-}
-.stat .logo.ursus {
-    background-image: url('../assets/logo/logo_ursus.webp');
-}
-.stat .logo.victoria {
-    background-image: url('../assets/logo/logo_victoria.webp');
-}
-.stat .logo.yan {
-    background-image: url('../assets/logo/logo_yan.webp');
+.stat .logo.rainbow {
+    filter: none;
+    background-image: url('../assets/logo/logo_rainbow_override.webp');
 }
