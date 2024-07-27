@@ -9,7 +9,7 @@ function Terminal() {
     }
 
     function selectChar() {
-        navigate('/terminal/charprepair');
+        navigate('/terminal/charprepare');
         // navigate('/battle', { state: { playerCount: 2 } });
     }
 

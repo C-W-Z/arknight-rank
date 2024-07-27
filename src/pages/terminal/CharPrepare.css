@@ -1,4 +1,4 @@
-.char-prepair {
+.char-prepare {
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -8,7 +8,7 @@
     background-size: 12%;
     position: relative;
 }
-.char-prepair .in-shadow {
+.char-prepare .in-shadow {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -20,7 +20,7 @@
     pointer-events: none;
 }
 
-.char-prepair .left-bar {
+.char-prepare .left-bar {
     position: fixed;
     left: 0;
     top: 0;
@@ -28,14 +28,14 @@
     width: 20%;
     background-color: #151515;
 }
-.char-prepair .left-bar .rate-area {
+.char-prepare .left-bar .rate-area {
     position: absolute;
     bottom: 10%;
     left: 0;
     width: 100%;
     aspect-ratio: 1 / 1;
 }
-.char-prepair .left-bar .rate-area .cc-icon {
+.char-prepare .left-bar .rate-area .cc-icon {
     fill: #2d2d2d;
     aspect-ratio: 1 / 1;
     transform: scale(120%);
@@ -44,7 +44,7 @@
     left: 0;
     width: 100%;
 }
-.char-prepair .left-bar .rate-area .clip {
+.char-prepare .left-bar .rate-area .clip {
     position: absolute;
     bottom: 22.5%;
     left: 17.5%;
@@ -62,7 +62,7 @@
     linear-gradient(var(--color) 0 0) right / var(--width) 100%;
     background-repeat:no-repeat;
 }
-.char-prepair .left-bar .rate-area .rating {
+.char-prepare .left-bar .rate-area .rating {
     position: absolute;
     width: 70%;
     aspect-ratio: 1 / 1;
@@ -73,7 +73,7 @@
     background-repeat: no-repeat;
 }
 
-.char-prepair .bottom-area {
+.char-prepare .bottom-area {
     background-color: #200000;
     position: fixed;
     bottom: 0;
@@ -81,13 +81,13 @@
     width: 80%;
     height: 15%;
 }
-.char-prepair .bottom-area .footer {
+.char-prepare .bottom-area .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 3.5rem;
 }
-.char-prepair .bottom-area .footer .start {
+.char-prepare .bottom-area .footer .start {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -97,17 +97,17 @@
     overflow: hidden;
     transition: all 100ms ease-in-out;
 }
-.char-prepair .bottom-area .footer .start:active {
+.char-prepare .bottom-area .footer .start:active {
     filter: brightness(80%);
 }
-.char-prepair .bottom-area .footer .start .cc-icon {
+.char-prepare .bottom-area .footer .start .cc-icon {
     position: absolute;
     width: 100%;
     aspect-ratio: 1 / 1;
     transform: translate(-20%, -45%);
     fill: #550410;
 }
-.char-prepair .bottom-area .footer .start .text {
+.char-prepare .bottom-area .footer .start .text {
     z-index: 1;
     position: absolute;
     right: 2rem;
@@ -118,7 +118,7 @@
     font-weight: 600;
 }
 
-.char-prepair .select-area {
+.char-prepare .select-area {
     position: fixed;
     right: 0;
     top: 12.5%;
@@ -128,7 +128,7 @@
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.2);
 }
-.char-prepair .select-area .header {
+.char-prepare .select-area .header {
     position: absolute;
     left: 0;
     top: 0;
@@ -136,7 +136,7 @@
     width: 10%;
     background-color: rgba(0, 0, 0, 0.3);
 }
-.char-prepair .select-area .header>div {
+.char-prepare .select-area .header>div {
     position: relative;
     top: 2.5%;
     height: 95%;
@@ -144,7 +144,7 @@
     display: grid;
     grid-template-rows: repeat(5, 1fr);
 }
-.char-prepair .select-area .header>div .box {
+.char-prepare .select-area .header>div .box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -153,29 +153,29 @@
     line-height: 1em;
     position: relative;
 }
-.char-prepair .select-area .header>div .box.text {
+.char-prepare .select-area .header>div .box.text {
     font-size: 1.25rem;
 }
-.char-prepair .select-area .header>div .box>.text {
+.char-prepare .select-area .header>div .box>.text {
     position: absolute;
     top: 0;
     font-size: 0.75rem;
     margin-bottom: 0.1rem;
 }
-.char-prepair .select-area .header>div .select-all {
+.char-prepare .select-area .header>div .select-all {
     height: 35%;
     aspect-ratio: 1 / 1;
     border: solid 0.2rem white;
 }
 
-.char-prepair .select-area .select-box {
+.char-prepare .select-area .select-box {
     position: absolute;
     left: 10%;
     width: 90%;
     top: 0;
     height: 100%;
 }
-.char-prepair .select-area .select-box .h-scroll-child {
+.char-prepare .select-area .select-box .h-scroll-child {
     /* padding: 1% 0.5%; */
     padding-left: 1%;
     padding-right: 6%;
@@ -184,21 +184,21 @@
     grid-template-rows: 1fr 1fr 1fr 2fr;
     grid-template-columns: 1fr;
 }
-.char-prepair .select-box .options {
+.char-prepare .select-box .options {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(40, 1fr);
     grid-auto-flow: column;
     position: relative;
 }
-.char-prepair .select-box .camp-options {
+.char-prepare .select-box .camp-options {
     grid-template-rows: 1fr 1fr;
 }
-.char-prepair .select-box .option {
+.char-prepare .select-box .option {
     aspect-ratio: 1 / 1;
     position: relative;
 }
-.char-prepair .select-box .option>.btn {
+.char-prepare .select-box .option>.btn {
     position: absolute;
     top: 15%;
     left: 15%;
@@ -213,14 +213,14 @@
     justify-content: center;
     transition: all 100ms ease-in-out;
 }
-.char-prepair .select-box .option:active>.btn {
+.char-prepare .select-box .option:active>.btn {
     filter: drop-shadow( 0px 0.25em 0.1em rgba(0, 0, 0, 0.5)) brightness(80%);
 }
-.char-prepair .select-box .option:not(.hex)>.btn {
+.char-prepare .select-box .option:not(.hex)>.btn {
     border: solid 0.2rem white;
     border-radius: 5px;
 }
-.char-prepair .select-box .option.hex>.btn::before {
+.char-prepare .select-box .option.hex>.btn::before {
     content: '';
     position: absolute;
     top: -7.5%;
@@ -229,11 +229,11 @@
     height: 115%;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><g fill="white"><path d="M256,37.303l198.333,109.919v217.555L256,474.697L57.667,364.778V147.222L256,37.303 M256,0 L25.045,128v256L256,512l230.955-128V128L256,0z"/></g></svg>');
 }
-.char-prepair .select-box .option.hex.lock>.btn::before {
+.char-prepare .select-box .option.hex.lock>.btn::before {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ><g fill="%2385555f"><path d="M256,37.303l198.333,109.919v217.555L256,474.697L57.667,364.778V147.222L256,37.303 M256,0 L25.045,128v256L256,512l230.955-128V128L256,0z"/></g></svg>');
 }
 
-.char-prepair .select-box .option>.btn::after {
+.char-prepare .select-box .option>.btn::after {
     font-family: Novecento;
     font-size: 1.5rem;
     font-weight: 700;
@@ -241,41 +241,41 @@
     text-align: center;
     color: white;
 }
-.char-prepair .select-box .option.lock>.btn::after {
+.char-prepare .select-box .option.lock>.btn::after {
     color: #85555f;
 }
-.char-prepair .select-box .option>.btn.rarity.r1::after {
+.char-prepare .select-box .option>.btn.rarity.r1::after {
     content: '1★';
 }
-.char-prepair .select-box .option>.btn.rarity.r2::after {
+.char-prepare .select-box .option>.btn.rarity.r2::after {
     content: '2★';
 }
-.char-prepair .select-box .option>.btn.rarity.r3::after {
+.char-prepare .select-box .option>.btn.rarity.r3::after {
     content: '3★';
 }
-.char-prepair .select-box .option>.btn.rarity.r4::after {
+.char-prepare .select-box .option>.btn.rarity.r4::after {
     content: '4★';
 }
-.char-prepair .select-box .option>.btn.rarity.r5::after {
+.char-prepare .select-box .option>.btn.rarity.r5::after {
     content: '5★';
 }
-.char-prepair .select-box .option>.btn.rarity.r6::after {
+.char-prepare .select-box .option>.btn.rarity.r6::after {
     content: '6★';
 }
-.char-prepair .select-box .option>.btn.num.n2::after {
+.char-prepare .select-box .option>.btn.num.n2::after {
     content: '2';
 }
-.char-prepair .select-box .option>.btn.num.n3::after {
+.char-prepare .select-box .option>.btn.num.n3::after {
     content: '3';
 }
-.char-prepair .select-box .option>.btn.num.n4::after {
+.char-prepare .select-box .option>.btn.num.n4::after {
     content: '4';
 }
-.char-prepair .select-box .option>.btn.num.n5::after {
+.char-prepare .select-box .option>.btn.num.n5::after {
     content: '5';
 }
 
-.char-prepair .select-box .option.vline::before {
+.char-prepare .select-box .option.vline::before {
     content: '';
     position: absolute;
     left: 50%;
@@ -286,7 +286,7 @@
     background-color: white;
     z-index: -1;
 }
-.char-prepair .select-box .option.hline::after {
+.char-prepare .select-box .option.hline::after {
     content: '';
     position: absolute;
     right: 0;
@@ -297,14 +297,14 @@
     background-color: white;
     z-index: -1;
 }
-.char-prepair .select-box .option.unlock.vline::before,
-.char-prepair .select-box .option.unlock.hline::after,
-.char-prepair .select-box .option.lock.vline::before,
-.char-prepair .select-box .option.lock.hline::after {
+.char-prepare .select-box .option.unlock.vline::before,
+.char-prepare .select-box .option.unlock.hline::after,
+.char-prepare .select-box .option.lock.vline::before,
+.char-prepare .select-box .option.lock.hline::after {
     background-color: #85555f;
 }
 
-.char-prepair .option .bg {
+.char-prepare .option .bg {
     position: absolute;
     left: 7.5%;
     top: 20%;
@@ -315,11 +315,11 @@
     border-left: solid 0.2rem white;
     transition: all 100ms ease-in-out;
 }
-.char-prepair .option:not(.select) .bg {
+.char-prepare .option:not(.select) .bg {
     opacity: 0;
 }
 
-.char-prepair .option .circle-checkmark {
+.char-prepare .option .circle-checkmark {
     position: absolute;
     right: 7.5%;
     bottom: 10%;
@@ -331,10 +331,10 @@
     box-shadow: 0 0.14em 0.2em 0.05em rgba(0, 0, 0, 0.5);
     transition: all 100ms ease-in-out;
 }
-.char-prepair .option:not(.select) .circle-checkmark {
+.char-prepare .option:not(.select) .circle-checkmark {
     opacity: 0;
 }
-.char-prepair .option .circle-checkmark .checkmark {
+.char-prepare .option .circle-checkmark .checkmark {
     fill: white;
     position: absolute;
     top: 0;

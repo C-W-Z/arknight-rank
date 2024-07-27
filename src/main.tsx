@@ -10,7 +10,7 @@ import CharList from "./pages/CharList";
 import Stat from './pages/Stat';
 import Battle from "./pages/Battle";
 import Terminal from "./pages/Terminal";
-import CharPrepair from "./pages/terminal/CharPrepair";
+import CharPrepare from "./pages/terminal/CharPrepare";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
     element: <Terminal />
   },
   {
-    path: '/terminal/charprepair',
-    element: <CharPrepair />
+    path: '/terminal/charprepare',
+    element: <CharPrepare />
   },
   {
     path: '/battle',

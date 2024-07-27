@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './CharPrepair.css';
+import './CharPrepare.css';
 import TopButtons from '../../components/TopButtons';
 import { HorizontalScroll } from '../../components/DraggableScroll';
 import { CCIcon, CheckMark } from '../../components/SVGIcons';
@@ -269,7 +269,7 @@ const BindingOptions = ({
     )
 }
 
-function CharPrepair() {
+function CharPrepare() {
     const navigate = useNavigate();
     function back() {
         navigate('/terminal');
@@ -303,7 +303,7 @@ function CharPrepair() {
     }
 
     return (
-        <div className="char-prepair">
+        <div className="char-prepare">
             <div className="select-area">
                 <div className="header">
                     <div>
@@ -432,4 +432,4 @@ function CharPrepair() {
     )
 }
 
-export default CharPrepair;
+export default CharPrepare;
