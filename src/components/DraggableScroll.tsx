@@ -17,7 +17,7 @@ export type HScrollRef = {
     JumpToLeft: () => void;
 }
 
-export interface Props {
+interface Props {
     className?: string;
     children?: any;
     _ref?: Ref<HTMLDivElement>;

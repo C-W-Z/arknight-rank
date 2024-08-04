@@ -14,9 +14,9 @@ use crate::{
 };
 use data::save_to_appdata;
 use glicko2::{
-    calculate_ranking, calculate_results, pick_player_ids, update_battle_history,
-    update_rank_history, Match,
+    calculate_ranking, calculate_results, filt_char_player, pick_player_ids, update_battle_history, update_rank_history, Match
 };
+use prefer::CharPreparePref;
 use serde::Serialize;
 use std::{collections::HashMap, process::Command, sync::Mutex};
 use tauri::{AppHandle, Manager, State};
@@ -54,7 +54,7 @@ impl AppState {
     }
     pub fn update_menu_pref(&self, app_handle: &AppHandle, new_menu_pref: MenuPref) {
         let mut data = self.prefs.lock().unwrap();
-        (*data).menu_pref = new_menu_pref;
+        data.menu_pref = new_menu_pref;
         data.save(app_handle);
     }
     pub fn update_stat_pref(
@@ -64,7 +64,7 @@ impl AppState {
         new_stat_pref: StatPref,
     ) {
         let mut data = self.prefs.lock().unwrap();
-        (*data).stat_pref.insert(char_id, new_stat_pref);
+        data.stat_pref.insert(char_id, new_stat_pref);
         data.save(app_handle);
     }
     pub fn update_char_list_pref(
@@ -75,9 +75,9 @@ impl AppState {
         ascend: bool,
     ) {
         let mut data = self.prefs.lock().unwrap();
-        (*data).char_list_pref.prof_filter = prof_filter;
-        (*data).char_list_pref.sortby = sortby;
-        (*data).char_list_pref.ascend = ascend;
+        data.char_list_pref.prof_filter = prof_filter;
+        data.char_list_pref.sortby = sortby;
+        data.char_list_pref.ascend = ascend;
         data.save(app_handle);
     }
     pub fn update_char_battle_pref(
@@ -88,8 +88,8 @@ impl AppState {
         unchoose_draw: bool,
     ) {
         let mut data = self.prefs.lock().unwrap();
-        (*data).char_battle_pref.choose_draw[player_count] = choose_draw;
-        (*data).char_battle_pref.unchoose_draw[player_count] = unchoose_draw;
+        data.char_battle_pref.choose_draw[player_count] = choose_draw;
+        data.char_battle_pref.unchoose_draw[player_count] = unchoose_draw;
         data.save(app_handle);
     }
 }
@@ -177,22 +177,39 @@ fn set_char_battle_pref(
 }
 
 #[tauri::command]
-fn start_battle_char(state: State<'_, AppState>, n: usize) -> Vec<String> {
+fn prepare_battle_char(state: State<'_, AppState>, prepare: CharPreparePref) -> bool{
     let players = state.ranked_chars.lock().unwrap();
     let mut tmp_player = state.tmp_ranked_chars.lock().unwrap();
+    *tmp_player = filt_char_player(&players, &state.chars, &prepare);
+
+    if tmp_player.len() < prepare.player_count {
+        return false.into();
+    }
+
     let mut tmp_matches = state.tmp_matches.lock().unwrap();
-    *tmp_player = players.clone();
     *tmp_matches = Vec::new();
-    pick_player_ids(&tmp_player, n).into()
+
+    let mut prefs = state.prefs.lock().unwrap();
+    prefs.char_prepare_pref = prepare;
+
+    true.into()
 }
 
 #[tauri::command]
-fn next_battle_char(state: State<'_, AppState>, n: usize, mut matches: Vec<Match>) -> Vec<String> {
-    let mut tmp_player: std::sync::MutexGuard<Vec<Player>> = state.tmp_ranked_chars.lock().unwrap();
+fn start_battle_char(state: State<'_, AppState>) -> Vec<String> {
+    let prefs = state.prefs.lock().unwrap();
+    let  tmp_player = state.tmp_ranked_chars.lock().unwrap();
+    pick_player_ids(&tmp_player, prefs.char_prepare_pref.player_count).into()
+}
+
+#[tauri::command]
+fn next_battle_char(state: State<'_, AppState>, mut matches: Vec<Match>) -> Vec<String> {
+    let mut tmp_player = state.tmp_ranked_chars.lock().unwrap();
     let mut tmp_matches = state.tmp_matches.lock().unwrap();
     update_battle_history(&mut tmp_player, &matches);
     tmp_matches.append(&mut matches);
-    pick_player_ids(&tmp_player, n).into()
+    let prefs = state.prefs.lock().unwrap();
+    pick_player_ids(&tmp_player, prefs.char_prepare_pref.player_count).into()
 }
 
 #[tauri::command]
@@ -200,10 +217,16 @@ fn end_battle_char(app_handle: AppHandle, state: State<'_, AppState>) -> GlobalI
     let mut ranked_chars = state.ranked_chars.lock().unwrap();
     let mut char2rank = state.char2rank.lock().unwrap();
 
-    let tmp_player: std::sync::MutexGuard<Vec<Player>> = state.tmp_ranked_chars.lock().unwrap();
+    let tmp_player = state.tmp_ranked_chars.lock().unwrap();
     let tmp_matches = state.tmp_matches.lock().unwrap();
 
-    *ranked_chars = tmp_player.clone();
+    let mut id2idx: HashMap<String, usize> = HashMap::new();
+    for (i, p) in ranked_chars.iter().enumerate() {
+        id2idx.insert(p.id.clone(), i);
+    }
+    for p in tmp_player.iter() {
+        ranked_chars[id2idx[&p.id]] = p.clone();
+    }
 
     update_rank_history(&mut ranked_chars, &tmp_matches, &char2rank);
     calculate_results(&mut ranked_chars, &tmp_matches);
@@ -226,7 +249,7 @@ fn setup_app(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let char2skin = CharSkinData::initialize(&app_handle);
     let sub_prof = CharData::initialize_sub_prof(&app_handle);
 
-    let player_prefs = PlayerPrefs::initialize(&app_handle, &char2skin);
+    let player_prefs = PlayerPrefs::initialize(&app_handle, &chars, &char2skin);
     let char_ids: Vec<&str> = chars.keys().map(|s| s.as_str()).collect();
     let mut ranked_chars = Player::initialize(&app_handle, &char_ids, CHARRANK_FILE);
     let char2rank = calculate_ranking(&mut ranked_chars, &chars);
@@ -261,6 +284,7 @@ fn main() {
             set_stat_pref,
             set_char_list_pref,
             set_char_battle_pref,
+            prepare_battle_char,
             start_battle_char,
             next_battle_char,
             end_battle_char,

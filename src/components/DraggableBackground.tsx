@@ -7,7 +7,7 @@ export type DragBGRef = {
     closeSetting: () => void;
 }
 
-export interface Props {
+interface Props {
     backgroundImage?: string;
     className?: string;
     children?: any;

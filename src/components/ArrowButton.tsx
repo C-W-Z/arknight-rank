@@ -1,6 +1,6 @@
 import './ArrowButton.css'
 
-export interface Props {
+interface Props {
     className?: string;
     children?: any;
     height?: string;

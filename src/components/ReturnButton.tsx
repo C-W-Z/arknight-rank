@@ -6,7 +6,7 @@ export type ReturnBtnRef = {
     close: () => void;
 }
 
-export interface Props {
+interface Props {
     className?: string;
     children?: any;
     confirmText?: string;

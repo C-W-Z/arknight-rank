@@ -2,7 +2,7 @@ import React, { RefObject, useCallback, useRef, useState } from "react";
 import './ExtendCard.css'
 import { VScrollRef } from './DraggableScroll';
 
-export interface Props {
+interface Props {
     className?: string;
     sliderRef: RefObject<HTMLDivElement>;
     sliderFuncRef: RefObject<VScrollRef>;

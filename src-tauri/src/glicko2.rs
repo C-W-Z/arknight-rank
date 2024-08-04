@@ -1,8 +1,9 @@
 use crate::{
     data::{load_from_appdata, save_to_appdata},
+    prefer::CharPreparePref,
     resource::CharData,
 };
-use rand::{distributions::WeightedIndex, prelude::*};
+use rand::{distributions::{WeightedError, WeightedIndex}, prelude::*};
 use serde::{Deserialize, Serialize};
 use std::{
     collections::{HashMap, HashSet, VecDeque},
@@ -141,16 +142,6 @@ pub fn calculate_ranking(
     players: &mut [Player],
     chars: &HashMap<String, CharData>,
 ) -> HashMap<String, usize> {
-    let mut prof_order: HashMap<String, u8> = HashMap::new();
-    prof_order.insert("PIONEER".to_string(), 1);
-    prof_order.insert("WARRIOR".to_string(), 2);
-    prof_order.insert("TANK".to_string(), 3);
-    prof_order.insert("SNIPER".to_string(), 4);
-    prof_order.insert("CASTER".to_string(), 5);
-    prof_order.insert("MEDIC".to_string(), 6);
-    prof_order.insert("SUPPORT".to_string(), 7);
-    prof_order.insert("SPECIAL".to_string(), 8);
-
     players.sort_by(|a, b| {
         let char_a = &chars[&a.id];
         let char_b = &chars[&b.id];
@@ -161,7 +152,7 @@ pub fn calculate_ranking(
         } else if char_a.rarity != char_b.rarity {
             char_b.rarity.cmp(&char_a.rarity)
         } else if char_a.prof != char_b.prof {
-            prof_order[&char_a.prof].cmp(&prof_order[&char_b.prof])
+            char_a.prof.cmp(&char_b.prof)
         } else {
             a.id.cmp(&b.id)
         }
@@ -181,8 +172,68 @@ pub fn calculate_ranking(
     ranks
 }
 
+pub fn filt_char_player(
+    players: &Vec<Player>,
+    chars: &HashMap<String, CharData>,
+    prepare: &CharPreparePref,
+) -> Vec<Player> {
+    players
+        .iter()
+        .filter_map(|p| {
+            let char_data = &chars[&p.id];
+            if !prepare.prof[char_data.prof.clone() as usize] {
+                return None;
+            }
+            if !prepare.rarity[char_data.rarity] {
+                return None;
+            }
+            if char_data.nation.len() == 0
+                && char_data.group.len() == 0
+                && char_data.team.len() == 0
+            {
+                if let Some(&b) = prepare.nation_map.get("other") {
+                    if b {
+                        return Some(p.clone());
+                    }
+                }
+            }
+            if char_data.group.len() > 0 {
+                if let Some(&b) = prepare.nation_map.get(&char_data.group) {
+                    if b {
+                        return Some(p.clone());
+                    }
+                }
+            }
+            if char_data.team.len() > 0 {
+                if let Some(&b) = prepare.nation_map.get(&char_data.team) {
+                    if b {
+                        return Some(p.clone());
+                    }
+                }
+            }
+            if char_data.nation.len() > 0 {
+                if let Some(&b) = prepare.nation_map.get(&char_data.nation) {
+                    // nation but not group/team
+                    if b && char_data.group.len() == 0 && char_data.team.len() == 0 {
+                        return Some(p.clone());
+                    }
+                }
+            }
+            None
+        })
+        .collect()
+}
+
 // TODO: filter ?
 pub fn pick_player_ids(pool: &[Player], n: usize) -> Vec<String> {
+    let mut rng = thread_rng();
+
+    if n == pool.len() {
+        let mut ret: Vec<String> = pool.iter().map(|p| p.id.clone()).collect();
+        ret.shuffle(&mut rng);
+        return ret;
+    }
+
     let max = pool
         .iter()
         .max_by_key(|c| c.hist.battles())
@@ -190,9 +241,8 @@ pub fn pick_player_ids(pool: &[Player], n: usize) -> Vec<String> {
         .hist
         .battles();
 
-    let mut indices: Vec<usize> = Vec::new();
     let mut oppos: HashSet<String> = HashSet::new();
-    let mut rng = thread_rng();
+    let mut indices: Vec<usize> = Vec::new();
 
     for _ in 0..n {
         let mut weights: Vec<f64> = pool
@@ -209,11 +259,21 @@ pub fn pick_player_ids(pool: &[Player], n: usize) -> Vec<String> {
             })
             .collect();
 
-        for i in indices.iter() {
-            weights[*i] = 0.0;
+        for &i in indices.iter() {
+            weights[i] = 0.0;
         }
 
-        let distribution = WeightedIndex::new(&weights).unwrap();
+        let distribution = match WeightedIndex::new(&weights) {
+            Ok(w) => w,
+            Err(e) => {
+                assert!(e == WeightedError::AllWeightsZero);
+                weights.fill(1.0);
+                for &i in indices.iter() {
+                    weights[i] = 0.0;
+                }
+                WeightedIndex::new(&weights).unwrap()
+            },
+        };
         let idx = distribution.sample(&mut rng);
 
         for b in pool[idx].hist.old_match.iter() {
@@ -223,7 +283,7 @@ pub fn pick_player_ids(pool: &[Player], n: usize) -> Vec<String> {
         indices.push(idx);
     }
 
-    indices.iter().map(|i| pool[*i].id.clone()).collect()
+    indices.iter().map(|&i| pool[i].id.clone()).collect()
 }
 
 // The system constant which constrains the change in volatility over time, needs to be set prior to application of the system

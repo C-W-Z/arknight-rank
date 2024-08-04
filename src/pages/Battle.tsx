@@ -123,7 +123,7 @@ function Battle() {
     }, [globalContext?.loading])
 
     useEffect(() => {
-        invoke('start_battle_char', { n: playerCount })
+        invoke('start_battle_char')
             .then((chars: any) => {
                 // console.log(chars);
                 setCharIds(chars);
@@ -147,7 +147,7 @@ function Battle() {
         }
         setMatches([...matches, new_matches]);
 
-        invoke('next_battle_char', { n: playerCount, matches: new_matches })
+        invoke('next_battle_char', { matches: new_matches })
             .then((chars: any) => {
                 // console.log(chars);
                 setCharIds(chars);

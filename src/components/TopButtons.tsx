@@ -2,7 +2,7 @@ import './TopButtons.css'
 import { ChevronLeft, HomeIcon, MeshSphere } from './SVGIcons';
 import { useNavigate } from 'react-router-dom';
 
-export interface Props {
+interface Props {
     className?: string;
     backOnClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     homeOnClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;

@@ -97,7 +97,10 @@
     overflow: hidden;
     transition: all 100ms ease-in-out;
 }
-.char-prepare .bottom-area .footer .start:active {
+.char-prepare .bottom-area .footer .start:disabled {
+    background-color: #777;
+}
+.char-prepare .bottom-area .footer .start:not(:disabled):active {
     filter: brightness(80%);
 }
 .char-prepare .bottom-area .footer .start .cc-icon {
@@ -106,6 +109,9 @@
     aspect-ratio: 1 / 1;
     transform: translate(-20%, -45%);
     fill: #550410;
+}
+.char-prepare .bottom-area .footer .start:disabled .cc-icon {
+    fill: #555;
 }
 .char-prepare .bottom-area .footer .start .text {
     z-index: 1;

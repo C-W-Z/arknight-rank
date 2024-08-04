@@ -6,8 +6,11 @@ with open('character_table.json', 'r', encoding="utf-8") as file:
 
     # objs = []
     map = {}
+    names = set()
 
     for key, value in data.items():
+        if key == "char_512_aprot":
+            continue
         if key.startswith('char_'):
             obj = {}
             # obj['char_id'] = key
@@ -24,6 +27,13 @@ with open('character_table.json', 'r', encoding="utf-8") as file:
             obj['team'] = value['teamId']
             # objs.append(obj)
             map[key] = obj
+            
+            if (obj['nation'] == '' and obj['group'] == '' and obj['team'] == ''):
+                print(obj)
+
+            # if (obj['name'] in names):
+            #     print(obj['name'])
+            # names.add(obj['name'])
 
     # print(len(objs))
     print(len(map))

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import './AutoSizeText.css'
 // import mergeRefs from "../utils/MergeRefs";
 
-export interface Props {
+interface Props {
     maxSize?: string;
     className?: string;
     children?: any;

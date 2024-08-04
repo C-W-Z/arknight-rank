@@ -1,6 +1,6 @@
 import './ProgressCircle.css';
 
-export interface Props {
+interface Props {
     className?: string;
     value: number;
     max?: number;

@@ -10,10 +10,18 @@ interface GlobalContextProps {
     setCharListPref: (prof_filter?: string, sortby?: string, ascend?: boolean) => void;
     uploadCharListPref: () => void;
     setCharBattlePref: (playerCount: number, chooseDraw: boolean, unchooseDraw: boolean) => void;
+    prepareBattleChar: (
+        playerCount: number,
+        rarity: boolean[],
+        prof: boolean[],
+        nationMap: any,
+        after_success?: () => void,
+        after_failed?: () => void
+    ) => void;
     endBattleChar: () => void;
 }
 
-export const GlobalContext = React.createContext<GlobalContextProps | undefined>(undefined);
+const GlobalContext = React.createContext<GlobalContextProps | undefined>(undefined);
 
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const [loading, setLoading] = useState<boolean>(true);
@@ -25,7 +33,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         invoke('get_global_vars')
             .then((result: any) => {
                 setVars(result);
-                console.log(result);
+                // console.log(result);
             })
             .catch((e) => {
                 console.error('Error for get_global_vars:', e);
@@ -88,7 +96,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         invoke('end_battle_char')
             .then((result: any) => {
                 setVars(result);
-                console.log(result);
+                // console.log(result);
             })
             .catch((e) => {
                 console.error('Error for end_battle_char:', e);
@@ -97,12 +105,38 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             });
     }
 
+    function prepareBattleChar(
+        playerCount: number,
+        rarity: boolean[],
+        prof: boolean[],
+        nationMap: any,
+        after_success?: () => void,
+        after_failed?: () => void
+    ) {
+        let tmp = vars.prefs.char_prepare_pref;
+        tmp.player_count = playerCount;
+        tmp.rarity = rarity;
+        tmp.prof = prof;
+        tmp.nation_map = nationMap;
+        vars.prefs.char_prepare_pref = tmp;
+        invoke("prepare_battle_char", { prepare: tmp })
+            .then((res) => {
+                if (res && after_success !== undefined)
+                    after_success();
+                else if (!res && after_failed !== undefined)
+                    after_failed();
+            })
+            .catch((e) => {
+                console.error('Error for end_battle_char:', e);
+            })
+    }
+
     useEffect(() => {
         invoke('get_global_data')
             .then((result: any) => {
                 setData(result.data);
                 setVars(result.vars);
-                console.log(result);
+                // console.log(result);
             })
             .catch((e) => {
                 console.error('Error for get_global_data:', e);
@@ -121,6 +155,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
             setCharListPref,
             uploadCharListPref,
             setCharBattlePref,
+            prepareBattleChar,
             endBattleChar
         }}>
             {children}

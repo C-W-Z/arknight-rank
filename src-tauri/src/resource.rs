@@ -9,13 +9,25 @@ const SKINDATA_FILE: &str = "assets/excel/skin.json";
 const CHARSKINDATA_FILE: &str = "assets/excel/char_skin.json";
 const SUBPROF_FILE: &str = "assets/excel/sub_prof.json";
 
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+pub enum Profession {
+    PIONEER = 0,
+    WARRIOR,
+    TANK,
+    SNIPER,
+    CASTER,
+    MEDIC,
+    SUPPORT,
+    SPECIAL,
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CharData {
     // pub char_id: String,
     pub name: String,
     pub name2: String,
-    pub rarity: u8,
-    pub prof: String,
+    pub rarity: usize,
+    pub prof: Profession,
     pub sub_prof: String,
     pub position: String,
     pub tags: Vec<String>,

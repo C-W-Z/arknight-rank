@@ -1,6 +1,6 @@
 use crate::{
     data::{load_from_appdata, save_to_appdata},
-    resource::CharSkinData,
+    resource::{CharData, CharSkinData},
 };
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -34,8 +34,16 @@ pub struct CharListPref {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct CharPreparePref {
+    pub player_count: usize,
+    pub rarity: Vec<bool>,
+    pub prof: Vec<bool>,
+    pub nation_map: HashMap<String, bool>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct BattlePref {
-    pub choose_draw: Vec<bool>, // player_count 2~5
+    pub choose_draw: Vec<bool>,   // player_count 2~5
     pub unchoose_draw: Vec<bool>, // player_count 2~5
 }
 
@@ -44,6 +52,7 @@ pub struct PlayerPrefs {
     pub menu_pref: MenuPref,
     pub stat_pref: HashMap<String, StatPref>, // char_id -> StatPref
     pub char_list_pref: CharListPref,
+    pub char_prepare_pref: CharPreparePref,
     pub char_battle_pref: BattlePref,
 }
 
@@ -61,9 +70,9 @@ impl MenuPref {
 }
 
 impl StatPref {
-    pub fn default(char_id: &String, char_skin_map: &HashMap<String, CharSkinData>) -> Self {
+    pub fn default(char_id: &String, char2skin: &HashMap<String, CharSkinData>) -> Self {
         Self {
-            skin_id: char_skin_map[char_id].e0.clone(),
+            skin_id: char2skin[char_id].e0.clone(),
             h: (100),
             x: (0),
             y: (0),
@@ -81,38 +90,69 @@ impl CharListPref {
     }
 }
 
+impl CharPreparePref {
+    pub fn default(chars: &HashMap<String, CharData>) -> Self {
+        let mut nation_map: HashMap<String, bool> = HashMap::new();
+
+        for c in chars.values() {
+            if c.nation.len() > 0 {
+                nation_map.insert(c.nation.clone(), true);
+            }
+            if c.group.len() > 0 {
+                nation_map.insert(c.group.clone(), true);
+            }
+            if c.team.len() > 0 {
+                nation_map.insert(c.team.clone(), true);
+            }
+        }
+        nation_map.insert("other".to_string(), true);
+
+        Self {
+            player_count: (2),
+            rarity: (vec![true; 6]),
+            prof: (vec![true; 8]),
+            nation_map: (nation_map),
+        }
+    }
+}
+
 impl BattlePref {
     pub fn default() -> Self {
         Self {
-            choose_draw: (vec![false, false, false, false, false, false]),
-            unchoose_draw: (vec![false, false, false, false, false, false]),
+            choose_draw: (vec![false; 6]),
+            unchoose_draw: (vec![false; 6]),
         }
     }
 }
 
 impl PlayerPrefs {
-    pub fn default(char_skin_map: &HashMap<String, CharSkinData>) -> Self {
-        let mut map: HashMap<String, StatPref> = HashMap::with_capacity(char_skin_map.len());
+    pub fn default(
+        chars: &HashMap<String, CharData>,
+        char2skin: &HashMap<String, CharSkinData>,
+    ) -> Self {
+        let mut map: HashMap<String, StatPref> = HashMap::with_capacity(char2skin.len());
 
-        for c_id in char_skin_map.keys() {
-            map.insert(c_id.clone(), StatPref::default(&c_id, &char_skin_map));
+        for c_id in char2skin.keys() {
+            map.insert(c_id.clone(), StatPref::default(&c_id, &char2skin));
         }
 
         Self {
             menu_pref: MenuPref::default(),
             stat_pref: map,
             char_list_pref: CharListPref::default(),
+            char_prepare_pref: CharPreparePref::default(chars),
             char_battle_pref: BattlePref::default(),
         }
     }
 
     pub fn initialize(
         app_handle: &AppHandle,
-        char_skin_map: &HashMap<String, CharSkinData>,
+        chars: &HashMap<String, CharData>,
+        char2skin: &HashMap<String, CharSkinData>,
     ) -> Self {
         match load_from_appdata(app_handle, PREF_FILE) {
             Some(pref) => return pref,
-            None => return Self::default(char_skin_map),
+            None => return Self::default(chars, char2skin),
         };
     }
 

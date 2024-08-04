@@ -1,6 +1,6 @@
 import './CircleButton.css'
 
-export interface Props {
+interface Props {
     className?: string;
     children?: any;
     onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
