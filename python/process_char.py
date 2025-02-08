@@ -25,11 +25,13 @@ with open('character_table.json', 'r', encoding="utf-8") as file:
             obj['nation'] = value['nationId']
             obj['group'] = value['groupId']
             obj['team'] = value['teamId']
-            # objs.append(obj)
-            map[key] = obj
-            
+
             if (obj['nation'] == '' and obj['group'] == '' and obj['team'] == ''):
                 print(obj)
+                continue
+
+            # objs.append(obj)
+            map[key] = obj
 
             # if (obj['name'] in names):
             #     print(obj['name'])

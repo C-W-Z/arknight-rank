@@ -103,6 +103,9 @@ background-image: url('../assets/skin/char_141_nights_1.webp');
 .skin.char_141_nights_2 {
 background-image: url('../assets/skin/char_141_nights_2.webp');
 }
+.skin.char_604_ccast_1 {
+background-image: url('../assets/skin/char_604_ccast_1.webp');
+}
 .skin.char_109_fmout_1 {
 background-image: url('../assets/skin/char_109_fmout_1.webp');
 }
@@ -157,6 +160,9 @@ background-image: url('../assets/skin/char_133_mm_1.webp');
 .skin.char_133_mm_2 {
 background-image: url('../assets/skin/char_133_mm_2.webp');
 }
+.skin.char_603_csnipe_1 {
+background-image: url('../assets/skin/char_603_csnipe_1.webp');
+}
 .skin.char_118_yuki_1 {
 background-image: url('../assets/skin/char_118_yuki_1.webp');
 }
@@ -205,6 +211,9 @@ background-image: url('../assets/skin/char_149_scave_1.webp');
 .skin.char_149_scave_2 {
 background-image: url('../assets/skin/char_149_scave_2.webp');
 }
+.skin.char_600_cpione_1 {
+background-image: url('../assets/skin/char_600_cpione_1.webp');
+}
 .skin.char_290_vigna_1 {
 background-image: url('../assets/skin/char_290_vigna_1.webp');
 }
@@ -240,6 +249,9 @@ background-image: url('../assets/skin/char_159_peacok_1.webp');
 }
 .skin.char_159_peacok_2 {
 background-image: url('../assets/skin/char_159_peacok_2.webp');
+}
+.skin.char_601_cguard_1 {
+background-image: url('../assets/skin/char_601_cguard_1.webp');
 }
 .skin.char_193_frostl_1 {
 background-image: url('../assets/skin/char_193_frostl_1.webp');
@@ -301,6 +313,9 @@ background-image: url('../assets/skin/char_237_gravel_1.webp');
 .skin.char_237_gravel_2 {
 background-image: url('../assets/skin/char_237_gravel_2.webp');
 }
+.skin.char_607_cspec_1 {
+background-image: url('../assets/skin/char_607_cspec_1.webp');
+}
 .skin.char_272_strong_1 {
 background-image: url('../assets/skin/char_272_strong_1.webp');
 }
@@ -330,6 +345,9 @@ background-image: url('../assets/skin/char_298_susuro_1.webp');
 }
 .skin.char_298_susuro_2 {
 background-image: url('../assets/skin/char_298_susuro_2.webp');
+}
+.skin.char_605_cmedic_1 {
+background-image: url('../assets/skin/char_605_cmedic_1.webp');
 }
 .skin.char_181_flower_1 {
 background-image: url('../assets/skin/char_181_flower_1.webp');
@@ -367,6 +385,9 @@ background-image: url('../assets/skin/char_381_bubble_1.webp');
 .skin.char_381_bubble_2 {
 background-image: url('../assets/skin/char_381_bubble_2.webp');
 }
+.skin.char_602_cdfend_1 {
+background-image: url('../assets/skin/char_602_cdfend_1.webp');
+}
 .skin.char_4130_luton_1 {
 background-image: url('../assets/skin/char_4130_luton_1.webp');
 }
@@ -403,6 +424,9 @@ background-image: url('../assets/skin/char_258_podego_1.webp');
 .skin.char_258_podego_2 {
 background-image: url('../assets/skin/char_258_podego_2.webp');
 }
+.skin.char_606_csuppo_1 {
+background-image: url('../assets/skin/char_606_csuppo_1.webp');
+}
 .skin.char_484_robrta_1 {
 background-image: url('../assets/skin/char_484_robrta_1.webp');
 }
@@ -427,6 +451,12 @@ background-image: url('../assets/skin/char_4107_vrdant_1.webp');
 .skin.char_4107_vrdant_2 {
 background-image: url('../assets/skin/char_4107_vrdant_2.webp');
 }
+.skin.char_4165_ctrail_1 {
+background-image: url('../assets/skin/char_4165_ctrail_1.webp');
+}
+.skin.char_4165_ctrail_2 {
+background-image: url('../assets/skin/char_4165_ctrail_2.webp');
+}
 .skin.char_128_plosis_1 {
 background-image: url('../assets/skin/char_128_plosis_1.webp');
 }
@@ -438,6 +468,12 @@ background-image: url('../assets/skin/char_275_breeze_1.webp');
 }
 .skin.char_275_breeze_2 {
 background-image: url('../assets/skin/char_275_breeze_2.webp');
+}
+.skin.char_4163_rosesa_1 {
+background-image: url('../assets/skin/char_4163_rosesa_1.webp');
+}
+.skin.char_4163_rosesa_2 {
+background-image: url('../assets/skin/char_4163_rosesa_2.webp');
 }
 .skin.char_115_headbr_1 {
 background-image: url('../assets/skin/char_115_headbr_1.webp');
@@ -511,6 +547,12 @@ background-image: url('../assets/skin/char_476_blkngt_1.webp');
 .skin.char_476_blkngt_2 {
 background-image: url('../assets/skin/char_476_blkngt_2.webp');
 }
+.skin.char_4147_mitm_1 {
+background-image: url('../assets/skin/char_4147_mitm_1.webp');
+}
+.skin.char_4147_mitm_2 {
+background-image: url('../assets/skin/char_4147_mitm_2.webp');
+}
 .skin.char_497_ctable_1 {
 background-image: url('../assets/skin/char_497_ctable_1.webp');
 }
@@ -522,6 +564,18 @@ background-image: url('../assets/skin/char_4017_puzzle_1.webp');
 }
 .skin.char_4017_puzzle_2 {
 background-image: url('../assets/skin/char_4017_puzzle_2.webp');
+}
+.skin.char_4144_chilc_1 {
+background-image: url('../assets/skin/char_4144_chilc_1.webp');
+}
+.skin.char_4144_chilc_2 {
+background-image: url('../assets/skin/char_4144_chilc_2.webp');
+}
+.skin.char_4052_surfer_1 {
+background-image: url('../assets/skin/char_4052_surfer_1.webp');
+}
+.skin.char_4052_surfer_2 {
+background-image: url('../assets/skin/char_4052_surfer_2.webp');
 }
 .skin.char_308_swire_1 {
 background-image: url('../assets/skin/char_308_swire_1.webp');
@@ -567,6 +621,12 @@ background-image: url('../assets/skin/char_154_morgan_2.webp');
 }
 .skin.char_508_aguard_1 {
 background-image: url('../assets/skin/char_508_aguard_1.webp');
+}
+.skin.char_4142_laios_1 {
+background-image: url('../assets/skin/char_4142_laios_1.webp');
+}
+.skin.char_4142_laios_2 {
+background-image: url('../assets/skin/char_4142_laios_2.webp');
 }
 .skin.char_155_tiger_1 {
 background-image: url('../assets/skin/char_155_tiger_1.webp');
@@ -895,6 +955,12 @@ background-image: url('../assets/skin/char_4081_warmy_1.webp');
 .skin.char_4081_warmy_2 {
 background-image: url('../assets/skin/char_4081_warmy_2.webp');
 }
+.skin.char_4164_tecno_1 {
+background-image: url('../assets/skin/char_4164_tecno_1.webp');
+}
+.skin.char_4164_tecno_2 {
+background-image: url('../assets/skin/char_4164_tecno_2.webp');
+}
 .skin.char_242_otter_1 {
 background-image: url('../assets/skin/char_242_otter_1.webp');
 }
@@ -906,6 +972,12 @@ background-image: url('../assets/skin/char_336_folivo_1.webp');
 }
 .skin.char_336_folivo_2 {
 background-image: url('../assets/skin/char_336_folivo_2.webp');
+}
+.skin.char_4140_lasher_1 {
+background-image: url('../assets/skin/char_4140_lasher_1.webp');
+}
+.skin.char_4140_lasher_2 {
+background-image: url('../assets/skin/char_4140_lasher_2.webp');
 }
 .skin.char_108_silent_1 {
 background-image: url('../assets/skin/char_108_silent_1.webp');
@@ -982,6 +1054,12 @@ background-image: url('../assets/skin/char_4071_peper_1.webp');
 .skin.char_4071_peper_2 {
 background-image: url('../assets/skin/char_4071_peper_2.webp');
 }
+.skin.char_4139_papyrs_1 {
+background-image: url('../assets/skin/char_4139_papyrs_1.webp');
+}
+.skin.char_4139_papyrs_2 {
+background-image: url('../assets/skin/char_4139_papyrs_2.webp');
+}
 .skin.char_148_nearl_1 {
 background-image: url('../assets/skin/char_148_nearl_1.webp');
 }
@@ -999,6 +1077,12 @@ background-image: url('../assets/skin/char_4109_baslin_1.webp');
 }
 .skin.char_4109_baslin_2 {
 background-image: url('../assets/skin/char_4109_baslin_2.webp');
+}
+.skin.char_4143_sensi_1 {
+background-image: url('../assets/skin/char_4143_sensi_1.webp');
+}
+.skin.char_4143_sensi_2 {
+background-image: url('../assets/skin/char_4143_sensi_2.webp');
 }
 .skin.char_144_red_1 {
 background-image: url('../assets/skin/char_144_red_1.webp');
@@ -1023,6 +1107,12 @@ background-image: url('../assets/skin/char_455_nothin_1.webp');
 }
 .skin.char_455_nothin_2 {
 background-image: url('../assets/skin/char_455_nothin_2.webp');
+}
+.skin.char_4155_talr_1 {
+background-image: url('../assets/skin/char_4155_talr_1.webp');
+}
+.skin.char_4155_talr_2 {
+background-image: url('../assets/skin/char_4155_talr_2.webp');
 }
 .skin.char_107_liskam_1 {
 background-image: url('../assets/skin/char_107_liskam_1.webp');
@@ -1110,6 +1200,12 @@ background-image: url('../assets/skin/char_464_cement_1.webp');
 }
 .skin.char_464_cement_2 {
 background-image: url('../assets/skin/char_464_cement_2.webp');
+}
+.skin.char_4148_philae_1 {
+background-image: url('../assets/skin/char_4148_philae_1.webp');
+}
+.skin.char_4148_philae_2 {
+background-image: url('../assets/skin/char_4148_philae_2.webp');
 }
 .skin.char_145_prove_1 {
 background-image: url('../assets/skin/char_145_prove_1.webp');
@@ -1237,6 +1333,12 @@ background-image: url('../assets/skin/char_433_windft_1.webp');
 .skin.char_433_windft_2 {
 background-image: url('../assets/skin/char_433_windft_2.webp');
 }
+.skin.char_4162_cathy_1 {
+background-image: url('../assets/skin/char_4162_cathy_1.webp');
+}
+.skin.char_4162_cathy_2 {
+background-image: url('../assets/skin/char_4162_cathy_2.webp');
+}
 .skin.char_101_sora_1 {
 background-image: url('../assets/skin/char_101_sora_1.webp');
 }
@@ -1267,11 +1369,23 @@ background-image: url('../assets/skin/char_492_quercu_1.webp');
 .skin.char_492_quercu_2 {
 background-image: url('../assets/skin/char_492_quercu_2.webp');
 }
+.skin.char_4172_xingzh_1 {
+background-image: url('../assets/skin/char_4172_xingzh_1.webp');
+}
+.skin.char_4172_xingzh_2 {
+background-image: url('../assets/skin/char_4172_xingzh_2.webp');
+}
 .skin.char_4102_threye_1 {
 background-image: url('../assets/skin/char_4102_threye_1.webp');
 }
 .skin.char_4102_threye_2 {
 background-image: url('../assets/skin/char_4102_threye_2.webp');
+}
+.skin.char_487_bobb_1 {
+background-image: url('../assets/skin/char_487_bobb_1.webp');
+}
+.skin.char_487_bobb_2 {
+background-image: url('../assets/skin/char_487_bobb_2.webp');
 }
 .skin.char_215_mantic_1 {
 background-image: url('../assets/skin/char_215_mantic_1.webp');
@@ -1327,6 +1441,12 @@ background-image: url('../assets/skin/char_4124_iana_1.webp');
 .skin.char_4124_iana_2 {
 background-image: url('../assets/skin/char_4124_iana_2.webp');
 }
+.skin.char_4151_tinman_1 {
+background-image: url('../assets/skin/char_4151_tinman_1.webp');
+}
+.skin.char_4151_tinman_2 {
+background-image: url('../assets/skin/char_4151_tinman_2.webp');
+}
 .skin.char_103_angel_1 {
 background-image: url('../assets/skin/char_103_angel_1.webp');
 }
@@ -1344,6 +1464,9 @@ background-image: url('../assets/skin/char_456_ash_1.webp');
 }
 .skin.char_456_ash_2 {
 background-image: url('../assets/skin/char_456_ash_2.webp');
+}
+.skin.char_611_acnipe_1 {
+background-image: url('../assets/skin/char_611_acnipe_1.webp');
 }
 .skin.char_340_shwaz_1 {
 background-image: url('../assets/skin/char_340_shwaz_1.webp');
@@ -1411,6 +1534,12 @@ background-image: url('../assets/skin/char_4117_ray_1.webp');
 .skin.char_4117_ray_2 {
 background-image: url('../assets/skin/char_4117_ray_2.webp');
 }
+.skin.char_4138_narant_1 {
+background-image: url('../assets/skin/char_4138_narant_1.webp');
+}
+.skin.char_4138_narant_2 {
+background-image: url('../assets/skin/char_4138_narant_2.webp');
+}
 .skin.char_112_siege_1 {
 background-image: url('../assets/skin/char_112_siege_1.webp');
 }
@@ -1429,6 +1558,12 @@ background-image: url('../assets/skin/char_362_saga_1.webp');
 .skin.char_362_saga_2 {
 background-image: url('../assets/skin/char_362_saga_2.webp');
 }
+.skin.char_4026_vulpis_1 {
+background-image: url('../assets/skin/char_4026_vulpis_1.webp');
+}
+.skin.char_4026_vulpis_2 {
+background-image: url('../assets/skin/char_4026_vulpis_2.webp');
+}
 .skin.char_479_sleach_1 {
 background-image: url('../assets/skin/char_479_sleach_1.webp');
 }
@@ -1440,6 +1575,9 @@ background-image: url('../assets/skin/char_420_flamtl_1.webp');
 }
 .skin.char_420_flamtl_2 {
 background-image: url('../assets/skin/char_420_flamtl_2.webp');
+}
+.skin.char_608_acpion_1 {
+background-image: url('../assets/skin/char_608_acpion_1.webp');
 }
 .skin.char_427_vigil_1 {
 background-image: url('../assets/skin/char_427_vigil_1.webp');
@@ -1501,6 +1639,15 @@ background-image: url('../assets/skin/char_2015_dusk_1.webp');
 .skin.char_2015_dusk_2 {
 background-image: url('../assets/skin/char_2015_dusk_2.webp');
 }
+.skin.char_4141_marcil_1 {
+background-image: url('../assets/skin/char_4141_marcil_1.webp');
+}
+.skin.char_4141_marcil_2 {
+background-image: url('../assets/skin/char_4141_marcil_2.webp');
+}
+.skin.char_612_accast_1 {
+background-image: url('../assets/skin/char_612_accast_1.webp');
+}
 .skin.char_472_pasngr_1 {
 background-image: url('../assets/skin/char_472_pasngr_1.webp');
 }
@@ -1525,11 +1672,29 @@ background-image: url('../assets/skin/char_377_gdglow_1.webp');
 .skin.char_377_gdglow_2 {
 background-image: url('../assets/skin/char_377_gdglow_2.webp');
 }
+.skin.char_1038_whitw2_1 {
+background-image: url('../assets/skin/char_1038_whitw2_1.webp');
+}
+.skin.char_1038_whitw2_2 {
+background-image: url('../assets/skin/char_1038_whitw2_2.webp');
+}
 .skin.char_4046_ebnhlz_1 {
 background-image: url('../assets/skin/char_4046_ebnhlz_1.webp');
 }
 .skin.char_4046_ebnhlz_2 {
 background-image: url('../assets/skin/char_4046_ebnhlz_2.webp');
+}
+.skin.char_4146_nymph_1 {
+background-image: url('../assets/skin/char_4146_nymph_1.webp');
+}
+.skin.char_4146_nymph_2 {
+background-image: url('../assets/skin/char_4146_nymph_2.webp');
+}
+.skin.char_1040_blaze2_1 {
+background-image: url('../assets/skin/char_1040_blaze2_1.webp');
+}
+.skin.char_1040_blaze2_2 {
+background-image: url('../assets/skin/char_1040_blaze2_2.webp');
 }
 .skin.char_206_gnosis_1 {
 background-image: url('../assets/skin/char_206_gnosis_1.webp');
@@ -1548,6 +1713,9 @@ background-image: url('../assets/skin/char_358_lisa_1.webp');
 }
 .skin.char_358_lisa_2 {
 background-image: url('../assets/skin/char_358_lisa_2.webp');
+}
+.skin.char_614_acsupo_1 {
+background-image: url('../assets/skin/char_614_acsupo_1.webp');
 }
 .skin.char_248_mgllan_1 {
 background-image: url('../assets/skin/char_248_mgllan_1.webp');
@@ -1609,6 +1777,15 @@ background-image: url('../assets/skin/char_1029_yato2_1.webp');
 .skin.char_1029_yato2_2 {
 background-image: url('../assets/skin/char_1029_yato2_2.webp');
 }
+.skin.char_1502_crosly_1 {
+background-image: url('../assets/skin/char_1502_crosly_1.webp');
+}
+.skin.char_1502_crosly_2 {
+background-image: url('../assets/skin/char_1502_crosly_2.webp');
+}
+.skin.char_615_acspec_1 {
+background-image: url('../assets/skin/char_615_acspec_1.webp');
+}
 .skin.char_322_lmlee_1 {
 background-image: url('../assets/skin/char_322_lmlee_1.webp');
 }
@@ -1669,11 +1846,20 @@ background-image: url('../assets/skin/char_4123_ela_1.webp');
 .skin.char_4123_ela_2 {
 background-image: url('../assets/skin/char_4123_ela_2.webp');
 }
+.skin.char_1039_thorn2_1 {
+background-image: url('../assets/skin/char_1039_thorn2_1.webp');
+}
+.skin.char_1039_thorn2_2 {
+background-image: url('../assets/skin/char_1039_thorn2_2.webp');
+}
 .skin.char_147_shining_1 {
 background-image: url('../assets/skin/char_147_shining_1.webp');
 }
 .skin.char_147_shining_2 {
 background-image: url('../assets/skin/char_147_shining_2.webp');
+}
+.skin.char_613_acmedc_1 {
+background-image: url('../assets/skin/char_613_acmedc_1.webp');
 }
 .skin.char_179_cgbird_1 {
 background-image: url('../assets/skin/char_179_cgbird_1.webp');
@@ -1710,6 +1896,9 @@ background-image: url('../assets/skin/char_136_hsguma_1.webp');
 }
 .skin.char_136_hsguma_2 {
 background-image: url('../assets/skin/char_136_hsguma_2.webp');
+}
+.skin.char_610_acfend_1 {
+background-image: url('../assets/skin/char_610_acfend_1.webp');
 }
 .skin.char_202_demkni_1 {
 background-image: url('../assets/skin/char_202_demkni_1.webp');
@@ -1765,6 +1954,12 @@ background-image: url('../assets/skin/char_1034_jesca2_1.webp');
 .skin.char_1034_jesca2_2 {
 background-image: url('../assets/skin/char_1034_jesca2_2.webp');
 }
+.skin.char_2026_yu_1 {
+background-image: url('../assets/skin/char_2026_yu_1.webp');
+}
+.skin.char_2026_yu_2 {
+background-image: url('../assets/skin/char_2026_yu_2.webp');
+}
 .skin.char_264_f12yin_1 {
 background-image: url('../assets/skin/char_264_f12yin_1.webp');
 }
@@ -1806,6 +2001,12 @@ background-image: url('../assets/skin/char_4145_ulpia_1.webp');
 }
 .skin.char_4145_ulpia_2 {
 background-image: url('../assets/skin/char_4145_ulpia_2.webp');
+}
+.skin.char_4058_pepe_1 {
+background-image: url('../assets/skin/char_4058_pepe_1.webp');
+}
+.skin.char_4058_pepe_2 {
+background-image: url('../assets/skin/char_4058_pepe_2.webp');
 }
 .skin.char_010_chen_1 {
 background-image: url('../assets/skin/char_010_chen_1.webp');
@@ -1849,6 +2050,12 @@ background-image: url('../assets/skin/char_4098_vvana_1.webp');
 .skin.char_4098_vvana_2 {
 background-image: url('../assets/skin/char_4098_vvana_2.webp');
 }
+.skin.char_1019_siege2_1 {
+background-image: url('../assets/skin/char_1019_siege2_1.webp');
+}
+.skin.char_1019_siege2_2 {
+background-image: url('../assets/skin/char_1019_siege2_2.webp');
+}
 .skin.char_188_helage_1 {
 background-image: url('../assets/skin/char_188_helage_1.webp');
 }
@@ -1878,6 +2085,9 @@ background-image: url('../assets/skin/char_4011_lessng_1.webp');
 }
 .skin.char_4011_lessng_2 {
 background-image: url('../assets/skin/char_4011_lessng_2.webp');
+}
+.skin.char_609_acguad_1 {
+background-image: url('../assets/skin/char_609_acguad_1.webp');
 }
 .skin.char_1032_excu2_1 {
 background-image: url('../assets/skin/char_1032_excu2_1.webp');
@@ -1971,6 +2181,18 @@ background-image: url('../assets/skin/char_121_lava_sale_9.webp');
 }
 .skin.char_010_chen_sale_10 {
 background-image: url('../assets/skin/char_010_chen_sale_10.webp');
+}
+.skin.char_4151_tinman_sale_11 {
+background-image: url('../assets/skin/char_4151_tinman_sale_11.webp');
+}
+.skin.char_245_cello_sale_12 {
+background-image: url('../assets/skin/char_245_cello_sale_12.webp');
+}
+.skin.char_1032_excu2_sale_12 {
+background-image: url('../assets/skin/char_1032_excu2_sale_12.webp');
+}
+.skin.char_1037_amiya3_sale_13 {
+background-image: url('../assets/skin/char_1037_amiya3_sale_13.webp');
 }
 .skin.char_208_melan_epoque_1 {
 background-image: url('../assets/skin/char_208_melan_epoque_1.webp');
@@ -2182,6 +2404,27 @@ background-image: url('../assets/skin/char_4065_judge_epoque_33.webp');
 .skin.char_4006_melnte_epoque_33 {
 background-image: url('../assets/skin/char_4006_melnte_epoque_33.webp');
 }
+.skin.char_1016_agoat2_epoque_34 {
+background-image: url('../assets/skin/char_1016_agoat2_epoque_34.webp');
+}
+.skin.char_488_buildr_epoque_34 {
+background-image: url('../assets/skin/char_488_buildr_epoque_34.webp');
+}
+.skin.char_4106_bryota_epoque_34 {
+background-image: url('../assets/skin/char_4106_bryota_epoque_34.webp');
+}
+.skin.char_1028_texas2_epoque_36 {
+background-image: url('../assets/skin/char_1028_texas2_epoque_36.webp');
+}
+.skin.char_499_kaitou_epoque_37 {
+background-image: url('../assets/skin/char_499_kaitou_epoque_37.webp');
+}
+.skin.char_4105_almond_epoque_38 {
+background-image: url('../assets/skin/char_4105_almond_epoque_38.webp');
+}
+.skin.char_369_bena_epoque_38 {
+background-image: url('../assets/skin/char_369_bena_epoque_38.webp');
+}
 .skin.char_120_hibisc_nian_1 {
 background-image: url('../assets/skin/char_120_hibisc_nian_1.webp');
 }
@@ -2257,6 +2500,12 @@ background-image: url('../assets/skin/char_449_glider_nian_10.webp');
 .skin.char_385_finlpp_nian_11 {
 background-image: url('../assets/skin/char_385_finlpp_nian_11.webp');
 }
+.skin.char_2025_shu_nian_11 {
+background-image: url('../assets/skin/char_2025_shu_nian_11.webp');
+}
+.skin.char_4121_zuole_nian_11 {
+background-image: url('../assets/skin/char_4121_zuole_nian_11.webp');
+}
 .skin.char_136_hsguma_nian_3 {
 background-image: url('../assets/skin/char_136_hsguma_nian_3.webp');
 }
@@ -2286,6 +2535,9 @@ background-image: url('../assets/skin/char_4071_peper_whirlwind_5.webp');
 }
 .skin.char_131_flameb_whirlwind_6 {
 background-image: url('../assets/skin/char_131_flameb_whirlwind_6.webp');
+}
+.skin.char_4011_lessng_whirlwind_7 {
+background-image: url('../assets/skin/char_4011_lessng_whirlwind_7.webp');
 }
 .skin.char_147_shining_summer_1 {
 background-image: url('../assets/skin/char_147_shining_summer_1.webp');
@@ -2425,6 +2677,24 @@ background-image: url('../assets/skin/char_341_sntlla_summer_15.webp');
 .skin.char_136_hsguma_summer_16 {
 background-image: url('../assets/skin/char_136_hsguma_summer_16.webp');
 }
+.skin.char_282_catap_summer_17 {
+background-image: url('../assets/skin/char_282_catap_summer_17.webp');
+}
+.skin.char_1020_reed2_summer_17 {
+background-image: url('../assets/skin/char_1020_reed2_summer_17.webp');
+}
+.skin.char_2012_typhon_summer_17 {
+background-image: url('../assets/skin/char_2012_typhon_summer_17.webp');
+}
+.skin.char_4032_provs_summer_17 {
+background-image: url('../assets/skin/char_4032_provs_summer_17.webp');
+}
+.skin.char_4062_totter_summer_17 {
+background-image: url('../assets/skin/char_4062_totter_summer_17.webp');
+}
+.skin.char_4100_caper_summer_18 {
+background-image: url('../assets/skin/char_4100_caper_summer_18.webp');
+}
 .skin.char_241_panda_marthe_1 {
 background-image: url('../assets/skin/char_241_panda_marthe_1.webp');
 }
@@ -2445,6 +2715,9 @@ background-image: url('../assets/skin/char_192_falco_marthe_6.webp');
 }
 .skin.char_376_therex_marthe_7 {
 background-image: url('../assets/skin/char_376_therex_marthe_7.webp');
+}
+.skin.char_301_cutter_marthe_8 {
+background-image: url('../assets/skin/char_301_cutter_marthe_8.webp');
 }
 .skin.char_179_cgbird_witch_1 {
 background-image: url('../assets/skin/char_179_cgbird_witch_1.webp');
@@ -2479,6 +2752,30 @@ background-image: url('../assets/skin/char_338_iris_witch_3.webp');
 .skin.char_4016_kazema_witch_3 {
 background-image: url('../assets/skin/char_4016_kazema_witch_3.webp');
 }
+.skin.char_4048_doroth_witch_4 {
+background-image: url('../assets/skin/char_4048_doroth_witch_4.webp');
+}
+.skin.char_300_phenxi_witch_4 {
+background-image: url('../assets/skin/char_300_phenxi_witch_4.webp');
+}
+.skin.char_492_quercu_witch_4 {
+background-image: url('../assets/skin/char_492_quercu_witch_4.webp');
+}
+.skin.char_436_whispr_witch_4 {
+background-image: url('../assets/skin/char_436_whispr_witch_4.webp');
+}
+.skin.char_4116_blkkgt_witch_5 {
+background-image: url('../assets/skin/char_4116_blkkgt_witch_5.webp');
+}
+.skin.char_017_huang_witch_5 {
+background-image: url('../assets/skin/char_017_huang_witch_5.webp');
+}
+.skin.char_4109_baslin_witch_5 {
+background-image: url('../assets/skin/char_4109_baslin_witch_5.webp');
+}
+.skin.char_281_popka_witch_5 {
+background-image: url('../assets/skin/char_281_popka_witch_5.webp');
+}
 .skin.char_102_texas_winter_1 {
 background-image: url('../assets/skin/char_102_texas_winter_1.webp');
 }
@@ -2505,6 +2802,12 @@ background-image: url('../assets/skin/char_108_silent_winter_2.webp');
 }
 .skin.char_110_deepcl_winter_3 {
 background-image: url('../assets/skin/char_110_deepcl_winter_3.webp');
+}
+.skin.char_4081_warmy_winter_4 {
+background-image: url('../assets/skin/char_4081_warmy_winter_4.webp');
+}
+.skin.char_298_susuro_winter_4 {
+background-image: url('../assets/skin/char_298_susuro_winter_4.webp');
 }
 .skin.char_340_shwaz_snow_1 {
 background-image: url('../assets/skin/char_340_shwaz_snow_1.webp');
@@ -2560,6 +2863,9 @@ background-image: url('../assets/skin/char_343_tknogi_snow_6.webp');
 .skin.char_466_qanik_snow_6 {
 background-image: url('../assets/skin/char_466_qanik_snow_6.webp');
 }
+.skin.char_4114_harold_snow_7 {
+background-image: url('../assets/skin/char_4114_harold_snow_7.webp');
+}
 .skin.char_103_angel_wild_1 {
 background-image: url('../assets/skin/char_103_angel_wild_1.webp');
 }
@@ -2613,6 +2919,9 @@ background-image: url('../assets/skin/char_4047_pianst_wild_8.webp');
 }
 .skin.char_2012_typhon_wild_9 {
 background-image: url('../assets/skin/char_2012_typhon_wild_9.webp');
+}
+.skin.char_311_mudrok_wild_10 {
+background-image: url('../assets/skin/char_311_mudrok_wild_10.webp');
 }
 .skin.char_219_meteo_sweep_1 {
 background-image: url('../assets/skin/char_219_meteo_sweep_1.webp');
@@ -2782,6 +3091,9 @@ background-image: url('../assets/skin/char_155_tiger_striker_2.webp');
 .skin.char_149_scave_striker_2 {
 background-image: url('../assets/skin/char_149_scave_striker_2.webp');
 }
+.skin.char_4104_coldst_striker_3 {
+background-image: url('../assets/skin/char_4104_coldst_striker_3.webp');
+}
 .skin.char_017_huang_as_1 {
 background-image: url('../assets/skin/char_017_huang_as_1.webp');
 }
@@ -2869,6 +3181,12 @@ background-image: url('../assets/skin/char_274_astesi_shining_1.webp');
 .skin.char_440_pinecn_shining_1 {
 background-image: url('../assets/skin/char_440_pinecn_shining_1.webp');
 }
+.skin.char_486_takila_shining_2 {
+background-image: url('../assets/skin/char_486_takila_shining_2.webp');
+}
+.skin.char_4117_ray_shining_2 {
+background-image: url('../assets/skin/char_4117_ray_shining_2.webp');
+}
 .skin.char_159_peacok_game_1 {
 background-image: url('../assets/skin/char_159_peacok_game_1.webp');
 }
@@ -2881,6 +3199,18 @@ background-image: url('../assets/skin/char_346_aosta_game_2.webp');
 .skin.char_478_kirara_game_2 {
 background-image: url('../assets/skin/char_478_kirara_game_2.webp');
 }
+.skin.char_306_leizi_game_3 {
+background-image: url('../assets/skin/char_306_leizi_game_3.webp');
+}
+.skin.char_4009_irene_game_3 {
+background-image: url('../assets/skin/char_4009_irene_game_3.webp');
+}
+.skin.char_1021_kroos2_game_3 {
+background-image: url('../assets/skin/char_1021_kroos2_game_3.webp');
+}
+.skin.char_240_wyvern_game_4 {
+background-image: url('../assets/skin/char_240_wyvern_game_4.webp');
+}
 .skin.char_4014_lunacu_yun_1 {
 background-image: url('../assets/skin/char_4014_lunacu_yun_1.webp');
 }
@@ -2890,17 +3220,11 @@ background-image: url('../assets/skin/char_4078_bdhkgt_yun_2.webp');
 .skin.char_4122_grabds_yun_3 {
 background-image: url('../assets/skin/char_4122_grabds_yun_3.webp');
 }
-.skin.char_4048_doroth_witch_4 {
-background-image: url('../assets/skin/char_4048_doroth_witch_4.webp');
+.skin.char_128_plosis_yun_4 {
+background-image: url('../assets/skin/char_128_plosis_yun_4.webp');
 }
-.skin.char_300_phenxi_witch_4 {
-background-image: url('../assets/skin/char_300_phenxi_witch_4.webp');
-}
-.skin.char_492_quercu_witch_4 {
-background-image: url('../assets/skin/char_492_quercu_witch_4.webp');
-}
-.skin.char_436_whispr_witch_4 {
-background-image: url('../assets/skin/char_436_whispr_witch_4.webp');
+.skin.char_4083_chimes_yun_5 {
+background-image: url('../assets/skin/char_4083_chimes_yun_5.webp');
 }
 .skin.char_1028_texas2_iteration_1 {
 background-image: url('../assets/skin/char_1028_texas2_iteration_1.webp');
@@ -2916,6 +3240,27 @@ background-image: url('../assets/skin/char_297_hamoni_unveiling_1.webp');
 }
 .skin.char_271_spikes_unveiling_1 {
 background-image: url('../assets/skin/char_271_spikes_unveiling_1.webp');
+}
+.skin.char_179_cgbird_sightseer_1 {
+background-image: url('../assets/skin/char_179_cgbird_sightseer_1.webp');
+}
+.skin.char_4088_hodrer_sightseer_1 {
+background-image: url('../assets/skin/char_4088_hodrer_sightseer_1.webp');
+}
+.skin.char_400_weedy_sightseer_1 {
+background-image: url('../assets/skin/char_400_weedy_sightseer_1.webp');
+}
+.skin.char_4141_marcil_dungeon_1 {
+background-image: url('../assets/skin/char_4141_marcil_dungeon_1.webp');
+}
+.skin.char_1034_jesca2_cfa_1 {
+background-image: url('../assets/skin/char_1034_jesca2_cfa_1.webp');
+}
+.skin.char_2014_nian_cfa_1 {
+background-image: url('../assets/skin/char_2014_nian_cfa_1.webp');
+}
+.skin.char_2024_chyue_cfa_1 {
+background-image: url('../assets/skin/char_2024_chyue_cfa_1.webp');
 }
 .skin.char_1001_amiya2_2 {
 background-image: url('../assets/skin/char_1001_amiya2_2.webp');
@@ -3028,6 +3373,9 @@ background-image: url('../assets/portrait/char_141_nights_1.webp');
 .portrait.char_141_nights_2 {
 background-image: url('../assets/portrait/char_141_nights_2.webp');
 }
+.portrait.char_604_ccast_1 {
+background-image: url('../assets/portrait/char_604_ccast_1.webp');
+}
 .portrait.char_109_fmout_1 {
 background-image: url('../assets/portrait/char_109_fmout_1.webp');
 }
@@ -3082,6 +3430,9 @@ background-image: url('../assets/portrait/char_133_mm_1.webp');
 .portrait.char_133_mm_2 {
 background-image: url('../assets/portrait/char_133_mm_2.webp');
 }
+.portrait.char_603_csnipe_1 {
+background-image: url('../assets/portrait/char_603_csnipe_1.webp');
+}
 .portrait.char_118_yuki_1 {
 background-image: url('../assets/portrait/char_118_yuki_1.webp');
 }
@@ -3130,6 +3481,9 @@ background-image: url('../assets/portrait/char_149_scave_1.webp');
 .portrait.char_149_scave_2 {
 background-image: url('../assets/portrait/char_149_scave_2.webp');
 }
+.portrait.char_600_cpione_1 {
+background-image: url('../assets/portrait/char_600_cpione_1.webp');
+}
 .portrait.char_290_vigna_1 {
 background-image: url('../assets/portrait/char_290_vigna_1.webp');
 }
@@ -3165,6 +3519,9 @@ background-image: url('../assets/portrait/char_159_peacok_1.webp');
 }
 .portrait.char_159_peacok_2 {
 background-image: url('../assets/portrait/char_159_peacok_2.webp');
+}
+.portrait.char_601_cguard_1 {
+background-image: url('../assets/portrait/char_601_cguard_1.webp');
 }
 .portrait.char_193_frostl_1 {
 background-image: url('../assets/portrait/char_193_frostl_1.webp');
@@ -3226,6 +3583,9 @@ background-image: url('../assets/portrait/char_237_gravel_1.webp');
 .portrait.char_237_gravel_2 {
 background-image: url('../assets/portrait/char_237_gravel_2.webp');
 }
+.portrait.char_607_cspec_1 {
+background-image: url('../assets/portrait/char_607_cspec_1.webp');
+}
 .portrait.char_272_strong_1 {
 background-image: url('../assets/portrait/char_272_strong_1.webp');
 }
@@ -3255,6 +3615,9 @@ background-image: url('../assets/portrait/char_298_susuro_1.webp');
 }
 .portrait.char_298_susuro_2 {
 background-image: url('../assets/portrait/char_298_susuro_2.webp');
+}
+.portrait.char_605_cmedic_1 {
+background-image: url('../assets/portrait/char_605_cmedic_1.webp');
 }
 .portrait.char_181_flower_1 {
 background-image: url('../assets/portrait/char_181_flower_1.webp');
@@ -3292,6 +3655,9 @@ background-image: url('../assets/portrait/char_381_bubble_1.webp');
 .portrait.char_381_bubble_2 {
 background-image: url('../assets/portrait/char_381_bubble_2.webp');
 }
+.portrait.char_602_cdfend_1 {
+background-image: url('../assets/portrait/char_602_cdfend_1.webp');
+}
 .portrait.char_4130_luton_1 {
 background-image: url('../assets/portrait/char_4130_luton_1.webp');
 }
@@ -3328,6 +3694,9 @@ background-image: url('../assets/portrait/char_258_podego_1.webp');
 .portrait.char_258_podego_2 {
 background-image: url('../assets/portrait/char_258_podego_2.webp');
 }
+.portrait.char_606_csuppo_1 {
+background-image: url('../assets/portrait/char_606_csuppo_1.webp');
+}
 .portrait.char_484_robrta_1 {
 background-image: url('../assets/portrait/char_484_robrta_1.webp');
 }
@@ -3352,6 +3721,12 @@ background-image: url('../assets/portrait/char_4107_vrdant_1.webp');
 .portrait.char_4107_vrdant_2 {
 background-image: url('../assets/portrait/char_4107_vrdant_2.webp');
 }
+.portrait.char_4165_ctrail_1 {
+background-image: url('../assets/portrait/char_4165_ctrail_1.webp');
+}
+.portrait.char_4165_ctrail_2 {
+background-image: url('../assets/portrait/char_4165_ctrail_2.webp');
+}
 .portrait.char_128_plosis_1 {
 background-image: url('../assets/portrait/char_128_plosis_1.webp');
 }
@@ -3363,6 +3738,12 @@ background-image: url('../assets/portrait/char_275_breeze_1.webp');
 }
 .portrait.char_275_breeze_2 {
 background-image: url('../assets/portrait/char_275_breeze_2.webp');
+}
+.portrait.char_4163_rosesa_1 {
+background-image: url('../assets/portrait/char_4163_rosesa_1.webp');
+}
+.portrait.char_4163_rosesa_2 {
+background-image: url('../assets/portrait/char_4163_rosesa_2.webp');
 }
 .portrait.char_115_headbr_1 {
 background-image: url('../assets/portrait/char_115_headbr_1.webp');
@@ -3436,6 +3817,12 @@ background-image: url('../assets/portrait/char_476_blkngt_1.webp');
 .portrait.char_476_blkngt_2 {
 background-image: url('../assets/portrait/char_476_blkngt_2.webp');
 }
+.portrait.char_4147_mitm_1 {
+background-image: url('../assets/portrait/char_4147_mitm_1.webp');
+}
+.portrait.char_4147_mitm_2 {
+background-image: url('../assets/portrait/char_4147_mitm_2.webp');
+}
 .portrait.char_497_ctable_1 {
 background-image: url('../assets/portrait/char_497_ctable_1.webp');
 }
@@ -3447,6 +3834,18 @@ background-image: url('../assets/portrait/char_4017_puzzle_1.webp');
 }
 .portrait.char_4017_puzzle_2 {
 background-image: url('../assets/portrait/char_4017_puzzle_2.webp');
+}
+.portrait.char_4144_chilc_1 {
+background-image: url('../assets/portrait/char_4144_chilc_1.webp');
+}
+.portrait.char_4144_chilc_2 {
+background-image: url('../assets/portrait/char_4144_chilc_2.webp');
+}
+.portrait.char_4052_surfer_1 {
+background-image: url('../assets/portrait/char_4052_surfer_1.webp');
+}
+.portrait.char_4052_surfer_2 {
+background-image: url('../assets/portrait/char_4052_surfer_2.webp');
 }
 .portrait.char_308_swire_1 {
 background-image: url('../assets/portrait/char_308_swire_1.webp');
@@ -3492,6 +3891,12 @@ background-image: url('../assets/portrait/char_154_morgan_2.webp');
 }
 .portrait.char_508_aguard_1 {
 background-image: url('../assets/portrait/char_508_aguard_1.webp');
+}
+.portrait.char_4142_laios_1 {
+background-image: url('../assets/portrait/char_4142_laios_1.webp');
+}
+.portrait.char_4142_laios_2 {
+background-image: url('../assets/portrait/char_4142_laios_2.webp');
 }
 .portrait.char_155_tiger_1 {
 background-image: url('../assets/portrait/char_155_tiger_1.webp');
@@ -3820,6 +4225,12 @@ background-image: url('../assets/portrait/char_4081_warmy_1.webp');
 .portrait.char_4081_warmy_2 {
 background-image: url('../assets/portrait/char_4081_warmy_2.webp');
 }
+.portrait.char_4164_tecno_1 {
+background-image: url('../assets/portrait/char_4164_tecno_1.webp');
+}
+.portrait.char_4164_tecno_2 {
+background-image: url('../assets/portrait/char_4164_tecno_2.webp');
+}
 .portrait.char_242_otter_1 {
 background-image: url('../assets/portrait/char_242_otter_1.webp');
 }
@@ -3831,6 +4242,12 @@ background-image: url('../assets/portrait/char_336_folivo_1.webp');
 }
 .portrait.char_336_folivo_2 {
 background-image: url('../assets/portrait/char_336_folivo_2.webp');
+}
+.portrait.char_4140_lasher_1 {
+background-image: url('../assets/portrait/char_4140_lasher_1.webp');
+}
+.portrait.char_4140_lasher_2 {
+background-image: url('../assets/portrait/char_4140_lasher_2.webp');
 }
 .portrait.char_108_silent_1 {
 background-image: url('../assets/portrait/char_108_silent_1.webp');
@@ -3907,6 +4324,12 @@ background-image: url('../assets/portrait/char_4071_peper_1.webp');
 .portrait.char_4071_peper_2 {
 background-image: url('../assets/portrait/char_4071_peper_2.webp');
 }
+.portrait.char_4139_papyrs_1 {
+background-image: url('../assets/portrait/char_4139_papyrs_1.webp');
+}
+.portrait.char_4139_papyrs_2 {
+background-image: url('../assets/portrait/char_4139_papyrs_2.webp');
+}
 .portrait.char_148_nearl_1 {
 background-image: url('../assets/portrait/char_148_nearl_1.webp');
 }
@@ -3924,6 +4347,12 @@ background-image: url('../assets/portrait/char_4109_baslin_1.webp');
 }
 .portrait.char_4109_baslin_2 {
 background-image: url('../assets/portrait/char_4109_baslin_2.webp');
+}
+.portrait.char_4143_sensi_1 {
+background-image: url('../assets/portrait/char_4143_sensi_1.webp');
+}
+.portrait.char_4143_sensi_2 {
+background-image: url('../assets/portrait/char_4143_sensi_2.webp');
 }
 .portrait.char_144_red_1 {
 background-image: url('../assets/portrait/char_144_red_1.webp');
@@ -3948,6 +4377,12 @@ background-image: url('../assets/portrait/char_455_nothin_1.webp');
 }
 .portrait.char_455_nothin_2 {
 background-image: url('../assets/portrait/char_455_nothin_2.webp');
+}
+.portrait.char_4155_talr_1 {
+background-image: url('../assets/portrait/char_4155_talr_1.webp');
+}
+.portrait.char_4155_talr_2 {
+background-image: url('../assets/portrait/char_4155_talr_2.webp');
 }
 .portrait.char_107_liskam_1 {
 background-image: url('../assets/portrait/char_107_liskam_1.webp');
@@ -4035,6 +4470,12 @@ background-image: url('../assets/portrait/char_464_cement_1.webp');
 }
 .portrait.char_464_cement_2 {
 background-image: url('../assets/portrait/char_464_cement_2.webp');
+}
+.portrait.char_4148_philae_1 {
+background-image: url('../assets/portrait/char_4148_philae_1.webp');
+}
+.portrait.char_4148_philae_2 {
+background-image: url('../assets/portrait/char_4148_philae_2.webp');
 }
 .portrait.char_145_prove_1 {
 background-image: url('../assets/portrait/char_145_prove_1.webp');
@@ -4162,6 +4603,12 @@ background-image: url('../assets/portrait/char_433_windft_1.webp');
 .portrait.char_433_windft_2 {
 background-image: url('../assets/portrait/char_433_windft_2.webp');
 }
+.portrait.char_4162_cathy_1 {
+background-image: url('../assets/portrait/char_4162_cathy_1.webp');
+}
+.portrait.char_4162_cathy_2 {
+background-image: url('../assets/portrait/char_4162_cathy_2.webp');
+}
 .portrait.char_101_sora_1 {
 background-image: url('../assets/portrait/char_101_sora_1.webp');
 }
@@ -4192,11 +4639,23 @@ background-image: url('../assets/portrait/char_492_quercu_1.webp');
 .portrait.char_492_quercu_2 {
 background-image: url('../assets/portrait/char_492_quercu_2.webp');
 }
+.portrait.char_4172_xingzh_1 {
+background-image: url('../assets/portrait/char_4172_xingzh_1.webp');
+}
+.portrait.char_4172_xingzh_2 {
+background-image: url('../assets/portrait/char_4172_xingzh_2.webp');
+}
 .portrait.char_4102_threye_1 {
 background-image: url('../assets/portrait/char_4102_threye_1.webp');
 }
 .portrait.char_4102_threye_2 {
 background-image: url('../assets/portrait/char_4102_threye_2.webp');
+}
+.portrait.char_487_bobb_1 {
+background-image: url('../assets/portrait/char_487_bobb_1.webp');
+}
+.portrait.char_487_bobb_2 {
+background-image: url('../assets/portrait/char_487_bobb_2.webp');
 }
 .portrait.char_215_mantic_1 {
 background-image: url('../assets/portrait/char_215_mantic_1.webp');
@@ -4252,6 +4711,12 @@ background-image: url('../assets/portrait/char_4124_iana_1.webp');
 .portrait.char_4124_iana_2 {
 background-image: url('../assets/portrait/char_4124_iana_2.webp');
 }
+.portrait.char_4151_tinman_1 {
+background-image: url('../assets/portrait/char_4151_tinman_1.webp');
+}
+.portrait.char_4151_tinman_2 {
+background-image: url('../assets/portrait/char_4151_tinman_2.webp');
+}
 .portrait.char_103_angel_1 {
 background-image: url('../assets/portrait/char_103_angel_1.webp');
 }
@@ -4269,6 +4734,9 @@ background-image: url('../assets/portrait/char_456_ash_1.webp');
 }
 .portrait.char_456_ash_2 {
 background-image: url('../assets/portrait/char_456_ash_2.webp');
+}
+.portrait.char_611_acnipe_1 {
+background-image: url('../assets/portrait/char_611_acnipe_1.webp');
 }
 .portrait.char_340_shwaz_1 {
 background-image: url('../assets/portrait/char_340_shwaz_1.webp');
@@ -4336,6 +4804,12 @@ background-image: url('../assets/portrait/char_4117_ray_1.webp');
 .portrait.char_4117_ray_2 {
 background-image: url('../assets/portrait/char_4117_ray_2.webp');
 }
+.portrait.char_4138_narant_1 {
+background-image: url('../assets/portrait/char_4138_narant_1.webp');
+}
+.portrait.char_4138_narant_2 {
+background-image: url('../assets/portrait/char_4138_narant_2.webp');
+}
 .portrait.char_112_siege_1 {
 background-image: url('../assets/portrait/char_112_siege_1.webp');
 }
@@ -4354,6 +4828,12 @@ background-image: url('../assets/portrait/char_362_saga_1.webp');
 .portrait.char_362_saga_2 {
 background-image: url('../assets/portrait/char_362_saga_2.webp');
 }
+.portrait.char_4026_vulpis_1 {
+background-image: url('../assets/portrait/char_4026_vulpis_1.webp');
+}
+.portrait.char_4026_vulpis_2 {
+background-image: url('../assets/portrait/char_4026_vulpis_2.webp');
+}
 .portrait.char_479_sleach_1 {
 background-image: url('../assets/portrait/char_479_sleach_1.webp');
 }
@@ -4365,6 +4845,9 @@ background-image: url('../assets/portrait/char_420_flamtl_1.webp');
 }
 .portrait.char_420_flamtl_2 {
 background-image: url('../assets/portrait/char_420_flamtl_2.webp');
+}
+.portrait.char_608_acpion_1 {
+background-image: url('../assets/portrait/char_608_acpion_1.webp');
 }
 .portrait.char_427_vigil_1 {
 background-image: url('../assets/portrait/char_427_vigil_1.webp');
@@ -4426,6 +4909,15 @@ background-image: url('../assets/portrait/char_2015_dusk_1.webp');
 .portrait.char_2015_dusk_2 {
 background-image: url('../assets/portrait/char_2015_dusk_2.webp');
 }
+.portrait.char_4141_marcil_1 {
+background-image: url('../assets/portrait/char_4141_marcil_1.webp');
+}
+.portrait.char_4141_marcil_2 {
+background-image: url('../assets/portrait/char_4141_marcil_2.webp');
+}
+.portrait.char_612_accast_1 {
+background-image: url('../assets/portrait/char_612_accast_1.webp');
+}
 .portrait.char_472_pasngr_1 {
 background-image: url('../assets/portrait/char_472_pasngr_1.webp');
 }
@@ -4450,11 +4942,29 @@ background-image: url('../assets/portrait/char_377_gdglow_1.webp');
 .portrait.char_377_gdglow_2 {
 background-image: url('../assets/portrait/char_377_gdglow_2.webp');
 }
+.portrait.char_1038_whitw2_1 {
+background-image: url('../assets/portrait/char_1038_whitw2_1.webp');
+}
+.portrait.char_1038_whitw2_2 {
+background-image: url('../assets/portrait/char_1038_whitw2_2.webp');
+}
 .portrait.char_4046_ebnhlz_1 {
 background-image: url('../assets/portrait/char_4046_ebnhlz_1.webp');
 }
 .portrait.char_4046_ebnhlz_2 {
 background-image: url('../assets/portrait/char_4046_ebnhlz_2.webp');
+}
+.portrait.char_4146_nymph_1 {
+background-image: url('../assets/portrait/char_4146_nymph_1.webp');
+}
+.portrait.char_4146_nymph_2 {
+background-image: url('../assets/portrait/char_4146_nymph_2.webp');
+}
+.portrait.char_1040_blaze2_1 {
+background-image: url('../assets/portrait/char_1040_blaze2_1.webp');
+}
+.portrait.char_1040_blaze2_2 {
+background-image: url('../assets/portrait/char_1040_blaze2_2.webp');
 }
 .portrait.char_206_gnosis_1 {
 background-image: url('../assets/portrait/char_206_gnosis_1.webp');
@@ -4473,6 +4983,9 @@ background-image: url('../assets/portrait/char_358_lisa_1.webp');
 }
 .portrait.char_358_lisa_2 {
 background-image: url('../assets/portrait/char_358_lisa_2.webp');
+}
+.portrait.char_614_acsupo_1 {
+background-image: url('../assets/portrait/char_614_acsupo_1.webp');
 }
 .portrait.char_248_mgllan_1 {
 background-image: url('../assets/portrait/char_248_mgllan_1.webp');
@@ -4534,6 +5047,15 @@ background-image: url('../assets/portrait/char_1029_yato2_1.webp');
 .portrait.char_1029_yato2_2 {
 background-image: url('../assets/portrait/char_1029_yato2_2.webp');
 }
+.portrait.char_1502_crosly_1 {
+background-image: url('../assets/portrait/char_1502_crosly_1.webp');
+}
+.portrait.char_1502_crosly_2 {
+background-image: url('../assets/portrait/char_1502_crosly_2.webp');
+}
+.portrait.char_615_acspec_1 {
+background-image: url('../assets/portrait/char_615_acspec_1.webp');
+}
 .portrait.char_322_lmlee_1 {
 background-image: url('../assets/portrait/char_322_lmlee_1.webp');
 }
@@ -4594,11 +5116,20 @@ background-image: url('../assets/portrait/char_4123_ela_1.webp');
 .portrait.char_4123_ela_2 {
 background-image: url('../assets/portrait/char_4123_ela_2.webp');
 }
+.portrait.char_1039_thorn2_1 {
+background-image: url('../assets/portrait/char_1039_thorn2_1.webp');
+}
+.portrait.char_1039_thorn2_2 {
+background-image: url('../assets/portrait/char_1039_thorn2_2.webp');
+}
 .portrait.char_147_shining_1 {
 background-image: url('../assets/portrait/char_147_shining_1.webp');
 }
 .portrait.char_147_shining_2 {
 background-image: url('../assets/portrait/char_147_shining_2.webp');
+}
+.portrait.char_613_acmedc_1 {
+background-image: url('../assets/portrait/char_613_acmedc_1.webp');
 }
 .portrait.char_179_cgbird_1 {
 background-image: url('../assets/portrait/char_179_cgbird_1.webp');
@@ -4635,6 +5166,9 @@ background-image: url('../assets/portrait/char_136_hsguma_1.webp');
 }
 .portrait.char_136_hsguma_2 {
 background-image: url('../assets/portrait/char_136_hsguma_2.webp');
+}
+.portrait.char_610_acfend_1 {
+background-image: url('../assets/portrait/char_610_acfend_1.webp');
 }
 .portrait.char_202_demkni_1 {
 background-image: url('../assets/portrait/char_202_demkni_1.webp');
@@ -4690,6 +5224,12 @@ background-image: url('../assets/portrait/char_1034_jesca2_1.webp');
 .portrait.char_1034_jesca2_2 {
 background-image: url('../assets/portrait/char_1034_jesca2_2.webp');
 }
+.portrait.char_2026_yu_1 {
+background-image: url('../assets/portrait/char_2026_yu_1.webp');
+}
+.portrait.char_2026_yu_2 {
+background-image: url('../assets/portrait/char_2026_yu_2.webp');
+}
 .portrait.char_264_f12yin_1 {
 background-image: url('../assets/portrait/char_264_f12yin_1.webp');
 }
@@ -4731,6 +5271,12 @@ background-image: url('../assets/portrait/char_4145_ulpia_1.webp');
 }
 .portrait.char_4145_ulpia_2 {
 background-image: url('../assets/portrait/char_4145_ulpia_2.webp');
+}
+.portrait.char_4058_pepe_1 {
+background-image: url('../assets/portrait/char_4058_pepe_1.webp');
+}
+.portrait.char_4058_pepe_2 {
+background-image: url('../assets/portrait/char_4058_pepe_2.webp');
 }
 .portrait.char_010_chen_1 {
 background-image: url('../assets/portrait/char_010_chen_1.webp');
@@ -4774,6 +5320,12 @@ background-image: url('../assets/portrait/char_4098_vvana_1.webp');
 .portrait.char_4098_vvana_2 {
 background-image: url('../assets/portrait/char_4098_vvana_2.webp');
 }
+.portrait.char_1019_siege2_1 {
+background-image: url('../assets/portrait/char_1019_siege2_1.webp');
+}
+.portrait.char_1019_siege2_2 {
+background-image: url('../assets/portrait/char_1019_siege2_2.webp');
+}
 .portrait.char_188_helage_1 {
 background-image: url('../assets/portrait/char_188_helage_1.webp');
 }
@@ -4803,6 +5355,9 @@ background-image: url('../assets/portrait/char_4011_lessng_1.webp');
 }
 .portrait.char_4011_lessng_2 {
 background-image: url('../assets/portrait/char_4011_lessng_2.webp');
+}
+.portrait.char_609_acguad_1 {
+background-image: url('../assets/portrait/char_609_acguad_1.webp');
 }
 .portrait.char_1032_excu2_1 {
 background-image: url('../assets/portrait/char_1032_excu2_1.webp');
@@ -4896,6 +5451,18 @@ background-image: url('../assets/portrait/char_121_lava_sale_9.webp');
 }
 .portrait.char_010_chen_sale_10 {
 background-image: url('../assets/portrait/char_010_chen_sale_10.webp');
+}
+.portrait.char_4151_tinman_sale_11 {
+background-image: url('../assets/portrait/char_4151_tinman_sale_11.webp');
+}
+.portrait.char_245_cello_sale_12 {
+background-image: url('../assets/portrait/char_245_cello_sale_12.webp');
+}
+.portrait.char_1032_excu2_sale_12 {
+background-image: url('../assets/portrait/char_1032_excu2_sale_12.webp');
+}
+.portrait.char_1037_amiya3_sale_13 {
+background-image: url('../assets/portrait/char_1037_amiya3_sale_13.webp');
 }
 .portrait.char_208_melan_epoque_1 {
 background-image: url('../assets/portrait/char_208_melan_epoque_1.webp');
@@ -5107,6 +5674,27 @@ background-image: url('../assets/portrait/char_4065_judge_epoque_33.webp');
 .portrait.char_4006_melnte_epoque_33 {
 background-image: url('../assets/portrait/char_4006_melnte_epoque_33.webp');
 }
+.portrait.char_1016_agoat2_epoque_34 {
+background-image: url('../assets/portrait/char_1016_agoat2_epoque_34.webp');
+}
+.portrait.char_488_buildr_epoque_34 {
+background-image: url('../assets/portrait/char_488_buildr_epoque_34.webp');
+}
+.portrait.char_4106_bryota_epoque_34 {
+background-image: url('../assets/portrait/char_4106_bryota_epoque_34.webp');
+}
+.portrait.char_1028_texas2_epoque_36 {
+background-image: url('../assets/portrait/char_1028_texas2_epoque_36.webp');
+}
+.portrait.char_499_kaitou_epoque_37 {
+background-image: url('../assets/portrait/char_499_kaitou_epoque_37.webp');
+}
+.portrait.char_4105_almond_epoque_38 {
+background-image: url('../assets/portrait/char_4105_almond_epoque_38.webp');
+}
+.portrait.char_369_bena_epoque_38 {
+background-image: url('../assets/portrait/char_369_bena_epoque_38.webp');
+}
 .portrait.char_120_hibisc_nian_1 {
 background-image: url('../assets/portrait/char_120_hibisc_nian_1.webp');
 }
@@ -5182,6 +5770,12 @@ background-image: url('../assets/portrait/char_449_glider_nian_10.webp');
 .portrait.char_385_finlpp_nian_11 {
 background-image: url('../assets/portrait/char_385_finlpp_nian_11.webp');
 }
+.portrait.char_2025_shu_nian_11 {
+background-image: url('../assets/portrait/char_2025_shu_nian_11.webp');
+}
+.portrait.char_4121_zuole_nian_11 {
+background-image: url('../assets/portrait/char_4121_zuole_nian_11.webp');
+}
 .portrait.char_136_hsguma_nian_3 {
 background-image: url('../assets/portrait/char_136_hsguma_nian_3.webp');
 }
@@ -5211,6 +5805,9 @@ background-image: url('../assets/portrait/char_4071_peper_whirlwind_5.webp');
 }
 .portrait.char_131_flameb_whirlwind_6 {
 background-image: url('../assets/portrait/char_131_flameb_whirlwind_6.webp');
+}
+.portrait.char_4011_lessng_whirlwind_7 {
+background-image: url('../assets/portrait/char_4011_lessng_whirlwind_7.webp');
 }
 .portrait.char_147_shining_summer_1 {
 background-image: url('../assets/portrait/char_147_shining_summer_1.webp');
@@ -5350,6 +5947,24 @@ background-image: url('../assets/portrait/char_341_sntlla_summer_15.webp');
 .portrait.char_136_hsguma_summer_16 {
 background-image: url('../assets/portrait/char_136_hsguma_summer_16.webp');
 }
+.portrait.char_282_catap_summer_17 {
+background-image: url('../assets/portrait/char_282_catap_summer_17.webp');
+}
+.portrait.char_1020_reed2_summer_17 {
+background-image: url('../assets/portrait/char_1020_reed2_summer_17.webp');
+}
+.portrait.char_2012_typhon_summer_17 {
+background-image: url('../assets/portrait/char_2012_typhon_summer_17.webp');
+}
+.portrait.char_4032_provs_summer_17 {
+background-image: url('../assets/portrait/char_4032_provs_summer_17.webp');
+}
+.portrait.char_4062_totter_summer_17 {
+background-image: url('../assets/portrait/char_4062_totter_summer_17.webp');
+}
+.portrait.char_4100_caper_summer_18 {
+background-image: url('../assets/portrait/char_4100_caper_summer_18.webp');
+}
 .portrait.char_241_panda_marthe_1 {
 background-image: url('../assets/portrait/char_241_panda_marthe_1.webp');
 }
@@ -5370,6 +5985,9 @@ background-image: url('../assets/portrait/char_192_falco_marthe_6.webp');
 }
 .portrait.char_376_therex_marthe_7 {
 background-image: url('../assets/portrait/char_376_therex_marthe_7.webp');
+}
+.portrait.char_301_cutter_marthe_8 {
+background-image: url('../assets/portrait/char_301_cutter_marthe_8.webp');
 }
 .portrait.char_179_cgbird_witch_1 {
 background-image: url('../assets/portrait/char_179_cgbird_witch_1.webp');
@@ -5404,6 +6022,30 @@ background-image: url('../assets/portrait/char_338_iris_witch_3.webp');
 .portrait.char_4016_kazema_witch_3 {
 background-image: url('../assets/portrait/char_4016_kazema_witch_3.webp');
 }
+.portrait.char_4048_doroth_witch_4 {
+background-image: url('../assets/portrait/char_4048_doroth_witch_4.webp');
+}
+.portrait.char_300_phenxi_witch_4 {
+background-image: url('../assets/portrait/char_300_phenxi_witch_4.webp');
+}
+.portrait.char_492_quercu_witch_4 {
+background-image: url('../assets/portrait/char_492_quercu_witch_4.webp');
+}
+.portrait.char_436_whispr_witch_4 {
+background-image: url('../assets/portrait/char_436_whispr_witch_4.webp');
+}
+.portrait.char_4116_blkkgt_witch_5 {
+background-image: url('../assets/portrait/char_4116_blkkgt_witch_5.webp');
+}
+.portrait.char_017_huang_witch_5 {
+background-image: url('../assets/portrait/char_017_huang_witch_5.webp');
+}
+.portrait.char_4109_baslin_witch_5 {
+background-image: url('../assets/portrait/char_4109_baslin_witch_5.webp');
+}
+.portrait.char_281_popka_witch_5 {
+background-image: url('../assets/portrait/char_281_popka_witch_5.webp');
+}
 .portrait.char_102_texas_winter_1 {
 background-image: url('../assets/portrait/char_102_texas_winter_1.webp');
 }
@@ -5430,6 +6072,12 @@ background-image: url('../assets/portrait/char_108_silent_winter_2.webp');
 }
 .portrait.char_110_deepcl_winter_3 {
 background-image: url('../assets/portrait/char_110_deepcl_winter_3.webp');
+}
+.portrait.char_4081_warmy_winter_4 {
+background-image: url('../assets/portrait/char_4081_warmy_winter_4.webp');
+}
+.portrait.char_298_susuro_winter_4 {
+background-image: url('../assets/portrait/char_298_susuro_winter_4.webp');
 }
 .portrait.char_340_shwaz_snow_1 {
 background-image: url('../assets/portrait/char_340_shwaz_snow_1.webp');
@@ -5485,6 +6133,9 @@ background-image: url('../assets/portrait/char_343_tknogi_snow_6.webp');
 .portrait.char_466_qanik_snow_6 {
 background-image: url('../assets/portrait/char_466_qanik_snow_6.webp');
 }
+.portrait.char_4114_harold_snow_7 {
+background-image: url('../assets/portrait/char_4114_harold_snow_7.webp');
+}
 .portrait.char_103_angel_wild_1 {
 background-image: url('../assets/portrait/char_103_angel_wild_1.webp');
 }
@@ -5538,6 +6189,9 @@ background-image: url('../assets/portrait/char_4047_pianst_wild_8.webp');
 }
 .portrait.char_2012_typhon_wild_9 {
 background-image: url('../assets/portrait/char_2012_typhon_wild_9.webp');
+}
+.portrait.char_311_mudrok_wild_10 {
+background-image: url('../assets/portrait/char_311_mudrok_wild_10.webp');
 }
 .portrait.char_219_meteo_sweep_1 {
 background-image: url('../assets/portrait/char_219_meteo_sweep_1.webp');
@@ -5707,6 +6361,9 @@ background-image: url('../assets/portrait/char_155_tiger_striker_2.webp');
 .portrait.char_149_scave_striker_2 {
 background-image: url('../assets/portrait/char_149_scave_striker_2.webp');
 }
+.portrait.char_4104_coldst_striker_3 {
+background-image: url('../assets/portrait/char_4104_coldst_striker_3.webp');
+}
 .portrait.char_017_huang_as_1 {
 background-image: url('../assets/portrait/char_017_huang_as_1.webp');
 }
@@ -5794,6 +6451,12 @@ background-image: url('../assets/portrait/char_274_astesi_shining_1.webp');
 .portrait.char_440_pinecn_shining_1 {
 background-image: url('../assets/portrait/char_440_pinecn_shining_1.webp');
 }
+.portrait.char_486_takila_shining_2 {
+background-image: url('../assets/portrait/char_486_takila_shining_2.webp');
+}
+.portrait.char_4117_ray_shining_2 {
+background-image: url('../assets/portrait/char_4117_ray_shining_2.webp');
+}
 .portrait.char_159_peacok_game_1 {
 background-image: url('../assets/portrait/char_159_peacok_game_1.webp');
 }
@@ -5806,6 +6469,18 @@ background-image: url('../assets/portrait/char_346_aosta_game_2.webp');
 .portrait.char_478_kirara_game_2 {
 background-image: url('../assets/portrait/char_478_kirara_game_2.webp');
 }
+.portrait.char_306_leizi_game_3 {
+background-image: url('../assets/portrait/char_306_leizi_game_3.webp');
+}
+.portrait.char_4009_irene_game_3 {
+background-image: url('../assets/portrait/char_4009_irene_game_3.webp');
+}
+.portrait.char_1021_kroos2_game_3 {
+background-image: url('../assets/portrait/char_1021_kroos2_game_3.webp');
+}
+.portrait.char_240_wyvern_game_4 {
+background-image: url('../assets/portrait/char_240_wyvern_game_4.webp');
+}
 .portrait.char_4014_lunacu_yun_1 {
 background-image: url('../assets/portrait/char_4014_lunacu_yun_1.webp');
 }
@@ -5815,17 +6490,11 @@ background-image: url('../assets/portrait/char_4078_bdhkgt_yun_2.webp');
 .portrait.char_4122_grabds_yun_3 {
 background-image: url('../assets/portrait/char_4122_grabds_yun_3.webp');
 }
-.portrait.char_4048_doroth_witch_4 {
-background-image: url('../assets/portrait/char_4048_doroth_witch_4.webp');
+.portrait.char_128_plosis_yun_4 {
+background-image: url('../assets/portrait/char_128_plosis_yun_4.webp');
 }
-.portrait.char_300_phenxi_witch_4 {
-background-image: url('../assets/portrait/char_300_phenxi_witch_4.webp');
-}
-.portrait.char_492_quercu_witch_4 {
-background-image: url('../assets/portrait/char_492_quercu_witch_4.webp');
-}
-.portrait.char_436_whispr_witch_4 {
-background-image: url('../assets/portrait/char_436_whispr_witch_4.webp');
+.portrait.char_4083_chimes_yun_5 {
+background-image: url('../assets/portrait/char_4083_chimes_yun_5.webp');
 }
 .portrait.char_1028_texas2_iteration_1 {
 background-image: url('../assets/portrait/char_1028_texas2_iteration_1.webp');
@@ -5841,6 +6510,27 @@ background-image: url('../assets/portrait/char_297_hamoni_unveiling_1.webp');
 }
 .portrait.char_271_spikes_unveiling_1 {
 background-image: url('../assets/portrait/char_271_spikes_unveiling_1.webp');
+}
+.portrait.char_179_cgbird_sightseer_1 {
+background-image: url('../assets/portrait/char_179_cgbird_sightseer_1.webp');
+}
+.portrait.char_4088_hodrer_sightseer_1 {
+background-image: url('../assets/portrait/char_4088_hodrer_sightseer_1.webp');
+}
+.portrait.char_400_weedy_sightseer_1 {
+background-image: url('../assets/portrait/char_400_weedy_sightseer_1.webp');
+}
+.portrait.char_4141_marcil_dungeon_1 {
+background-image: url('../assets/portrait/char_4141_marcil_dungeon_1.webp');
+}
+.portrait.char_1034_jesca2_cfa_1 {
+background-image: url('../assets/portrait/char_1034_jesca2_cfa_1.webp');
+}
+.portrait.char_2014_nian_cfa_1 {
+background-image: url('../assets/portrait/char_2014_nian_cfa_1.webp');
+}
+.portrait.char_2024_chyue_cfa_1 {
+background-image: url('../assets/portrait/char_2024_chyue_cfa_1.webp');
 }
 .portrait.char_1001_amiya2_2 {
 background-image: url('../assets/portrait/char_1001_amiya2_2.webp');

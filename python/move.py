@@ -8,9 +8,9 @@ from PIL import Image
 # compress 90%
 
 
-source_folder = 'src-tauri\\assets\\skin2'
-target_folder = 'src-tauri\\assets\\skin3'
-other_folder = 'src-tauri\\assets\\skin4'
+source_folder = 'src\\assets\\charpack'
+target_folder = 'src\\assets\\skin2'
+other_folder = 'src\\assets\\skin3'
 
 os.makedirs(target_folder, exist_ok=True)
 os.makedirs(other_folder, exist_ok=True)
