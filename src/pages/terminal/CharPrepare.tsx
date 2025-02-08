@@ -17,7 +17,7 @@ function Option({
     className = '',
     btnClass = '',
     onClick = undefined,
-    defaultSelect = true
+    defaultSelect = true,
 }: OptionProps) {
     const [select, setSelect] = useState(defaultSelect);
 
@@ -27,11 +27,22 @@ function Option({
         setSelect(!select);
     }
 
+    let moving = false;
+    const onMouseDown = () => moving = false;
+    const onMouseMove =() => moving = true;
+    function onMouseUp() {
+        if (moving)
+            return;
+        click();
+    }
+
     if (select)
         className += ' select';
 
     return (
-        <button className={"option " + className} onClick={click}>
+        <button className={"option " + className} /*onClick={click}*/
+            onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}
+        >
             <div className="bg"></div>
             <div className={'btn ' + btnClass}></div>
             <div className="circle-checkmark">
@@ -58,7 +69,7 @@ const UniqueOptions = forwardRef<UniqueOptionsRef, UniqueOptionsProps>(({
     initUnlockIdx,
     optionClass = [],
     btnClass = [],
-    onClicks = []
+    onClicks = [],
 }: UniqueOptionsProps, ref) => {
     const [list, setList] = useState<JSX.Element[]>([]);
     const [unlock, setUnlock] = useState<number>(initUnlockIdx);
@@ -70,6 +81,17 @@ const UniqueOptions = forwardRef<UniqueOptionsRef, UniqueOptionsProps>(({
             if (onClicks.length > i)
                 onClicks[i]();
             setUnlock(i);
+        }
+    }
+
+    let moving = false;
+    const onMouseDown = () => moving = false;
+    const onMouseMove =() => moving = true;
+    function onMouseUp(clickFunc: () => void) {
+        return () => {
+            if (moving)
+                return;
+            clickFunc();
         }
     }
 
@@ -85,7 +107,9 @@ const UniqueOptions = forwardRef<UniqueOptionsRef, UniqueOptionsProps>(({
             const cname3 = (i == n - 1) ? '' : ' hline';
             const bname = btnClass.length > i ? btnClass[i] : '';
             arr.push(
-                <button key={i} className={cname2 + cname3 + " option " + cname1} onClick={click(i)}>
+                <button key={i} className={cname2 + cname3 + " option " + cname1} /*onClick={click(i)}*/
+                    onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp(click(i))}
+                >
                     <div className="bg"></div>
                     <div className={'btn ' + bname}></div>
                     <div className="circle-checkmark">
@@ -139,6 +163,17 @@ const ArrayOptions = forwardRef<ArrayOptionsRef, ArrayOptionsProps>(({
         select() { return select; }
     }));
 
+    let moving = false;
+    const onMouseDown = () => moving = false;
+    const onMouseMove =() => moving = true;
+    function onMouseUp(clickFunc: () => void) {
+        return () => {
+            if (moving)
+                return;
+            clickFunc();
+        }
+    }
+
     useEffect(() => {
         const arr: JSX.Element[] = [];
         for (let i = 0; i < n; i++) {
@@ -146,7 +181,9 @@ const ArrayOptions = forwardRef<ArrayOptionsRef, ArrayOptionsProps>(({
             const cname2 = select[i] ? 'select' : '';
             const bname = btnClass.length > i ? btnClass[i] : '';
             arr.push(
-                <button key={i} className={cname2 + " option " + cname1} onClick={click(i)}>
+                <button key={i} className={cname2 + " option " + cname1} /*onClick={click(i)}*/
+                    onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp(click(i))}
+                >
                     <div className="bg"></div>
                     <div className={'btn ' + bname}></div>
                     <div className="circle-checkmark">
@@ -199,6 +236,17 @@ const ChainOptions = ({
         }
     }
 
+    let moving = false;
+    const onMouseDown = () => moving = false;
+    const onMouseMove =() => moving = true;
+    function onMouseUp(clickFunc: () => void) {
+        return () => {
+            if (moving)
+                return;
+            clickFunc();
+        }
+    }
+
     useEffect(() => {
         const arr: JSX.Element[] = [];
         for (let i = 0; i < n; i++) {
@@ -210,7 +258,9 @@ const ChainOptions = ({
             const cname4 = i > 0 && i < n - 1 ? ' hline' : '';
             const bname = btnClass.length > i ? btnClass[i] : '';
             arr.push(
-                <button key={i} className={cname2 + cname3 + cname4 + " option " + cname1} onClick={click(i)}>
+                <button key={i} className={cname2 + cname3 + cname4 + " option " + cname1} /*onClick={click(i)}*/
+                    onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp(click(i))}
+                >
                     <div className="bg"></div>
                     <div className={'btn ' + bname}></div>
                     <div className="circle-checkmark">
@@ -254,6 +304,17 @@ const BindingOptions = ({
         setSelect(!select);
     }
 
+    let moving = false;
+    const onMouseDown = () => moving = false;
+    const onMouseMove =() => moving = true;
+    function onMouseUp(clickFunc: () => void) {
+        return () => {
+            if (moving)
+                return;
+            clickFunc();
+        }
+    }
+
     if (select) {
         optionClass1 += ' select';
         optionClass2 += ' select';
@@ -261,14 +322,18 @@ const BindingOptions = ({
 
     return (
         <>
-            <button className={"option vline " + optionClass1} onClick={click}>
+            <button className={"option vline " + optionClass1} /*onClick={click}*/
+                onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp(click)}
+            >
                 <div className="bg"></div>
                 <div className={'btn ' + btnClass1}></div>
                 <div className="circle-checkmark">
                     <CheckMark></CheckMark>
                 </div>
             </button>
-            <button className={"option " + optionClass2} onClick={click}>
+            <button className={"option " + optionClass2} /*onClick={click}*/
+                onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp(click)}
+            >
                 <div className="bg"></div>
                 <div className={'btn ' + btnClass2}></div>
                 <div className="circle-checkmark">

@@ -53,7 +53,7 @@
     --color: rgb(153, 0, 0);
     --width: 0.25rem;
     --length: 15%;
-    background: 
+    background:
     linear-gradient(var(--color) 0 0) bottom left / var(--length) var(--width),
     linear-gradient(var(--color) 0 0) top left / var(--length) var(--width),
     linear-gradient(var(--color) 0 0) left / var(--width) 100%,
@@ -219,8 +219,11 @@
     justify-content: center;
     transition: all 100ms ease-in-out;
 }
-.char-prepare .select-box .option:active>.btn {
+.char-prepare .select-box .option:not(.lock):active>.btn {
     filter: drop-shadow( 0px 0.25em 0.1em rgba(0, 0, 0, 0.5)) brightness(80%);
+}
+.char-prepare .select-box .option.lock:active>.btn {
+    filter: drop-shadow( 0px 0.25em 0.1em rgba(0, 0, 0, 0.5)) brightness(60%);
 }
 .char-prepare .select-box .option:not(.hex)>.btn {
     border: solid 0.2rem white;
