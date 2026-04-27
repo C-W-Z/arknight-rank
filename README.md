@@ -1,3 +1,9 @@
+# Arknight-Rank Demo
+
+https://youtu.be/ljrmJqJlbF0
+
+[![alt text](https://img.youtube.com/vi/ljrmJqJlbF0/0.jpg)](https://www.youtube.com/watch?v=ljrmJqJlbF0)
+
 # Tauri + React + Typescript
 
 This template should help get you started developing with Tauri, React and Typescript in Vite.
